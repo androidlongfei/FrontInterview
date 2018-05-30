@@ -340,25 +340,25 @@ console.log('属性title包含12的元素', $('[title*=12]').length) // 3
 
 ```html
 <div>
-	<ul id="first">
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-	</ul>
-	<ul id="second">
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-	</ul>
-	<ul id="three">
-		<li>1</li>
-	</ul>
+    <ul id="first">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul id="second">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <ul id="three">
+        <li>1</li>
+    </ul>
 </div>
 ```
 
-```js
+```javascript
 // 每个ul元素的第一个li元素
 $('ul li:first-child').css('background-color','red')
 // 每个ul元素的最后一个li元素
@@ -375,24 +375,119 @@ $('#second li:nth-child(2n)').css('background-color','red')
 
 此选择器主要是对所选择的表单元素进行过滤。
 
-选择器             | 描述                 |  返回  | 示例
---------------- | :----------------- | :--: | :--------------------------------------
-:enabled | 选取所有可用的元素 | 集合元素 | $('#form1 :enabled')选取表单form1内所有可用元素
-:disabled          | 选取所有不可用的元素 | 集合元素 | $('#form2 :disabled')选取表单form2内所有不可用元素
-:checked  | 选取所有被选中的元素(单选框，复选框)      | 集合元素 | $('input:checked')选取所有被选中`input`元素
-:selected         | 选取所有被选中的选项元素(下拉列表)     | 集合元素 | $('selct option:selected')选取所有被选中的选项元素
+选择器       | 描述                  |  返回  | 示例
+--------- | :------------------ | :--: | :-------------------------------------
+:enabled  | 选取所有可用的元素           | 集合元素 | $('#form1 :enabled')选取表单form1内所有可用元素
+:disabled | 选取所有不可用的元素          | 集合元素 | $('#form2 :disabled')选取表单form2内所有不可用元素
+:checked  | 选取所有被选中的元素(单选框，复选框) | 集合元素 | $('input:checked')选取所有被选中`input`元素
+:selected | 选取所有被选中的选项元素(下拉列表)  | 集合元素 | $('selct option:selected')选取所有被选中的选项元素
+
+```html
+<form id='form1'>
+    可用元素：<input name="add" type="text" value="可用文本框"/>
+    <br/><br/>
+    不可用元素: <input type="text" name="eamil" disabled="disabled" value="不可用文本"/>
+    <br/><br/>
+    可用元素：<input name="che" type="text" value="可用文本框"/>
+    <br/><br/>
+    不可用元素: <input type="text" name="name" disabled="disabled" value="不可用文本"/>
+    <br/><br/>
+    多选框:
+    <input name="love" type="checkbox" value="test1" checked="checked"/>
+    <input name="love" type="checkbox" value="test2"/>
+    <input name="love" type="checkbox" value="test3"/>
+    <input name="love" type="checkbox" value="test4"/>
+    <input name="love" type="checkbox" value="test5"/>
+    <br/><br/>
+    下拉列表:
+    <select name="test" style="height: 30px;">
+        <option>湖南</option>
+        <option>北京</option>
+        <option selected="selected">天津</option>
+        <option>湖北</option>
+    </select>
+    <br/><br/>
+    <input type="button" id="btn" value="提交" />
+</form>
+```
+
+```javascript
+$('#btn').bind('click',function(event){
+    console.log('submit...')
+    // 修改表单内，可用input元素的值
+    $('#form1 input:enabled').val('这里变化啦')
+    // 修改表单内，不可用input元素的值
+    $('#form1 input:disabled').val('这里也变化啦')
+    // 获取多选框选中的个数
+    console.log($('input[type=checkbox]:checked').length) // 选中的个数
+    // 获取下拉框选中的内容
+    console.log($('select :selected').text()) // 湖北
+})
+```
 
 ### 2.4表单选择器
 
-为了使用户能够更加灵活地操作表单，jQuery中专门加入了表单选择器。利用这个选择器，能极其
-方便地获取到表单的`某个`或者`某类型`的元素。
+为了使用户能够更加灵活地操作表单，jQuery中专门加入了表单选择器。利用这个选择器，能极其 方便地获取到表单的`某个`或者`某类型`的元素。
 
-选择器             | 描述                 |  返回  | 示例
---------------- | :----------------- | :--: | :--------------------------------------
-:input | 选取所有的input,textarea,select,button元素 | 集合元素 | $('#form1 :input')
-:text          | 选取所有的单行文本框 | 集合元素 | $(':text')选取所有的单行文本框
-:password  | 选取所有密码框      | 集合元素 | $(':password')选取所有的密码框
-:radio  | 选取所有的单选框      | 集合元素 | $(':radio')选取所有的单选框
-:checkbox  | 选取所有的多选框      | 集合元素 | $(':checkbox')选取所有的多选框
-:button  | 选取所有的按钮      | 集合元素 | $(':button')选取所有的按钮
-:file  | 选取所有的上传域      | 集合元素 | $(':file')选取所有的上传域
+选择器       | 描述                                  |  返回  | 示例
+--------- | :---------------------------------- | :--: | :---------------------
+:input    | 选取所有的input,textarea,select,button元素 | 集合元素 | $('#form1 :input')
+:text     | 选取所有的单行文本框                          | 集合元素 | $(':text')选取所有的单行文本框
+:password | 选取所有密码框                             | 集合元素 | $(':password')选取所有的密码框
+:radio    | 选取所有的单选框                            | 集合元素 | $(':radio')选取所有的单选框
+:checkbox | 选取所有的多选框                            | 集合元素 | $(':checkbox')选取所有的多选框
+:button   | 选取所有的按钮                             | 集合元素 | $(':button')选取所有的按钮
+:file     | 选取所有的上传域                            | 集合元素 | $(':file')选取所有的上传域
+
+```html
+<form id='form1'>
+    可用元素：<input name="add" type="text" value="可用文本框"/>
+    <br/><br/>
+    不可用元素: <input type="text" name="eamil" disabled="disabled" value="不可用文本"/>
+    <br/><br/>
+    可用元素：<input name="che" type="text" value="可用文本框"/>
+    <br/><br/>
+    不可用元素: <input type="text" name="name" disabled="disabled" value="不可用文本"/>
+    <br/><br/>
+    密码框: <input type="password" name="pwd" value="密码"/>
+    <br/><br/>
+    多选框:
+    <input name="love" type="checkbox" value="test1" checked="checked"/>
+    <input name="love" type="checkbox" value="test2"/>
+    <input name="love" type="checkbox" value="test3"/>
+    <input name="love" type="checkbox" value="test4"/>
+    <input name="love" type="checkbox" value="test5"/>
+    <br/><br/>
+    下拉列表:
+    <select name="test" style="height: 30px;">
+        <option>湖南</option>
+        <option>北京</option>
+        <option selected="selected">天津</option>
+        <option>湖北</option>
+    </select>
+    <br/><br/>
+    <button id="test" disabled="disabled">测试</button>
+    <br/><br/>
+    <textarea name="des" rows="4" cols="40">描述</textarea>
+    <br/><br/>
+</form>
+<button id="btn">提交</button>
+```
+
+```javascript
+$('#btn').bind('click',function(event){
+    console.log('submit...')
+    // 获取表单元素个数
+    console.log('表单元素个数',$('#form1 :input').length) // 12 加上 select textarea button
+    // input元素个数
+    console.log('input元素个数',$('#form1 input').length) // 9
+    // 获取表单内单行文本的个数
+    $('#form1 input:disabled').val('这里也变化啦')
+    // 获取多选框选中的个数
+    console.log($('#form1 :text').length,$('#form1 :text')) // 4
+    // 获取密码框个数
+    console.log($('#form1 :password').length) // 1
+
+    // 同理，其他表单操作与此类似
+})
+```
