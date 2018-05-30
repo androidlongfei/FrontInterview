@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件对象</title>
+</head>
+
+<body>
+    <div id="myDiv" style="cursor:pointer;">点击我</div>
+</body>
+<script charset="utf-8">
+    var myDiv = document.getElementById('myDiv')
+    myDiv.onclick = function (event) {
+        // event 是目标事件
+        // event.target 目标元素
+        // this 是目标元素
+        // bubbles 是否冒泡
+        // cancelable 是否
+        console.log('-------------div click event---------------')
+        console.log('myDiv', event) // 事件对象
+        console.log('事件是否冒泡event.bubbles', event.bubbles) // true 是冒泡
+        console.log('是否可以取消事件的默认行为event.cancelable', event.cancelable) // true 可以取消事件的默认行为
+        event.bubbles = false // 无用，因为该属性只读，无法修改
+        event.cancelable = false // 无用，因为该属性只读，无法修改
+        console.log('是否是否调用了preventDefault()', event.defaultPrevented) // false 没有调用 (该属性也是只是可读的)
+        console.log('调用preventDefault()')
+        event.preventDefault() // 取消事件的默认行为
+        console.log('是否是否调用了event.preventDefault()', event.defaultPrevented) // true 已经调用
+        console.log('调用event.stopPropagation()阻止事件冒泡')
+        // event.stopPropagation() // 阻止事件冒泡，如果event.bubbles为true则可以使用这个方法。注意:使用这个方法后body就收不到点击事件了。
+        console.log('myDiv this==target', event.target == this, this.innerHTML) // true 点击我
+    }
+
+    document.body.onclick = function (event) {
+        console.log('-------------body click event---------------')
+        console.log('body', event) // click
+        console.log('body this==target', event.target == this, event.target.innerHTML) // false 点击我 。注意:event.target是目标元素(div)，而this是当前元素(body)
+    }
+
+</script>
+
+</html>

@@ -116,3 +116,19 @@ myDiv.addEventListener('click', function (event) {
 > `addEventListener` 能添加多个相同的事件处理函数
 
 大多数情况下，都是将事件处理函数添加到`事件流的冒泡阶段`，这样可以最大限度地兼容各种浏览器。
+
+```
+IE9和其它浏览器都支持DOM2级事件处理程序
+```
+
+## 4.IE事件处理程序
+
+IE实现了与DOM类似的两个方法:attachEvent()和detachEvent()。由于IE8及更早版本只支持，所以attachEvent添加的事件处理程序都会被添加到冒泡阶段。
+
+在IE中使用attachEvent()与使用DOM0级方法的主要区别在于事件处理程序的作用域。
+
+在DOM0级方法的情况下，事件处理程序会在其所属元素的作用域内运行；在使用attachEvent()情况下 ，事件处理程序会在全局作用域中运行，因此this等价于window.
+
+```
+支持IE事件处理程序的浏览器有IE和Opera
+```
