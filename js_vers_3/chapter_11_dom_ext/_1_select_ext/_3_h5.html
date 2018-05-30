@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择符</title>
+</head>
+
+<body>
+    <p class="username current">test</p>
+    <p class="username">test1</p>
+    <p id="tp" data-appid="12345">哈哈</p>
+</body>
+<script charset="utf-8">
+    // classList
+    var allCurrent = document.getElementsByClassName('username current')
+    console.log(allCurrent)
+    console.log(allCurrent[0].textContent) // test
+    console.log('classList', allCurrent[0].classList[0]) // username
+
+    // 自定义属性
+    var tp = document.getElementById('tp')
+    console.log(tp.getAttribute('data-appid'), tp.dataset.appid) // 12345 12345
+
+</script>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子元素过滤选择器</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+	<div>
+		<ul id="first">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		
+		<ul id="second">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		
+		<ul id="three">
+			<li>1</li>
+		</ul>
+	</div>
+    <script charset="utf-8">
+    	// 每个ul元素的第一个li元素
+      	// $('ul li:first-child').css('background-color','red')
+    	// 每个ul元素的最后一个li元素
+  		// $('ul li:last-child').css('background-color','red')
+  		// 只有一个li元素
+  		$('ul li:only-child').css('background-color','red')
+  		// 选中第二个元素
+  		$('#first li:nth-child(2)').css('background-color','red')
+  		// 选中2倍数的元素
+  		$('#second li:nth-child(2n)').css('background-color','red')
+
+    </script>
+</body>
+
+</html>

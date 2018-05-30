@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建文本节点</title>
+    <style media="screen">
+        .bd {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+</body>
+<script charset="utf-8">
+    var div = document.createElement("div")
+    div.className = "bd"
+    var textNode = document.createTextNode("测试")
+    div.appendChild(textNode)
+    document.body.appendChild(div)
+
+</script>
+
+</html>

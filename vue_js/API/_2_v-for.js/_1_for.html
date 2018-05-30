@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <style media="screen">
+        #app {
+            margin: 30px;
+        }
+
+        .result {
+            font-weight: bold;
+        }
+
+        .fontRed {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">1.v-for基本用法(数组)</div>
+            <div class="panel-body">
+                <div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">原始数据:</label>
+                            <input type="email" class="form-control" placeholder="消息" v-model="message">
+                        </div>
+                        <button type="button" class="btn btn-success" @click="addMessage">增加</button>
+                    </form>
+                </div>
+                <div style="margin:10px 0;">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(msg,index) in messageList" :key="index">{{msg}}--{{index}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="result">结论:</span>用 v-for 指令根据一组数组的选项列表进行渲染。v-for 指令需要使用 item in items 形式的特殊语法，items 是源数据数组并且 item 是数组元素迭代的别名。
+                </div>
+            </div>
+            <div class="panel-footer">
+                <!-- <button type="button" class="btn btn-success">更改message</button> -->
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">2.v-for基本用法(对象)</div>
+            <div class="panel-body">
+                <div style="margin:10px 0;">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(msgValue,msgKey) in messageObj" :key="msgKey">{{msgKey}}:{{msgValue}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="result">结论:</span>在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。
+                </div>
+            </div>
+            <div class="panel-footer">
+                <!-- <button type="button" class="btn btn-success">更改message</button> -->
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">3.数组更新检测(变异方法)</div>
+            <div class="panel-body">
+                <div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">原始数据:</label>
+                            <input type="email" class="form-control" placeholder="消息" v-model="content">
+                        </div>
+                        <!-- <button type="button" class="btn btn-success" @click="addMessage">增加</button> -->
+                    </form>
+                </div>
+                <div style="margin:10px 0;">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(msg,index) in contentList" :key="index">{{msg}}--{{index}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <p><span class="result">结论:</span>Vue包含一组观察数组的变异方法，所以它们也将会触发视图更新,push,pop,shift,unshift,splice,sort,reverse</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success" @click="pushData">push</button>
+                <button type="button" class="btn btn-success" @click="popData">pop</button>
+                <button type="button" class="btn btn-success" @click="reverseData">reverse</button>
+                <button type="button" class="btn btn-success" @click="spliceData(0,1)">删除第一个</button>
+                <button type="button" class="btn btn-success" @click="replaceData(0,1)">替换第一个</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">4.数组更新检测(非变异方法，不改变原始数组)</div>
+            <div class="panel-body">
+                <div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">原始数据:</label>
+                            <input type="number" class="form-control" placeholder="数字" v-model="nonMutating">
+                        </div>
+                        <button type="button" class="btn btn-success" @click="addNonMutating">增加</button>
+                    </form>
+                </div>
+                <div style="margin:10px 0;">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(msg,index) in nonMutatingList" :key="index">{{msg}}-----{{index}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <p><span class="result">结论:</span>非变异 (non-mutating method) 方法,不会改变原始数组，但总是返回一个新数组,当使用非变异方法时，可以用新数组替换旧数组.</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success" @click="filterData(3)">filter大于3</button>
+                <button type="button" class="btn btn-success" @click="concatData([8,9])">concat连接数组[8,9]</button>
+                <button type="button" class="btn btn-success" @click="sliceData(1,3)">slice截取下标1-3</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">5.注意事项</div>
+            <div class="panel-body">
+                <div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">原始数据:</label>
+                            <input type="text" class="form-control" placeholder="数据" v-model="attention">
+                        </div>
+                        <!-- <button type="button" class="btn btn-success" @click="addAttention">增加</button> -->
+                    </form>
+                </div>
+                <div style="margin:10px 0;">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(msg,index) in attentionList" :key="index">{{msg}}-----{{index}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <p><span class="result">结论:</span>非变异 (non-mutating method) 方法,不会改变原始数组，但总是返回一个新数组,当使用非变异方法时，可以用新数组替换旧数组.</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success" @click="indexUpdateData()">索引更新</button>
+                <button type="button" class="btn btn-success" @click="spliceUpdateData()">替换更新</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">6.对象更新</div>
+            <div class="panel-body">
+                <div>
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">年龄:</label>
+                            <input type="text" class="form-control" placeholder="年龄" v-model="age">
+                        </div>
+                        <button type="button" class="btn btn-success" @click="addAge">增加</button>
+                    </form>
+                </div>
+                <div style="margin:10px 0;">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(msgValue,msgKey) in userProfile" :key="msgKey">{{msgKey}}:{{msgValue}}</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="result">结论:</span>在遍历对象时，是按 Object.keys() 的结果遍历，但是不能保证它的结果在不同的 JavaScript 引擎下是一致的。
+                </div>
+            </div>
+            <div class="panel-footer">
+                <!-- <button type="button" class="btn btn-success">更改message</button> -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../lib/lodash.min.js" charset="utf-8"></script>
+    <script src="../../lib/vue.min.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                messageList: [],
+                messageObj: {
+                    '姓名': '张三',
+                    '年龄': 30,
+                    '性别': '男'
+                },
+                content: '',
+                contentList: [
+                    'test1',
+                    'test2'
+                ],
+                nonMutating: '',
+                nonMutatingList: [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5
+                ],
+                attention: '',
+                attentionList: [
+                    'a', 'b', 'c'
+                ],
+                age: '',
+                userProfile: {
+                    '姓名': '李四',
+                    '性别': '男'
+                },
+            },
+            computed: {
+                now: function () {
+                    // now的值没有绑定依赖，所以不会变化
+                    return Date.now()
+                }
+            },
+            methods: {
+                addMessage() {
+                    if (this.message) {
+                        this.messageList.push(this.message)
+                    }
+                },
+                pushData() {
+                    // 将数据追加到最后面
+                    if (this.content) {
+                        this.contentList.push(this.content)
+                    }
+                },
+                popData() {
+                    // 将最后面的数据移除
+                    if (this.contentList.length > 0) {
+                        this.contentList.pop()
+                    }
+                },
+                reverseData() {
+                    // 反转数组
+                    if (this.contentList.length > 0) {
+                        this.contentList.reverse()
+                    }
+                },
+                spliceData(position, num) {
+                    // 删除数组中指定元素,原数组会变
+                    // position:数组下标,从0开始
+                    // num:删除个数
+                    if (this.contentList.length >= num) {
+                        this.contentList.splice(position, num)
+                    }
+                },
+                replaceData(position, num) {
+                    // 替换数组中指定元素,原数组会变
+                    // position:数组下标,从0开始
+                    // num:替换个数
+                    if (this.contentList.length >= num) {
+                        this.contentList.splice(position, num, this.content)
+                    }
+                },
+                addNonMutating() {
+                    if (this.nonMutating) {
+                        this.nonMutatingList.push(this.nonMutating)
+                    }
+                },
+                filterData(num) {
+                    // 过滤数组
+                    if (this.nonMutatingList.length > 0) {
+                        this.nonMutatingList = this.nonMutatingList.filter(function (item) {
+                            // 显示大于3
+                            return item > num
+                        })
+                    }
+                },
+                concatData(newArr) {
+                    // 连接连个数组,将一个数组追加到另一个数组的后面，生成一个新数组
+                    if (newArr && newArr.length > 0) {
+                        this.nonMutatingList = this.nonMutatingList.concat(newArr)
+                    }
+                },
+                sliceData(start, end) {
+                    // start,end为数组下标
+                    // 截取数组，包含start,不包含end
+                    if (this.nonMutatingList.length > end) {
+                        this.nonMutatingList = this.nonMutatingList.slice(start, end)
+                    }
+                },
+                indexUpdateData() {
+                    // 此方法更新视图失败
+                    // this.attentionList[0] = this.attention
+
+                    // 用此方法替代
+                    this.$set(this.attentionList, 0, this.attention)
+                },
+                spliceUpdateData() {
+                    if (this.attentionList.length >= 0) {
+                        this.attentionList.splice(0, 1, this.attention)
+                    }
+                },
+                addAge() {
+                    if (this.age) {
+                        // console.log('addAge')
+                        // 不是响应式的,视图不会更新
+                        // this.userProfile['年龄'] = this.age
+
+                        // 响应式，视图会更新 (增加单个属性)
+                        // this.$set(this.userProfile, '年龄', this.age)
+
+                        // 响应式，视图会更新 (增加多个属性)
+                        this.userProfile = Object.assign({}, this.userProfile, {
+                            '年龄': this.age,
+                            '喜欢颜色': 'Green'
+                        })
+                    }
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

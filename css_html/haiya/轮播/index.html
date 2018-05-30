@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 设置网页的编码 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>l轮播图</title>
+    <style media="screen">
+        /* 清除浏览器默认的margin,padding*/
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        /*html,body默认宽度和高度为0,设置100%是为了继承window的宽度和高度*/
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .banerWrap {
+            width: 300px;
+            height: 300px;
+            /* 设置盒子阴影: 横向(正数横向，负数纵向) x位移(1px) y位移(2px) 羽化程度(9px) 颜色(red)*/
+            /*box-shadow: 1px 2px 9px red;*/
+            /* 盒子阴影 ： 纵向 x位移(-1px) y位移(-2px)*/
+            /*box-shadow: -1px -2px 9px red;*/
+            box-shadow: 0 0 9px red;
+
+            /*水平居中*/
+            /* 上下是10px,左右居中*/
+            margin: 0 auto;
+
+            /*定位*/
+            position: relative;
+        }
+
+        .banerWrap ul.pic>li {
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            /*绝对定位*/
+            position: absolute;
+            top: 0;
+        }
+        /*小原点*/
+
+        .banerWrap ul.lib {
+            width: 120px;
+            height: 20px;
+            display: flex;
+            /* 主抽(默认横抽) 均分*/
+            justify-content: space-around;
+            /*辅抽(纵抽) 居中*/
+            align-items: center;
+            position: absolute;
+            bottom: 10px;
+            /*水平居中*/
+            left: 0;
+            right: 0;
+            margin: auto;
+            background-color: white;
+            /* 透明 */
+            opacity: 0.5;
+            border-radius: 10px;
+        }
+
+        .banerWrap ul.lib>li {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            opacity: 0.5;
+            /*小手*/
+            cursor: pointer;
+        }
+        /*上一页和下一页*/
+
+        .banerWrap ul.btn>li {
+            width: 30px;
+            height: 60px;
+            background-color: black;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 0.7em;
+            color: white;
+            opacity: 0.5;
+        }
+
+        .banerWrap ul.btn>li.pre {
+            left: 0;
+            cursor: pointer;
+        }
+
+        .banerWrap ul.btn>li.next {
+            right: 0;
+            cursor: pointer;
+        }
+        /*img标签四要素
+        * 1.src 路径
+        * 2.alt 描述信息 图片搜索关键词
+        * 3.width 图片原始宽度
+        * 4.height 图片原始高度
+        * (alt,width,height)是供搜索引擎用的,并且方便对图片进行压缩(压缩时必须知道图片的原始宽和高)
+        * 开发规范:http://tguide.qq.com/main/base.htm#html-title
+        */
+        /*
+        * id和class的使用场景
+        * id: 一级主体架构 关键性功能标签
+        * class:
+        */
+
+    </style>
+</head>
+
+<body>
+    <div class="banerWrap">
+        <ul class="pic">
+            <li><img src='./images/banner1.jpg' alt='banner1' width='300' height="300"></li>
+            <li><img src='./images/banner2.jpg' alt='banner1' width='300' height="300"></li>
+            <li><img src='./images/banner3.jpg' alt='banner1' width='300' height="300"></li>
+            <li><img src='./images/banner4.jpg' alt='banner1' width='300' height="300"></li>
+            <li><img src='./images/banner5.jpg' alt='banner1' width='300' height="300"></li>
+        </ul>
+        <ul class="lib">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="btn">
+            <li class="pre">pre</li>
+            <li class="next">next</li>
+        </ul>
+    </div>
+</body>
+
+</html>

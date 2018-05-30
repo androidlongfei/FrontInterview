@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .test li {
+            position: relative;
+            float: left;
+            background: blue;
+        }
+
+        .test li a {
+            display: block;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 50%;
+            font-size: 24px;
+            color: #fff;
+            line-height: 50px;
+            text-align: center;
+            margin-right: 15px;
+        }
+
+        .test li p {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            height: 30px;
+            background-color: orange;
+            border-radius: 30px;
+            /*overflow: hidden;*/
+            line-height: 30px;
+            color: #fff;
+            padding: 0 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="test">
+        <li>
+            <a href="">2</a>
+            <p>我是一段比父元素宽的文字，而且宽度不固定</p>
+        </li>
+        <!-- <li>
+            <a href="">2</a>
+            <p class="hide">我是一段比父元素宽的文字，而且宽度不固定</p>
+        </li>
+        <li>
+            <a href="">3</a>
+            <p class="hide">我是一段比父元素宽的文字，而且宽度不固定</p>
+        </li> -->
+    </ul>
+</body>
+
+</html>

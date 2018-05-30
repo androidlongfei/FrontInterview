@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>可见性选择器</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id='mFirst' class="mar">
+        <input type="hidden" name="test" value="测试">
+        <div style="display:none;">哈哈</div>
+        <div class="tt">hello</div>
+    </div>
+
+    <script charset="utf-8">
+        console.log($(':hidden').length, $(':hidden')) // 10 包括meta等标签
+        console.log($('input:hidden').length) // 1 input标签
+        console.log($('div:hidden').length) // 1 div标签
+        console.log($('div.tt:visible').length) // 1 div标签
+
+    </script>
+</body>
+
+</html>

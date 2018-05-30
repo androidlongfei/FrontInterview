@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件捕获</title>
+</head>
+
+<body>
+    <div id="myDiv" style="cursor:pointer;">点击我</div>
+</body>
+<script charset="utf-8">
+    var myDiv = document.getElementById('myDiv');
+
+    // addEventListener的参数若为true,就是监听捕获阶段(默认是false)
+
+    myDiv.addEventListener('click', function () {
+        console.log('myDiv的click事件被触发', '--捕获--2')
+    }, true);
+
+    document.body.addEventListener("click", function () {
+        console.log('body的click事件被触发', '--捕获--1')
+    }, true);
+
+    // 输出顺序是 1 2
+
+</script>
+
+</html>

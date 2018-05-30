@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面加载完</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p id="foo">hello</p>
+    <div id="mdiv">哈哈</div>
+    <script charset="utf-8">
+        // jquery实现
+        var $content = $('#foo').html()
+        console.log($content) // hello
+        // js实现
+        var content = document.getElementById('foo').innerHTML
+        console.log(content) // hello
+
+    </script>
+
+    <script charset="utf-8">
+        // jquery
+        var $div = $('#mdiv')
+        console.log($div)
+        // js
+        var div = document.getElementById('mdiv')
+        console.log(div)
+
+        // 将jQuery对象转化为dom，有如下两种方法
+        var div1 = $div.get(0)
+        console.log(div1.innerHTML) // 哈哈
+        var div2 = $div[0]
+        console.log(div1.innerHTML) // 哈哈
+        console.log(div == div1, div1 == div2) // true true
+
+        // 将dom对象包装成jQuery对象
+        var $div1 = $(div)
+        console.log($div1.html()) // 哈哈
+        console.log($div == $div1) // fasle
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM0处理程序</title>
+</head>
+
+<body>
+    <div id="myDiv" style="cursor:pointer;">点击我</div>
+</body>
+<script charset="utf-8">
+    var myDiv = document.getElementById('myDiv')
+    myDiv.onclick = function (event) {
+        // event 是目标事件
+        // event.target 目标元素
+        // this 是目标元素
+        console.log(event.type) // click
+        console.log(event.target == this) // true
+        console.log(event.target.innerHTML) // 点击我
+    }
+
+</script>
+
+</html>

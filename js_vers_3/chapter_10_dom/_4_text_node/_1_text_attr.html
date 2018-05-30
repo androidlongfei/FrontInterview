@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>element属性</title>
+    <style media="screen">
+        .bd {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="myDiv" class="bd" title="body text">hello world</div>
+</body>
+<script charset="utf-8">
+    var div = document.getElementById("myDiv")
+    var textNode = div.firstChild;
+    console.log(textNode.nodeType, textNode.nodeName, textNode.nodeValue) // 输出 3 "#text" "hello world"
+    // 修改文本节点内容
+    textNode.nodeValue = "修改啦"
+    // textNode.nodeValue = "Some<strong>other</strong>message"
+    // console.log(textNode.nodeValue)
+
+</script>
+
+</html>

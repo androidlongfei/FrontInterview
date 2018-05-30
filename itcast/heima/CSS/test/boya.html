@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>博雅网站</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				font-size: 14px;
+			}
+			
+			.header-bc {
+				width: 100%;
+				background-color: #191D3A;
+			}
+			
+			.header {
+				width: 1020px;
+				height: 60px;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			
+			.header .logo {
+				float: left;
+			}
+			
+			.header .nav ul {
+				list-style: none;
+			}
+			
+			.header .nav ul li {
+				float: left;
+				border-right: 1px solid #252947;
+			}
+			
+			.header .nav ul li.last {
+				border-right: 0;
+			}
+			
+			.header .nav ul li a {
+				display: block;
+				line-height: 60px;
+				width: 86px;
+				text-align: center;
+				text-decoration: none;
+			}
+			
+			.header .nav ul li a:link,
+			.header .nav ul li a:visited {
+				color: #818496;
+			}
+			
+			.header .nav ul li.active a {
+				color: white;
+				background-color: #252947;
+			}
+			
+			.header .nav ul li a:hover {
+				color: white;
+				background-color: #252947;
+			}
+			
+			.header .nav ul li a.add-us {
+				position: relative;
+			}
+			
+			.header .nav ul li a.add-us img {
+				position: absolute;
+				top: 12px;
+				left: 9px;
+			}
+			
+			.header .nav ul li a.add-us:hover {
+				/*color: white;*/
+				/*background-color: red;*/
+			}
+			
+			.header .language {
+				float: right;
+				line-height: 60px;
+			}
+			
+			.header .language a {
+				text-decoration: none;
+			}
+			
+			.header .language a.ch {
+				margin-right: 10px;
+				color: #2f7f43;
+			}
+			
+			.header .language a.en {
+				color: #818496;
+			}
+			
+			.cl {
+				clear: both;
+			}
+			
+			.h50 {
+				height: 50px;
+			}
+			/* banner-bc*/
+			
+			ul {
+				list-style: none;
+			}
+			
+			.banner-bc {
+				height: 465px;
+				background: url(../images/banner.jpg) no-repeat top center;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			.banner-bc .circle {
+				position: absolute;
+				bottom: 20px;
+				width: 103px;
+				left: 50%;
+				margin-left: -51px;
+				height: 15px;
+				/*background-color: blue;*/
+			}
+			
+			.circle li {
+				float: left;
+			}
+			
+			.circle li .point {
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				margin-right: 7px;
+				background-color: white;
+			}
+			
+			.circle li.last .point {
+				margin-right: 0;
+			}
+			
+			.content-bc {
+				width: 1020px;
+				margin: 0 auto;
+			}
+			
+			.play {
+				padding-top: 50px;
+				padding-bottom:50px;
+				border-bottom: #DBE1E7 solid 1px;
+				position: relative;
+			}
+			
+			.play .video li {
+				float: left;
+				margin-right: 40px;
+			}
+			
+			.play .video li.last {
+				margin-right: 0;
+			}
+			
+			.play .video li img {
+				width: 225px;
+			}
+			
+			.play .video li h3 {
+				text-align: center;
+				height: 35px;
+				line-height: 35px;
+			}
+			
+			.play .video li h4 {
+				text-align: center;
+				height: 25px;
+				line-height: 25px;
+				color: #38b774;
+				position: relative;
+			}
+			
+			.play .video li h4 .icon {
+				position: absolute;
+				left: 50%;
+				margin-left: 34px;
+				top: 10px;
+				height: 20px;
+				width: 20px;
+				background: url(../images/sanjiaoxing.png) no-repeat;
+			}
+			
+			.play .circle {
+				position: absolute;
+				background-color: white;
+				bottom: -8px;
+				left: 50%;
+				margin-left: -35px;
+				width: 70px;
+				height: 15px;
+			}
+			
+			.play .circle li {
+				float: left;
+			}
+			
+			.play .circle li .point {
+				width: 15px;
+				height: 15px;
+				border-radius: 50%;
+				background-color: #b5c0cb;
+				margin-left: 10px;
+			}
+			
+			.play .circle li.active .point {
+				background-color: #2fbc71;
+			}
+			
+			.info {
+				height: 370px;
+				background: url(../images/indexmainbg.jpg) no-repeat top center;
+			}
+			
+			.info .news {
+				float: left;
+				position: relative;
+			}
+			
+			.info .news .more{
+				position: absolute;
+				top:50px;
+				left: 225px;
+			}
+			
+			.info .news .more img{
+				width: 65px;
+				height: 28px;
+			}
+			
+			.info .news .word{
+				position: absolute;
+				top:120px;
+				left: 20px;
+			}
+			
+			.info .news .word li {
+				height: 50px;
+				width: 470px;
+				line-height: 50px;
+				border-bottom: 1px solid #DBE1E7;
+			}
+			
+			.info .news .word .text{
+				float: left;
+				color: #444866;
+			}
+			
+			.info .news .word .time{
+				float: right;
+				color: #DBCCCF;
+			}
+			
+			.info .news img {
+				width: 510px;
+			}
+			
+			.info .zhaopin {
+				float: left;
+				position: relative;
+			}
+			
+			.info .zhaopin .zc{
+				position: absolute;
+				top:35px;
+				left: 80px;
+			}
+			
+			.info .zhaopin .zc img{
+				width: 117px;
+				height: 57px;
+			}
+			
+			.info .zhaopin .more{
+				position: absolute;
+				top:50px;
+				left: 225px;
+			}
+			
+			.info .zhaopin .more img{
+				width: 65px;
+				height: 28px;
+			}
+			
+			.info .zhaopin .word{
+				position: absolute;
+				top:120px;
+				left: 20px;
+			}
+			
+			.info .zhaopin .word h3{
+				color: white;
+			}
+			
+			.info .zhaopin .word li{
+				height: 35px;
+				line-height: 35px;
+				width: 320px;
+				border-bottom: 1px solid #DBE1E7;
+			}
+			
+			.info .zhaopin .word .text{
+				color: white;
+			}
+		
+			
+			.info .zhaopin img {
+				width: 510px;
+			}
+			
+			.footer-bc{
+				width: 100%;
+				background-color: #191D3A;
+			}
+			
+			.footer {
+				width: 1020px;
+				margin: 0 auto;
+			}
+			
+			.h20{
+				height: 0px;
+			}
+			
+			.footer{
+				padding-top: 30px;
+				padding-bottom: 30px;
+				color: #6c6e7e;
+			}
+			
+			.footer a{
+				text-decoration: none;
+				color: #6c6e7e;
+			}
+			.footer a:hover{
+				color: white;
+			}
+			
+			.copy {
+				margin-top: 30px;
+			}
+			
+			.certificate{
+				margin-top: 30px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="header-bc">
+			<div class="header">
+				<p class="logo"><img src="../images/logo01.png" alt="" /></p>
+				<div class="nav">
+					<ul>
+						<li class="active">
+							<a href="#">首页</a>
+						</li>
+						<li>
+							<a href="#">博雅游戏</a>
+						</li>
+						<li>
+							<a href="#">博雅新闻</a>
+						</li>
+						<li>
+							<a href="#">关于我们</a>
+						</li>
+						<li>
+							<a href="#">客服中心</a>
+						</li>
+						<li>
+							<a href="#">投资者关系</a>
+						</li>
+						<li class="last">
+							<a href="#" class="add-us"><img src="../images/add-us.png" alt="加入我们" /></a>
+						</li>
+					</ul>
+				</div>
+				<p class="language">
+					<span><a href="#" class="ch">中文</a></span>
+					<span><a href="#" class="en">EN</a></span>
+				</p>
+			</div>
+		</div>
+		<div class="banner-bc">
+			<div class="circle">
+				<ul>
+					<li>
+						<div class="point"></div>
+					</li>
+					<li>
+						<div class="point"></div>
+					</li>
+					<li>
+						<div class="point"></div>
+					</li>
+					<li>
+						<div class="point"></div>
+					</li>
+					<li class="last">
+						<div class="point"></div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="content-bc">
+			<div class="play">
+				<ul class="video">
+					<li>
+						<p><img src="../images/video.jpg" alt="" /></p>
+						<h3>博雅互动宣传视频</h3>
+						<h4>点击播放<span class="icon"></span></h4>
+					</li>
+					<li>
+						<p><img src="../images/gamepic1.jpg" alt="" /></p>
+						<h3>博雅互动宣传视频</h3>
+						<h4>点击播放<span class="icon"></span></h4>
+						<li>
+							<p><img src="../images/gamepic3.jpg" alt="" /></p>
+							<h3>博雅互动宣传视频</h3>
+							<h4>点击播放<span class="icon"></span></h4>
+						</li>
+						<li class="last">
+							<p><img src="../images/gamepic3.jpg" alt="" /></p>
+							<h3>博雅互动宣传视频</h3>
+							<h4>点击播放<span class="icon"></span></h4>
+						</li>
+				</ul>
+
+				<div class="cl"></div>
+				<div class="circle">
+					<ul>
+						<li class="active">
+							<div class="point"></div>
+						</li>
+						<li>
+							<div class="point"></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="cl h50"></div>
+			<div class="info">
+				<div class="news">
+					<p><img src="../images/bynewsbg.jpg" alt="" /></p>
+					<span class="more"><img src="../images/more.png" alt="" /></span>
+					<div class="word">
+						<ul>
+							<li><span class="text">大是大非是多少大概多少质数的孤独十点多质数的孤独十点多</span><span class="time">01/09</span></li>
+							<li><span class="text">大是大非是多少大概多少质数的孤独十点多质数的孤独十点多</span><span class="time">01/09</span></li>
+							<li><span class="text">大是大非是多少大概多少质数的孤独十点多质数的孤独十点多</span><span class="time">01/09</span></li>
+							<li><span class="text">大是大非是多少大概多少质数的孤独十点多质数的孤独十点多</span><span class="time">01/09</span></li>
+						</ul>
+					</div>
+
+				</div>
+				<div class="zhaopin">
+					<p><img src="../images/byhrbg3.jpg" alt="" /></p>
+					<span class="zc"><img src="../images/zczp.png" alt="" /></span>
+					<span class="more"><img src="../images/more2.png" alt="" /></span>
+					<div class="word">
+						<h3>社会招聘广告:</h3>
+						<ul>
+							<li><span class="text">PHP开发工程师</li>
+							<li><span class="text">C++开发工程师</li>
+							<li><span class="text">LUA开发工程师</li>
+							<li><span class="text">大数据开发工程师</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="cl h20"></div>
+		
+		<div class="footer-bc">
+			<div class="footer">
+				<p class="res"><a href="#">网站地图</a> | <a href="#">免责声明</a> | <a href="#">监督举报</a></p>
+				<div class="cl"></div>
+				<p class="copy">Copyright © 2004 - 2019 博雅互动(Boyaa Interactive)粤ICP备05062536号</p>
+				<p class="certificate">网络文化经营许可证：粤网文[2015]1991-405号 | 互联网出版许可证：新出网证（粤）字062号 | 增值电信业务经营许可证：粤B2-20110513</p>
+			</div>
+		</div>
+		
+		
+
+	</body>
+
+</html>

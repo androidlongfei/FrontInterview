@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>居中div</title>
+    <style>
+        /*relative：相对定位，参造物是其本身，并不脱离文档流，不管你怎么移动，它原有的位置还是会留着*/
+
+        .div1 {
+            width: 500px;
+            height: 300px;
+            background: green;
+            position: relative;
+        }
+
+        .div2 {
+            /*不管怎么移动,位置还是保留着*/
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            left: 100px;
+        }
+
+        .div3 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+            position: absolute;
+            left: 50px;
+        }
+
+        .div4 {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <div class="div2">
+        </div>
+        <div class="div3">
+        </div>
+        <div class="div4">
+        </div>
+    </div>
+</body>
+
+</html>

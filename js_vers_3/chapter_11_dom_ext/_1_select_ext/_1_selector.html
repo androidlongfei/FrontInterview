@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择符</title>
+</head>
+
+<body>
+    <p id="test" class="p-test">测试</p>
+    <div id="myDiv">
+        <p class="mp">呵呵</p>
+    </div>
+</body>
+<script charset="utf-8">
+    var pNode = document.getElementById('test');
+    var ip = document.querySelector('#test');
+    var cp = document.querySelector('.p-test');
+    console.log(ip == pNode, cp == pNode) // true true
+
+    var mp = document.querySelector('#myDiv .mp')
+    console.log(mp.className) // "mp"
+
+    var myDiv = document.querySelector('#myDiv')
+    var mp1 = myDiv.querySelector('.mp')
+    console.log(mp1.className) // "mp"
+
+</script>
+
+</html>

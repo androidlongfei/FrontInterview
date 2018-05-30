@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery的优势</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p id="pp">hello</p>
+    <script charset="utf-8">
+        var el = $('#tt')
+        console.log(typeof el) // object
+        //  根据元素的长度来判断
+        console.log(el.length) // 没找到length为0
+        console.log($('#pp').length) // 找到length大于0
+        // 或者转化为dom对象
+        console.log(el.get(0)) // undefined
+
+    </script>
+</body>
+
+</html>

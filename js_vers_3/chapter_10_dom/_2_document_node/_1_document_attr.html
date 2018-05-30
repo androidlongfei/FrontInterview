@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="test">测试</p>
+</body>
+<script charset="utf-8">
+    console.log(document.nodeType, document.nodeName, document.nodeValue) // 输出 9 #document null
+    // 元素节点
+    var html = document.documentElement
+    console.log(html === document.childNodes[1]) // 输出 true
+    console.log('body', typeof document.body, document.body.childNodes, document.body)
+
+    // 设置标题
+    document.title = '新页面'
+
+    // 取得URL
+    var url = document.URL
+
+    console.log('url', url)
+
+</script>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件基础</title>
+    <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+    <style media="screen">
+        #app {
+            margin: 30px;
+        }
+
+        .result {
+            font-weight: bold;
+        }
+
+        .fontRed {
+            color: red;
+        }
+
+        .test option {
+            color: red !important;
+            font-weight: bold;
+        }
+
+        .test option:before {
+            content: "d";
+        }
+
+        .choice .act {
+            background-color: #eee;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">1.基础组件</div>
+            <div class="panel-body">
+                <button-counter></button-counter>
+                <button-counter></button-counter>
+                <div style="margin:10px 0;">
+                    <p><span class="result">结论:</span>因为组件是可复用的 Vue 实例，所以它们与 new Vue 接收相同的选项，例如 data、computed、watch、methods 以及生命周期钩子等。仅有的例外是像 el 这样根实例特有的选项。</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-success">更改</button>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">2.组件复用</div>
+            <div class="panel-body">
+                <button-item></button-item>
+                <button-item></button-item>
+                <div style="margin:10px 0;">
+                    <p><span class="result">结论:</span>一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <!-- <button type="button" class="btn btn-success">更改</button> -->
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">3.组件prop</div>
+            <div class="panel-body">
+                <blog-post title="My journey with Vue"></blog-post>
+                <blog-post title="Blogging with Vue"></blog-post>
+                <div style="margin:10px 0;">
+                    <p><span class="result">结论:</span>Prop 是你可以在组件上注册的一些自定义特性。当一个值传递给一个 prop 特性的时候，它就变成了那个组件实例的一个属性.一个组件默认可以拥有任意数量的 prop，任何值都可以传递给任何 prop。</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <!-- <button type="button" class="btn btn-success">更改</button> -->
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../lib/jquery.min.js" charset="utf-8"></script>
+    <script src="../../lib/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="../../lib/lodash.min.js" charset="utf-8"></script>
+    <script src="../../lib/vue.min.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        // 定义一个名为 button-counter 的新组件
+        Vue.component('button-counter', {
+            data: function () {
+                return {
+                    count: 0
+                }
+            },
+            template: '<button type="button" class="btn btn-default" v-on:click="count++">你已经点击 {{ count }} 次</button>'
+        })
+
+        Vue.component('button-item', {
+            data: function () {
+                return {
+                    count1: 0
+                }
+            },
+            template: '<button type="button" class="btn btn-default" v-on:click="count1++">你已经点击 {{ count1 }} 次</button>'
+        })
+
+        Vue.component('blog-post', {
+            props: ['title'],
+            template: '<p>{{ title }}</p>'
+        })
+
+    </script>
+    <script charset="utf-8">
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                message: '',
+                messageList: []
+            },
+            computed: {
+                now: function () {
+                    // now的值没有绑定依赖，所以不会变化
+                    return Date.now()
+                }
+            },
+            methods: {
+                addMessage() {
+
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

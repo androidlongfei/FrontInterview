@@ -1,0 +1,16 @@
+## .project是Hbuild编辑器的配置文件
+.project
+
+## .tern-project是atom编辑器的配置文件
+.tern-project
+
+## bower_components是bower安装库文件
+bower_components
+
+## .DS_Store是mac系统自带配置文件
+.DS_Store
+
+## node_modules是npm安装库文件
+node_modules
+
+.tern-project

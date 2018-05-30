@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择符</title>
+</head>
+
+<body>
+    <ul id="mul">
+        <li class="mli">t1</li>
+        <li class="mli">t2</li>
+        <li class="mli">t3</li>
+        <li class="mli">t4</li>
+    </ul>
+</body>
+<script charset="utf-8">
+    var lis = document.getElementsByTagName('li');
+    var ul = document.querySelector('#mul');
+    var lis1 = document.querySelectorAll('.mli');
+    console.log(lis)
+    console.log(lis1)
+    console.log(ul.childNodes[1].textContent) // t1
+    console.log(lis[0].textContent) // t1
+    console.log(lis1[0].textContent) // t1
+
+</script>
+
+</html>

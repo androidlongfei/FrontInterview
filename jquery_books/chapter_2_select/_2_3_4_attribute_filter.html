@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>属性过滤选择器</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id='test1' title="my123">哈哈</div>
+    <div id='test2' title="my124">嘿嘿</div>
+    <div id='test3' title="ty125">哟哟</div>
+
+    <script charset="utf-8">
+        console.log('拥有属性id的元素', $('[id]').length) // 3
+        console.log('属性id=test1的元素', $('[id=test1]').html()) // 哈哈
+        console.log('属性id!=test1的元素', $('[id!=test1]').length) // 11 所有不含的标签哟
+        console.log('属性title以my开头的元素', $('[title^=my]').length) // 2
+        console.log('属性title以4结束的元素', $('[title$=4]').html()) // 嘿嘿
+        console.log('属性title包含12的元素', $('[title*=12]').length) // 3
+
+    </script>
+</body>
+
+</html>

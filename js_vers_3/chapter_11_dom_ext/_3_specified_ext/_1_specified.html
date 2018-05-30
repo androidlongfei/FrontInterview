@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>指定扩展</title>
+</head>
+
+<body>
+    <ul id="mul">
+        <li class="mli">t1</li>
+        <li class="mli">t2</li>
+        <li class="mli">t3</li>
+        <li class="mli">t4</li>
+    </ul>
+
+    <p id="pt">t1<span style="color:red;">hello</span></p>
+    <p id="pm">pmff</p>
+</body>
+<script charset="utf-8">
+    var ul = document.querySelector('#mul');
+    console.log('ul', ul)
+    console.log('childNodes', ul.childNodes) // NodeList(9)
+    console.log('children', ul.children) // HTMLCollection(4)
+
+    var pt = document.querySelector('#pt');
+    console.log('pt innerText', pt.innerText) // t1hello
+    console.log('pt textContent', pt.textContent) // t1hello
+    console.log(document.querySelector('#pm').textContent) // pmff
+
+</script>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			
+			body{
+				font-family: "微软雅黑";
+				font-size: 22px;
+			}
+			
+			
+			section{
+				margin: 30px auto;
+				width: 600px;
+			}
+			
+			section h3{
+				font-weight: normal;
+			}
+			
+			ul{
+				list-style: none;
+				width:400px;
+				border: 1px solid #eee;
+			}
+			
+			li{
+				width:100px;
+				height: 100px;
+				background-color: pink;
+				margin: 10px;
+			}
+			
+			section:nth-child(1) ul li{
+				float: left;
+			}
+			
+			section:nth-child(1) ul{
+				overflow: hidden;
+			}
+			
+			section:nth-child(2) ul{
+				display: flex;
+				/*主抽方向：水平*/
+				flex-direction: row;
+			}
+			
+			section:nth-child(3) ul{
+				display: flex;
+				/*主抽方向：垂直*/
+				flex-direction: column;
+			}
+			
+			section:nth-child(4) ul{
+				display: flex;
+				/*主抽方向：水平*/
+				flex-direction: row;
+				/*主抽对齐方式:沿着主抽开始的方向对齐(左对齐)*/
+				justify-content: flex-start;
+			}
+			
+			section:nth-child(5) ul{
+				display: flex;
+				/*主抽方向：水平*/
+				flex-direction: row;
+				/*主抽对齐方式:沿着主抽结束的方向对齐(右对齐)*/
+				justify-content: flex-end;
+			}
+			
+			section:nth-child(6) ul{
+				display: flex;
+				/*主抽方向：水平*/
+				flex-direction: row;
+				/*主抽对齐方式:居中对齐*/
+				justify-content: center;
+			}
+			
+			section:nth-child(7) ul{
+				display: flex;
+				/*主抽方向：水平*/
+				flex-direction: row;
+				/*主抽对齐方式:在父亲中均分对齐*/
+				justify-content:space-between;
+			}
+			
+			section:nth-child(8) ul{
+				display: flex;
+				/*主抽方向：水平*/
+				flex-direction: row;
+				/*主抽对齐方式:两端对齐，中间均分*/
+				justify-content:space-around;
+			}
+			
+			
+			
+			
+		</style>
+	</head>
+	<body>
+		<section>
+			<h3>1.默认布局</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>2.主抽方向:水平(默认,(flex-direction: row)</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>3.主抽方向：垂直(flex-direction: column)</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>4.主抽对齐方式：沿着主抽开始的方向对齐(just-content: flex-start)，这里展现的是左对齐</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>5.主抽对齐方式：沿着主抽结束的方向对齐(just-content: flex-end)，这里展现的是右对齐</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>6.主抽对齐方式：居中对齐(just-content: center)</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		
+		<section>
+			<h3>7.主抽对齐方式：均分对齐(just-content: space-between)</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</section>
+		<section>
+			<h3>8.主抽对齐方式：两端对齐，中间均分(just-content: space-around)</h3>
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+		</section>
+	</body>
+</html>

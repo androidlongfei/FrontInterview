@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery选择器</title>
+    <style media="screen">
+        div,
+        p,
+        span {
+            width: 140px;
+            height: 140px;
+            margin: 5px;
+            background-color: #aaa;
+            border: 1px solid #000;
+            float: left;
+            font-size: 17px;
+        }
+
+        div.mini {
+            width: 55px;
+            height: 55px;
+            background-color: #aaa;
+            font-size: 12px;
+        }
+
+        div.hide {
+            display: none;
+        }
+
+    </style>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="one" class="one">
+        id为one,class为one的div
+        <div class="mini">class为mini</div>
+    </div>
+
+    <div id="two" class="one" title="test">
+        id为two,class为one,title为的div
+        <div class="mini" title="other">class为mini,title为other</div>
+        <div class="mini" title="test">class为mini,title为test</div>
+    </div>
+
+    <div class="one">
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini"></div>
+    </div>
+
+    <div class="one">
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini">class为mini</div>
+        <div class="mini" title="test">class为mini,title为test</div>
+    </div>
+
+    <div class="none" style="display:none;">
+        style的display为none的div
+    </div>
+
+    <div class="hide">
+        class为hide的div
+    </div>
+
+    <div>
+        包含input的type的为hidden的
+        <input type="hidden">
+    </div>
+
+    <span id="mover">正在执行动画的span元素</span>
+    <!-- 1.基本选择器 -->
+    <!-- <script src="./_2_select_1_base.js" charset="utf-8"></script> -->
+    <!-- 2.层次选择器 -->
+    <script src="./_2_select_2_level.js" charset="utf-8"></script>
+</body>
+
+</html>

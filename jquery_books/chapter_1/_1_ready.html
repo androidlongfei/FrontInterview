@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>页面加载完</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p>hello</p>
+    <script charset="utf-8">
+        // 原生js
+        window.onload = function () {
+            console.log('onload...网页中所有内容加载完才调用')
+        }
+
+        window.onload = function () {
+            console.log('onload...2')
+        }
+
+        // 输出 onload...2
+
+    </script>
+
+    <script charset="utf-8">
+        // jquery
+        jQuery(document).ready(function ($) {
+            console.log('onload...jquery...dom渲染完成后调用')
+        });
+
+        $(function () {
+            console.log('onload jquery1')
+        })
+
+    </script>
+</body>
+
+</html>

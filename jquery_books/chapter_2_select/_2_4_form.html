@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单选择器</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+	<form id='form1'>
+		可用元素：<input name="add" type="text" value="可用文本框"/>
+		<br/><br/>
+		不可用元素: <input type="text" name="eamil" disabled="disabled" value="不可用文本"/>
+		<br/><br/>
+		可用元素：<input name="che" type="text" value="可用文本框"/>
+		<br/><br/>
+		不可用元素: <input type="text" name="name" disabled="disabled" value="不可用文本"/>
+		<br/><br/>
+		密码框: <input type="password" name="pwd" value="密码"/>
+		<br/><br/>
+		多选框:
+		<input name="love" type="checkbox" value="test1" checked="checked"/>
+		<input name="love" type="checkbox" value="test2"/>
+		<input name="love" type="checkbox" value="test3"/>
+		<input name="love" type="checkbox" value="test4"/>
+		<input name="love" type="checkbox" value="test5"/>
+		<br/><br/>
+		下拉列表:
+		<select name="test" style="height: 30px;">
+			<option>湖南</option>
+			<option>北京</option>
+			<option selected="selected">天津</option>
+			<option>湖北</option>
+		</select>
+		<br/><br/>
+		<button id="test" disabled="disabled">测试</button>
+		<br/><br/>
+		<textarea name="des" rows="4" cols="40">描述</textarea>
+		<br/><br/>
+	</form>
+	<button id="btn">提交</button>
+    <script charset="utf-8">
+    	$('#btn').bind('click',function(event){
+    		console.log('submit...')
+    		// 获取表单元素个数
+    		console.log('表单元素个数',$('#form1 :input').length) // 12 加上 select textarea button
+    		// input元素个数
+    		console.log('input元素个数',$('#form1 input').length) // 9
+    		// 获取表单内单行文本的个数
+    		$('#form1 input:disabled').val('这里也变化啦')
+    		// 获取多选框选中的个数
+    		console.log($('#form1 :text').length,$('#form1 :text')) // 4
+    		// 获取密码框个数
+    		console.log($('#form1 :password').length) // 1
+    		
+    		// 同理，其他表单操作与此类似
+    	})
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基本过滤选择器</title>
+    <style media="screen">
+        div.item {
+            width: 100px;
+            height: 30px;
+            border: 1px solid #333;
+            border-top: none;
+            text-align: center;
+        }
+
+        div.mar {
+            margin: 20px;
+        }
+
+        div.item:nth-child(1) {
+            border-top: 1px solid #333;
+        }
+
+    </style>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id='mFirst' class="mar">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div id='mNot' class="mar">
+        <div class="item te">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div id='mEven' class="mar">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div id='mEq' class="mar">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div id='mGt' class="mar">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <div id='mLt' class="mar">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+    </div>
+    <script charset="utf-8">
+        // 1.选取第一个元素
+        $('#mFirst div:first').css('backgroundColor', 'red')
+        // 2.选取最后一个元素
+        $('#mFirst div:last').css('backgroundColor', 'red')
+        // 3.不包含选择符
+        $('#mNot div:not(.te)').css('backgroundColor', 'red')
+        // 4.偶数索引(从0开始)
+        $('#mEven div:even').css('backgroundColor', 'red')
+        // 5.指定索引(从0开始)
+        $('#mEq div:eq(2)').css('backgroundColor', 'red')
+        // 6.大于索引(从0开始)
+        $('#mGt div:gt(1)').css('backgroundColor', 'red')
+        // 7.小于索引(从0开始)
+        $('#mLt div:lt(2)').css('backgroundColor', 'red')
+
+    </script>
+</body>
+
+</html>

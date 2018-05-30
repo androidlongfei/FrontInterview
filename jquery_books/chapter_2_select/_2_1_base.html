@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>基础选择器</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="two" class="one" title="test">
+        id为two,class为one,title为的div
+        <div class="mini" title="other">class为mini,title为other</div>
+        <div class="mini" title="test">class为mini,title为test</div>
+    </div>
+    <script charset="utf-8">
+        console.log($('#two').length) // 1
+        console.log($('.mini').length) // 2
+        console.log($('div').length) // 3
+
+    </script>
+</body>
+
+</html>

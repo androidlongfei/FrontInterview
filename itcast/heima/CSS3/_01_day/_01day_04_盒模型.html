@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box{
+				height: 200px;
+				width: 200px;
+				margin-bottom: 20px;
+			}
+			
+			/* 盒子的实际 宽高是 240*240 */
+			.box:nth-child(1){
+				/* box-sizing 默认值是content-box*/
+				border: 20px solid red;
+				background-color: green;
+			}
+			
+			/* 盒子的实际 宽高是 240*240 */
+			.box:nth-child(2){
+				box-sizing: content-box;
+				border: 20px solid red;
+				background-color: green;
+			}
+			
+			/* 盒子的实际 宽高是 200*200 */
+			.box:nth-child(3){
+				box-sizing: border-box;
+				border: 20px solid red;
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box"></div>
+			<div class="box"></div>
+			<div class="box"></div>
+		</div>
+	</body>
+</html>

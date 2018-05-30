@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="up">
+        <li>t1</li>
+        <li>t2</li>
+        <li>t3</li>
+        <li>t4</li>
+    </ul>
+</body>
+<script charset="utf-8">
+    // 元素节点
+    var pNode = document.getElementById('up');
+    console.log(typeof pNode.childNodes) //  输出object
+    console.log('nodelist', converToArray(pNode.childNodes))
+    // 输出 [text, li, text, li, text, li, text, li, text]
+    // 空白字符也是文本节点
+
+    function converToArray(nodes) {
+        var array = []
+        for (var i = 0; i < nodes.length; i++) {
+            // var itemNode = nodes[i]
+            var itemNode = nodes.item(i)
+            // 方括号和item()都可以获取指定位置的节点
+            array.push(nodes[i])
+        }
+        return array
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>element属性</title>
+    <style media="screen">
+        .bd {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="myDiv" class="bd" title="body text">test</div>
+</body>
+<script charset="utf-8">
+    var div = document.getElementById("myDiv")
+
+    // 第一种动态创建
+    var mDiv = document.createElement("div")
+    mDiv.id = 'test'
+    mDiv.setAttribute('class', 'bd')
+    console.log(mDiv)
+    div.appendChild(mDiv)
+
+    // 第二种直接加完整标签 (只在IE中有用)
+    var div1 = document.createElement("<div id=\"test1\" class=\"bd\">kdd</div>")
+    div.appendChild(div1)
+
+</script>
+
+</html>

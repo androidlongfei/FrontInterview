@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>document操作</title>
+</head>
+
+<body>
+    <div id="myDiv">some</div>
+    <ul id="up">
+        <li name="zhangsan">t1</li>
+        <li name="lisi">t2</li>
+        <li>t3</li>
+        <li>t4</li>
+    </ul>
+</body>
+<script charset="utf-8">
+    // 元素节点
+    var divNode = document.getElementById('myDiv');
+    console.log('div', divNode) //  输出object
+
+    var lis = document.getElementsByTagName('li')
+    console.log('lis', typeof lis, lis) //  输出 HTMLCollection
+    // HTMLCollection 可以通过namedItem()获取指定name的项
+    console.log(lis.namedItem('zhangsan')) // 获取zhangsan这一项
+
+    var nodelist = document.getElementById("up").childNodes
+    console.log('nodes', typeof nodelist, nodelist)
+
+    var nodeLis = document.getElementById("up").getElementsByTagName('li')
+    console.log('nodeLis', typeof nodeLis, nodeLis)
+
+</script>
+
+</html>

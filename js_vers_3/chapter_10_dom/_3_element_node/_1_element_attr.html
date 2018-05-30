@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>element属性</title>
+    <style media="screen">
+        .bd {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="myDiv" class="bd" title="body text">test</div>
+</body>
+<script charset="utf-8">
+    var div = document.getElementById("myDiv")
+
+    console.log(div.nodeType, div.nodeName, div.tagName, div.nodeValue) // 输出 1 "DIV" "DIV" null
+
+    console.log(div.id, div.title, div.className) // myDiv body text bd
+
+    var divAttrs = div.attributes
+    console.log('divAttrs', divAttrs) // NamedNodeMap {0: id, 1: class, 2: title, id: id, class: class, title: title, length: 3}
+    for (var i = 0; i < divAttrs.length; i++) {
+        var attr = divAttrs[i]
+        console.log(attr.nodeType, attr.nodeName, attr.nodeValue) // 2 id myDiv
+    }
+
+</script>
+
+</html>

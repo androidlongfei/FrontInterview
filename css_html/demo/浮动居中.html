@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>浮动元素居中显示</title>
+    <style>
+        .box {
+            float: left;
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin-left: -250px;
+            margin-top: 150px;
+            left: 50%;
+            top: 50%;
+            background: green;
+            padding: 2px;
+            border: 2px solid;
+        }
+
+/*清除浮动*/
+        .clear {
+            clear: both;
+            /*height: 0;
+            line-height: 0;
+            font-size: 0*/
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>我是浮动的</p>
+        <p>我也是居中的</p>
+    </div>
+    <div class="clear">
+
+    </div>
+    <p>hello的点点滴滴多多多多多多多多多多多多的点点滴滴多多多多多多</p>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            padding-top: 20px;
+        }
+
+        .nav {
+            width: 1020px;
+            height: 50px;
+            margin: 0 auto 0;
+            background-color: red;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav ul.n-menu li {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background-color: red;
+            color: white;
+            float: left;
+            cursor: pointer;
+        }
+
+        .nav ul.n-m-sub {
+            /*超出隐藏 overflow和height必须配合使用*/
+            overflow: hidden;
+            height: 0;
+        }
+
+        .nav ul.n-m-sub li {
+            width: 100px;
+            height: 42px;
+            line-height: 42px;
+            background-color: #6699FF;
+        }
+
+        .nav .n-menu li:hover {
+            background-color: blue;
+        }
+
+        .nav .n-menu li:hover>.n-m-sub {
+            /*鼠标移入时显示子元素显示*/
+            overflow: visible;
+        }
+
+        .nav .n-m-sub li:hover {
+            background-color: blue;
+        }
+
+        /**
+         * margin-top出现滚动条:
+         *同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
+         *所以div的margin-top与body共享了，这样就让body把html撑大了
+         */
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="nav">
+            <ul class="n-menu">
+                <li>HTML5
+                    <ul class="n-m-sub">
+                        <li>HTML1</li>
+                        <li>HTML2</li>
+                        <li>HTML3</li>
+                        <li>HTML4</li>
+                    </ul>
+                </li>
+                <li>Javascript
+                    <ul class="n-m-sub">
+                        <li>Javascript1</li>
+                        <li>Javascript2</li>
+                        <li>Javascript3</li>
+                        <li>Javascript4</li>
+                    </ul>
+                </li>
+                <li>Ajax
+                    <ul class="n-m-sub">
+                        <li>Ajax1</li>
+                        <li>Ajax2</li>
+                        <li>Ajax3</li>
+                        <li>Ajax4</li>
+                    </ul>
+                </li>
+                <li>Jquery
+                    <ul class="n-m-sub">
+                        <li>Jquery1</li>
+                        <li>Jquery2</li>
+                        <li>Jquery3</li>
+                        <li>Jquery4</li>
+                    </ul>
+                </li>
+                <li>CSS
+                    <ul class="n-m-sub">
+                        <li>CSS1</li>
+                        <li>CSS2</li>
+                        <li>CSS3</li>
+                        <li>CSS4</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
