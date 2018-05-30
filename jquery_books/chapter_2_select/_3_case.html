@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>案例</title>
+    <style>
+    	ul,li{
+    		margin: 0;
+    		padding: 0;
+    	}
+    	ul,li{
+    		list-style: none;
+    	}
+    	
+    	a{
+    		text-decoration: none;
+    	}
+    	a:link,a:visited,a:hover,a:active{
+    		color: #000;
+    	}
+    	
+    	.SubCategoryBox{
+    		margin: 0 auto;
+    		border: 1px solid black;
+    		width: 450px;
+    	}
+    	
+    	.SubCategoryBox ul{
+    		overflow: hidden;
+    	}
+    	
+    	.SubCategoryBox li{
+    		float: left;
+    		width: 33.333%;
+    		height: 40px;
+    		line-height: 40px;
+    		text-align: center;
+    	}
+    	
+    	.showMore{
+    		text-align: center;
+    		margin: 10px 0;;
+    	}
+    	
+    	.light {
+    		background-color: #eee;
+    	}
+    	
+    	
+    </style>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+	<div class="SubCategoryBox">
+    	<ul>
+    		<li><a href="#">佳能(20002)</a></li>
+    		<li><a href="#">索尼(20004)</a></li>
+    		<li><a href="#">三星(30004)</a></li>
+    		<li><a href="">尼康(10001)</a></li>
+    		<li><a href="">松下(30002)</a></li>
+    		<li><a href="">卡西亚(33330)</a></li>
+    		<li><a href="">富士(23000)</a></li>
+    		<li><a href="">柯达(39000)</a></li>
+    		<li><a href="">宾得(6500)</a></li>
+    		<li><a href="">理光(23245)</a></li>
+    		<li><a href="">奥林巴斯(34555)</a></li>
+    		<li><a href="">明基(23245)</a></li>
+    		<li><a href="">爱国者(4456)</a></li>
+    		<li><a href="">其他品牌相机</a></li>
+    	</ul>
+	    	
+    	<div class="showMore">
+    		<button id="moreBtn">显示全部品牌</button>
+    	</div>
+	</div>
+
+    <script charset="utf-8">
+    	// 获取索引大于7但不包含最后一个的li集合
+        var cates = $('.SubCategoryBox li:gt(7):not(:last)')
+        cates.hide()
+        var moreBtn = $('#moreBtn')
+        moreBtn.click(function(event){
+        	// 判断集合元素是否是显示的
+        	if(cates.is(":visible")){
+        		// 隐藏
+        		cates.hide()
+        		$(this).text('显示全部品牌')
+        		$('.SubCategoryBox li').removeClass('light')
+        	}else{
+        		// 显示
+        		cates.show()
+        		$(this).text('精简显示品牌')
+        		// 选取文本为'佳能'，'富士'，'明基'的li元素集合
+        		var lis = $('.SubCategoryBox li').filter(":contains('佳能'),:contains('富士'),:contains('明基')")
+        		lis.addClass('light')
+        	}
+        })
+        
+        // 以上案例涉及到的知识点如下:
+        // show() 显示隐藏的匹配元素
+        // css(name,value) 给元素设置样式
+        // text(string) 设置所有匹配元素的文本内容
+        // filter(exp) 筛选出与指定表达式匹配的元素集合,其中exp可以是多个选择器的组合。需要注意的是find()对它子集的操作，而filter()则是对自身集合进行筛选。
+        // addClass() 为匹配的元素添加指定的类名。
+
+    </script>
+</body>
+
+</html>
