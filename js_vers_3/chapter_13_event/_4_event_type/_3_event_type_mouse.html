@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标事件</title>
+    <style media="screen">
+        .sub {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #aaa;
+            margin-top: 20px;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #aaa;
+            margin-top: 20px;
+        }
+
+        .mouseenter {
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="sub" id="div1">
+        点击我
+    </div>
+
+    <div class="sub" id="div3">
+        鼠标移入mouseenter和mouseleave
+        <div id="div3Item" class="item">
+            子元素
+        </div>
+    </div>
+
+    <div class="sub" id="div4">
+        鼠标移入mouseenter和mouseleave
+        <div id="div4Item" class="item">
+            子元素
+        </div>
+    </div>
+</body>
+<script charset="utf-8">
+    // mousedown  mouseup click dblclick
+    var div1 = document.getElementById("div1")
+    //  按下鼠标
+    div1.addEventListener('mousedown', function (event) {
+        console.log('div1---mousedown:', event.bubbles, event.type) // bubbles true
+    }, false)
+    // 释放鼠标
+    div1.addEventListener('mouseup', function (event) {
+        console.log('div1---mouseup:', event.bubbles, event.type) // bubbles true
+    }, false)
+    // 释放点击
+    div1.addEventListener('click', function (event) {
+        console.log('div1---click:', event.bubbles, event.type) // bubbles true
+    }, false)
+    div1.addEventListener('dblclick', function (event) {
+        console.log('div1---dblclick:', event.bubbles, event.type) // bubbles true
+    }, false)
+
+    // mouseenter  mouseleave
+    var div3 = document.getElementById("div3")
+    var div3Item = document.getElementById("div3Item")
+    //  按下移入元素
+    div3.addEventListener('mouseenter', function (event) {
+        console.log('div3---mouseenter:', event.bubbles, event.type) // bubbles false
+        event.target.style.color = 'red'
+    }, false)
+    // 鼠标移出元素
+    div3.addEventListener('mouseleave', function (event) {
+        console.log('div3---mouseleave:', event.bubbles, event.type) // bubbles false
+        event.target.style.color = '#000'
+    }, false)
+    //  按下移入元素
+    div3Item.addEventListener('mouseenter', function (event) {
+        console.log('div3Item---mouseenter:', event.bubbles, event.type) // bubbles false
+        event.target.style.color = 'blue'
+    }, false)
+    // 鼠标移出元素
+    div3Item.addEventListener('mouseleave', function (event) {
+        console.log('div3Item---mouseleave:', event.bubbles, event.type) // bubbles false
+        event.target.style.color = '#000'
+    }, false)
+    // 由此可见div3Item的mouseleave和mouseenter不会冒泡，所以div3不会受div3Item的影响
+
+    // mouseover mouseout
+    var div4 = document.getElementById("div4")
+    var div4Item = document.getElementById("div4Item")
+    // 鼠标移入元素时触发(冒泡)
+    div4.addEventListener('mouseover', function (event) {
+        console.log('div4---mouseover:', event.bubbles, event.type) // bubbles true
+        event.target.style.color = 'red'
+    }, false)
+    //  鼠标移出元素时触发(冒泡)
+    div4.addEventListener('mouseout', function (event) {
+        console.log('div4---mouseout:', event.bubbles, event.type) // bubbles true
+        event.target.style.color = '#000'
+    }, false)
+    //  鼠标移入元素时触发(冒泡)
+    div4Item.addEventListener('mouseover', function (event) {
+        console.log('div4Item---mouseover:', event.bubbles, event.type) // bubbles true
+        event.target.style.color = 'blue'
+    }, false)
+    // 鼠标移出元素时触发(冒泡)
+    div4Item.addEventListener('mouseout', function (event) {
+        console.log('div4Item---mouseout:', event.bubbles, event.type) // bubbles true
+        event.target.style.color = '#000'
+    }, false)
+    // 由此可见div4Item的mouseleave和mouseenter会冒泡，所以div4会受div4Item的影响
+
+</script>
+
+</html>

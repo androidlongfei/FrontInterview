@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>焦点事件</title>
+</head>
+
+<body>
+    <form>
+        姓名:<input type="text" name="name" value="哈哈" id="myInputName" /> 地址:
+        <input type="text" name="address" value="" id="myInputAddress" />
+    </form>
+</body>
+<script charset="utf-8">
+    var myInputName = document.getElementById("myInputName")
+    var myInputAddress = document.getElementById("myInputAddress")
+    // 获得焦点, 不能冒泡
+    myInputName.onfocus = function (event) {
+        console.log('myInputName---获得焦点:', event.bubbles, event.target.value) // bubbles false
+    }
+    // 失去焦点, 不能冒泡
+    myInputName.onblur = function (event) {
+        console.log('myInputName--失去焦点:', event.bubbles, event.target.value) // bubbles false
+    }
+    // 获得焦点, 可以冒泡
+    myInputAddress.addEventListener('focusin', function (event) {
+        console.log('myInputAddress---获得焦点:', event.bubbles, event.target.value) // bubbles true
+    }, false)
+    // 失去焦点, 可以冒泡
+    myInputAddress.addEventListener('focusout', function (event) {
+        console.log('myInputAddress---失去焦点:', event.bubbles, event.target.value) // bubbles true
+    }, false)
+
+</script>
+
+</html>

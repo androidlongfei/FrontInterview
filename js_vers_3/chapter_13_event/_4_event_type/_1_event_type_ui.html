@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>UI类型</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 1000px;
+        }
+
+        #myDiv {
+            height: 50px;
+            border: 1px solid red;
+        }
+
+        #scr {
+            width: 300px;
+            height: 100px;
+            margin-top: 20px;
+            border: 1px solid red;
+            overflow-y: scroll;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="myDiv" style="cursor:pointer;">点击我,width:50px;</div>
+
+    <div id="scr">
+        Web浏览器中可能发生的事件有很多类型。如前所述，不同的事件类型具有不同的信息，而DOM3规定了一下几类事件。 UI事件是指那些不一定与用户操作有关的事件。这些事件今年在DOM规范出现之前，都是以这种或那种形式存在的，而DOM规范中保留了向后兼容
+    </div>
+</body>
+<script charset="utf-8">
+    // 页面加载完成时触发
+    window.onload = function (event) {
+        // event.bubbles :false 不能冒泡
+        // event.cancelable:false 不能阻止事件的默认行为
+        console.log('页面加载完...', event)
+    }
+
+    // 窗口宽高改变时触发
+    window.onresize = function (event) {
+        // event.target.innerWidth 窗口的宽
+        // event.target.innerHeight 窗口的高
+        console.log('窗口变化...', event.target.innerWidth, event.target.innerHeight)
+    }
+
+    // 窗口滚动，默认监听body元素
+    window.onscroll = function (event) {
+        console.log('body滚动', event.target.documentElement.scrollTop)
+    }
+
+    // 窗口滚动，监听div元素
+    var divScr = document.getElementById('scr')
+    divScr.onscroll = function (event) {
+        console.log('div滚动,scrollTop值:', event.target.scrollTop)
+    }
+
+</script>
+
+</html>
