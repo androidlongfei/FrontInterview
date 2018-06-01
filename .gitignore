@@ -14,3 +14,27 @@ bower_components
 node_modules
 
 .tern-project
+
+*.iml
+.idea/
+.ipr
+.iws
+*~
+~*
+*.diff
+*.patch
+*.bak
+.DS_Store
+Thumbs.db
+.project
+.*proj
+.svn/
+*.swp
+*.swo
+*.pyc
+*.pyo
+build
+node_modules
+sea-modules
+_site
+dist
