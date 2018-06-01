@@ -36,7 +36,7 @@ if(element.tagName.toLowerCase() == 'div'){
 
 所有的HTNL元素都由HTMLElement类型表示，不是直接通过这个类型，也是通过它的子类型来表示。
 
-HTMLElementle类型直接继承自Element并添加了一些属性。添加的这些属性分别应用于每个HTML元素。
+HTMLElement类型直接继承自Element并添加了一些属性。添加的这些属性分别应用于每个HTML元素。
 
 ```
 id : 元素在文档中的唯一标识符

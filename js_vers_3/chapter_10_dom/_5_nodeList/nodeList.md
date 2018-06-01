@@ -1,4 +1,4 @@
-# modeList介绍
+# nodeList介绍
 
 NodeList,NamedNodeMap,HTMLCollection这三个集合都是"动态的"；换句话说，每当文档结构发生变化时，它们都会更新。因此，它们始终都会保存着最新、最准确的信息。
 

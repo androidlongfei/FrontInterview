@@ -2,7 +2,7 @@
 
 Selectors 是有W3C发起定制的一个标准，致力于让浏览器原生支持CSS查询。
 
-Selectors的核心是两个方法：querySelector()和querySelectAll()。在兼容的浏览器中，可以通过Document及Element类型的实例调用它们。
+Selectors的核心是两个方法：querySelector()和querySelectorAll()。在兼容的浏览器中，可以通过Document及Element类型的实例调用它们。
 
 目前完全支持浏览器有`IE8+`,Chrome,火狐等。
 
@@ -41,7 +41,7 @@ console.log(mp1.className) // "mp"
 
 querySelectorAll()方法接受的参数与querySelector()方法一样，都是一个CSS选择符，但返回的是`所有匹配的元素`而不仅仅是一个元素.这个方法返回的是一个NodeList的实例。
 
-具体来说，返回的值实际上是带有所有属性和方法的NodeList,而其底层实现则类似于`一组元素的快照`，而不断对文档进行搜索的动态查询。这样可以避免使用NodeList对象通常引起的大多数性能问题。
+具体来说，返回的值实际上是带有所有属性和方法的NodeList,而其底层实现则类似于`一组元素的快照`，而非不断对文档进行搜索的动态查询。这样可以避免使用NodeList对象通常引起的大多数性能问题。
 
 如果没有找到匹配的元素，NodeList就是空的。
 
