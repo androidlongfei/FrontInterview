@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单字段</title>
+    <style media="screen">
+        ul,
+        li {
+            list-style: none;
+            line-height: 30px;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:9100/form/submitPersonInfo" id="form1" method="get" name="form1" target="_blank">
+        <div>
+            年龄:<input type="text" name="age" value="24岁">
+        </div>
+        <div>性别:<input type="text" name="sex" value=""></div>
+        <div>地址:<input type="text" name="address" value="北京"></div>
+        <div>电话:<input type="text" name="address" value="180"></div>
+        <div>颜色
+            <ul>
+                <li><input type="radio" name="color" value="红">红</li>
+                <li><input type="radio" name="color" value="绿">绿</li>
+                <li><input type="radio" name="color" value="蓝">蓝</li>
+            </ul>
+        </div>
+        <div><input type="submit" value="提交">
+            <input type="reset" value="重置" disabled=false>
+        </div>
+    </form>
+</body>
+<script charset="utf-8">
+    var form1 = document.getElementById('form1')
+    console.log('form1', form1.elements, form1.elements.length) // 4
+
+    // 获取表单中的元素根据index)
+    var field1 = form1.elements[0] // 获取表单中的第一个字段
+    console.log(field1.value) // 24岁
+    // 获取表单中的元素(根据name)
+    var fields = form1.elements['color'] // 获取所有name为color的表单字段
+    console.log(fields[0].value) // 红
+
+    // 更改字段属性
+    var field1 = form1.elements[1]
+    field1.name = 'address'
+    field1.value = '北京'
+    field1.readOnly = true // 只读
+    field1.disabled = true // 禁用 ,该字段不会被提交
+
+    // 更改字段属性通过setAttribute()
+    var field2 = form1.elements[2]
+    field2.setAttribute('disabled', true)
+    field2.setAttribute('disabled', false)
+    // 结果我们发现不管设为true或者false这个字段一直不能用，而在html上显示disabled的属性值是字符串'false'或'true'
+
+    var field3 = form1.elements[3]
+    field3.focus() //  获取焦点
+
+    form1.addEventListener('submit', function (event) {
+        console.log('表单提交事件')
+        // event.preventDefault()
+    })
+    form1.addEventListener('reset', function (event) {
+        console.log('表单重置事件')
+    })
+
+</script>
+
+</html>

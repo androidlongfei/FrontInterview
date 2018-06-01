@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单字段</title>
+    <style media="screen">
+        ul,
+        li {
+            list-style: none;
+            line-height: 30px;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:9100/form/submitPersonInfo" id="form1">
+        <div>
+            信息:<input type="text" name="message" value="" size="25" maxlength="50">
+        </div>
+        <div>
+            描述:<textarea name="des" rows="3" cols="20"></textarea>
+        </div>
+    </form>
+</body>
+<script charset="utf-8">
+    var form1 = document.getElementById('form1')
+    console.log('form1', form1.elements, form1.elements.length) // 4
+    // input
+    var field1 = form1.elements[0] // 获取表单中的第一个字段
+    field1.addEventListener('change', function (event) {
+        console.log(event.target.name, '---change事件---', event.target.value, event.target.value.length)
+    })
+
+</script>
+
+</html>

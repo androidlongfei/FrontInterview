@@ -19,6 +19,7 @@ import md5 from 'blueimp-md5'
 import doSocket from './socket/webSocket.js'
 import WebSocket from 'ws'
 import promiseRouter from './router/promise'
+import formRouter from './router/form'
 
 /**
  * WebSocket
@@ -146,6 +147,7 @@ imRouter(app)
 sysMessageRouter(app)
 indicatorRouter(app)
 promiseRouter(app)
+formRouter(app)
 
 app.listen(config.port);
 console.log(`server start in ${config.port} port`)

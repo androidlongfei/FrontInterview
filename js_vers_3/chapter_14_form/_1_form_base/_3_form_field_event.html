@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单字段</title>
+    <style media="screen">
+        ul,
+        li {
+            list-style: none;
+            line-height: 30px;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:9100/form/submitPersonInfo" id="form1">
+        <div>
+            年龄:<input type="text" name="age" value="">
+        </div>
+        <div>
+            城市:
+            <select name="city">
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="hubei">湖北</option>
+                <option value="hunan">湖南</option>
+                <option value="" selected>请选择</option>
+            </select>
+        </div>
+    </form>
+</body>
+<script charset="utf-8">
+    var form1 = document.getElementById('form1')
+    console.log('form1', form1.elements, form1.elements.length) // 4
+
+    // input
+    var field1 = form1.elements[0] // 获取表单中的第一个字段
+    field1.addEventListener('focus', function (event) {
+        console.log(event.target.name, '---获取焦点事件---', event.target.value)
+    })
+    field1.addEventListener('blur', function (event) {
+        console.log(event.target.name, '---失去焦点事件---', event.target.value)
+    })
+    field1.addEventListener('change', function (event) {
+        console.log(event.target.name, '---change事件---', event.target.value)
+    })
+
+    // select
+    var field2 = form1.elements[1]
+    field2.addEventListener('focus', function (event) {
+        console.log(event.target.name, '---获取焦点事件---', event.target.value)
+    })
+    field2.addEventListener('blur', function (event) {
+        console.log(event.target.name, '---失去焦点事件---', event.target.value)
+    })
+    field2.addEventListener('change', function (event) {
+        console.log(event.target.name, '---change事件---', event.target.value)
+    })
+
+</script>
+
+</html>
