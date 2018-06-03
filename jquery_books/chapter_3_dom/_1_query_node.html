@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.查找节点</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p title="选择">选择你最喜欢的水果</p>
+    <ul>
+        <li title="苹果">苹果</li>
+        <li title="橘子">橘子</li>
+        <li title="菠萝">菠萝</li>
+    </ul>
+    <script charset="utf-8">
+        // 1.查找节点
+        var li = $('li:eq(1)') // 获取ul里的第二个li
+        var liText = li.text() // 获取节点的文本内容
+        console.log(liText) // 输出 橘子
+
+        // 2.查找属性节点
+        var p = $('p') // 获取p节点
+        var pTitle = p.attr('title') // 获取title属性
+        console.log(pTitle) // 选择
+
+    </script>
+</body>
+
+</html>

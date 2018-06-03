@@ -333,7 +333,7 @@ console.log('属性title包含12的元素', $('[title*=12]').length) // 3
 
 选择器               | 描述                             |  返回  | 示例
 ----------------- | :----------------------------- | :--: | :----------------------------------------
-:nth-child(index) | 选取每个父元素下的第index个子元素(index从0开始) | 集合元素 | $('li:nth-child(0)')选取`ul`里的第一个li元素
+:nth-child(index) | 选取每个父元素下的第index个子元素(index从1开始) | 集合元素 | $('li:nth-child(1)')选取`ul`里的第一个li元素
 :first-child      | 选取每个父元素的第一个子元素                 | 集合元素 | $('ul li:first-child')选取每个`ul`里的第一个`li`元素
 :last-child       | 选取每个父元素的最后一个子元素                | 集合元素 | $('ul li:last-child')选取每个`ul`里的最后一个`li`元素
 :only-child       | 如果某个元素是它父元素中唯一的子元素，那么将会被匹配     | 集合元素 | $('ul li:only-child')在`ul`中选取唯一子元素`li`元素
