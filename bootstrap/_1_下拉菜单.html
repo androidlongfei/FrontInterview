@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件基础</title>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <style media="screen">
+        .choice {
+            margin: 30px;
+        }
+
+        .choice ul {
+            height: 100px;
+            overflow-y: scroll;
+        }
+
+        .choice .act {
+            background-color: #eee;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="dropdown choice">
+        <button class="btn btn-default dropdown-toggle" type="button" id="choiceValue" data-toggle="dropdown" aria-expanded="true">请选择</button>
+        <input type="hidden" name="icon" value="" id="choiceInpput">
+        <ul class="dropdown-menu" aria-labelledby="choiceValue">
+            <li><a href="#"><span class="glyphicon glyphicon-search" style="margin-right:5px;"></span><span class="iconStr">glyphicon-search</span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-hand-up" style="margin-right:5px;"></span><span class="iconStr">glyphicon-hand-up</span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-comment" style="margin-right:5px;"></span><span class="iconStr">glyphicon-comment</span></a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-heart-empty" style="margin-right:5px;"></span><span class="iconStr">glyphicon-heart-empty</span></a></li>
+        </ul>
+    </div>
+
+    <script src="./lib/jquery.min.js" charset="utf-8"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        $(function () {
+            choiceIcon();
+        })
+
+        function choiceIcon() {
+            $('.choice li').bind("click", function () {
+                // var textContent = $(this).find('.iconStr')[0].innerHTML
+                var textContent = $(this).find('.iconStr')[0].innerHTML
+                $('.choice #choiceValue').text(textContent)
+                $('.choice #choiceInpput').val(textContent)
+                removeActive()
+                $(this).addClass('act')
+            });
+
+            function removeActive() {
+                $('.choice li').each(function () {
+                    if ($(this).hasClass('act')) {
+                        $(this).removeClass('act')
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+
+</html>
