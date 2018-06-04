@@ -9,19 +9,19 @@
 
 兼容DOM的浏览器会将一个event对象传入到事件处理程序中。无论指定事件事件处理程序时使用么方法(DOM0或DOM2).
 
-event 对象包含的的属性与方法如下:
+event对象包含的的属性与方法如下:
 
-属性/方法           | 类型       | 读写 | 说明
---------------- | :------- | -- | :-------------------------------------
-bubbles         | Boolean  | 只读 | 表明事件是否冒泡
-cancelable      | Boolean  | 只读 | 表明是否可以取消事件的默认行为
-defaultPrevent  | Boolean  | 只读 | 为true表示已经调用了preventDefault(),在DOM3中新增
-preventDefault  | Function | 只读 | 取消事件的默认行为。如果cancelable是true,则可以使用这个方法
-stopPropagation | Function | 只读 | 取消事件的进一步捕获或冒泡。如果bubbles是true,则可以使用这个方法
-target          | Element  | 只读 | 事件的目标
-type            | String   | 只读 | 被触发的事件的类型
+`属性/方法`         | 类型       | 读写 | 说明
+--------------- | :------- | -- | :---------------------------------------
+bubbles         | Boolean  | 只读 | 表明事件是否冒泡。
+cancelable      | Boolean  | 只读 | 表明是否可以取消事件的默认行为。
+defaultPrevent  | Boolean  | 只读 | 为true表示已经调用了`preventDefault()`,在DOM3中新增。
+preventDefault  | Function | 只读 | 取消事件的默认行为。如果cancelable是true,则可以使用这个方法。
+stopPropagation | Function | 只读 | 取消事件的进一步捕获或冒泡。如果bubbles是true,则可以使用这个方法。
+target          | Element  | 只读 | 事件的目标。
+type            | String   | 只读 | 被触发的事件的类型。
 
-要阻止特定事件的默认行为可以使用preventDefault()。例如，链接的默认行为就是在被单击时会导航到其href特性指定的URL.如果想阻止这一默认行为，那么通过链接的onclick事件处理程序可以取消它。
+备注: 要阻止特定事件的默认行为可以使用preventDefault()。例如，链接的默认行为就是在被单击时会导航到其href特性指定的URL.如果想阻止这一默认行为，那么通过链接的onclick事件处理程序可以取消它。
 
 ```javascript
 var link = document.getElementById('myLink')
