@@ -33,9 +33,16 @@
 通过标准DOM获取选择框中第一项的文本和值:
 
 ```javascript
-var selecbox = document.form[0].elements[0]
-var text = selecbox.options[0].innerHTML
-var value = selecbox.options[0].getAttribute('value')
+var selectBox = document.getElementById('form1').elements[0]
+selectBox.addEventListener('change', function (event) {
+    console.log('select change事件', event)
+    var select = event.target
+    console.log('select.selectedIndex', select.options, select.selectedIndex)
+    var curOption = select.options[select.selectedIndex]
+    console.log('curOption', curOption)
+    console.log('text-value', curOption.innerHTML, curOption.getAttribute('value')) // 选项的文本-选项的值
+    console.log('form value', select.value) // select的值
+})
 ```
 
 以上方法太麻烦，不推荐。
@@ -43,7 +50,86 @@ var value = selecbox.options[0].getAttribute('value')
 推荐使用以下方法:
 
 ```javascript
-var selecbox = document.form[0].elements[0]
-var text = selecbox.options[0].text // 选项的文本
-var text = selecbox.options[0].value // 选项的值
+var text = curOption.text // 选项的文本
+var value = curOption.value // 选项的值
+```
+
+## 1.选择选项
+
+对于只允许选择一项的选择框，访问选中项的最简单方式，就是使用选择框的selectedIndex属性，如下面例子所示:
+
+```javascript
+var selecIndexOption = selecbox.options[slecbox.selectedIndex]
+```
+
+设置`selected`属性可以选中指定项.
+
+```html
+<select value="">
+    <option value="hubei">湖北</option>
+    <option value="hunan">湖南</option>
+    <option value="beijng">北京</option>
+    <option value="" selected>请选择</option>
+</select>
+```
+
+> 默认选中已选择此项
+
+## 2.添加选项
+
+添加选项的三种方式
+
+**第一种**
+
+可以使用JavaScript动态创建选项，并将它们添加到选择框中。
+
+```javascript
+var newOption = document.createElement('option');
+newOption.appendChild(document.createTextNode('北京'))
+newOption.setAttribute('value','beijing')
+selectBox.appendChild(newOption)
+```
+
+**第二种**
+
+使用Option构造函数来创建新选项。
+
+```javascript
+var newOption = new Option('option text','option value')
+selectBox.appendChild(newOption)
+```
+
+这种方式除了IE以外的浏览器都能使用
+
+**第三种**
+
+使用add的方式添加新选项。
+
+```javascript
+var newOption = new Option('option text','option value')
+selectBox.add(newOption)
+```
+
+以上方法所有浏览器都支持。
+
+## 3.移除选项
+
+移除选项的三种方式.
+
+**第一种**
+
+```javascript
+selectBox.removeChild(selectBox.options[0])
+```
+
+**第二种**
+
+```javascript
+selectBox.remove(0)
+```
+
+**第三种**
+
+```javascript
+selectBox.options[0] = null
 ```

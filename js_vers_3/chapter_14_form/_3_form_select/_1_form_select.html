@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form表单select</title>
+    <style media="screen">
+        ul,
+        li {
+            list-style: none;
+            line-height: 30px;
+        }
+
+        div {
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form action="http://127.0.0.1:9100/form/submitPersonInfo" id="form1">
+        <select value="">
+            <option value="hubei">湖北</option>
+            <option value="hunan">湖南</option>
+            <option value="beijng">北京</option>
+            <option value="" selected>请选择</option>
+        </select>
+    </form>
+</body>
+<script charset="utf-8">
+    var selecbox = document.getElementById('form1').elements[0]
+    selecbox.addEventListener('change', function (event) {
+        console.log('select change事件', event)
+        var select = event.target
+        console.log('select.selectedIndex', select.options, select.selectedIndex)
+        var curOption = select.options[select.selectedIndex]
+        console.log('curOption', curOption)
+        console.log('text-value', curOption.text, curOption.value) // 选项的文本-选项的值
+        console.log('form value', select.value) // select的值
+    })
+
+</script>
+
+</html>
