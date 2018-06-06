@@ -57,4 +57,18 @@ getAllResponseHeaders()用于返回全部的响应头，其返回值是"key:valu
 
 **readyState和onreadystatechange属性**
 
-XMLHttpRequest对象状态改变时onreadystatechange对应的函数被触发。
+XMLHttpRequest对象状态改变时onreadystatechange属性对应的函数被触发。
+
+XMLHttpRequest属性的状态可以通过readyState获取，主要有以下几种状态:
+
+- 0 : XMLHttpRequest还没初始化
+- 1 : 开始发送请求
+- 2 : 请求发送完成
+- 3 : 开始读取服务器的响应
+- 4 : 读取服务器响应结束
+
+readyState状态为2时服务器可以获取到XMLHttpRequest对象发送的请求参数。
+
+注意：这两个属性名在IE中可以不区分大小写，但在其它浏览器中要严格区分大小写，建议小写。
+
+**status和statusText属性
