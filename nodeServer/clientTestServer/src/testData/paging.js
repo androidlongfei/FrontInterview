@@ -9,7 +9,7 @@ let getData = function (count) {
 
 let getItem = function (i) {
     return {
-        title: 'hello',
+        title: 'hello' + i,
         number: i,
         id: i,
         content: 'this is hello' + i + ' content'
