@@ -5,21 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>测试location.href跳转</title>
 </head>
 
 <body>
     <a id="jumpUrl" style="display: none;"></a>
-    <div id="test">测试</div>
+    <div id="test" style="cursor:pointer;">点我测试跳转(模拟a标签点击事件)</div>
+    <div id="test1" style="cursor:pointer;margin-top:20px;">使用location.href跳转</div>
 </body>
 
 <script charset="utf-8">
     var div = document.getElementById('test')
     div.onclick = function (ev) {
         var url = 'http://www.baidu.com'
-        var $a = document.getElementById('jumpUrl')
+        jumpUrl(url)
+    }
+
+    function jumpUrl(url) {
+        var $a = window.document.getElementById('jumpUrl')
         $a.setAttribute('href', url)
         $a.click()
+    }
+
+    var div2 = document.getElementById('test1')
+    div2.onclick = function (ev) {
+        window.location.href = 'http://www.baidu.com'
     }
 
 </script>
