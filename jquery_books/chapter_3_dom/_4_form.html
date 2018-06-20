@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>属性操作</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <select name="" id="single">
+        <option value="">选1</option>
+        <option value="">选2</option>
+        <option value="">选3</option>
+    </select>
+    <select name="" id="mul" multiple>
+        <option value="">选21</option>
+        <option value="">选22</option>
+        <option value="">选23</option>
+        <option value="">选24</option>
+    </select>
+    <script charset="utf-8">
+        // 选中一项
+        $('#single').val('选1') // 选1
+        // 选中多项
+        $('#mul').val(['选22', '选23'])
+
+    </script>
+</body>
+
+</html>

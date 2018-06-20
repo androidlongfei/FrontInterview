@@ -354,3 +354,50 @@ $('p').toggle(function(){
 ```javascript
 console.log($('p').hasClass('line'));
 ```
+
+## 设置和获取HTML、文本和值
+
+- html()
+- text()
+- val()
+
+### html()方法
+
+此方法类似于js的innerHTML属性，可以用来读取或者设置某个元素中的`HTML`内容。
+
+```javascript
+// 设置
+$('p:eq(0)').html('哈哈')
+$('p:eq(1)').html('<a>123</a>')
+// 获取
+console.log($('p:eq(0)').html()); // 输出 哈哈
+console.log($('p:eq(1)').html()); // 输出 <a>123</a>
+```
+
+### text()方法
+
+此方法类似于js的innerText属性，可以用来读取或者设置某个元素中的`文本`内容。
+
+```javascript
+// 设置
+$('p:eq(0)').text('水电费')
+// 获取
+console.log($('p:eq(0)').text()) // 输出 水电费
+```
+
+备注:js中的innerText属性并不能在Firefox下运行，而jQuery的text()方法支持所有浏览器.
+
+### val()
+
+此方法类似于js中value属性，可以用来设置和获取元素的值。如果元素为多选，则返回所有选中值的数组。
+
+```javascript
+// 设置
+$('input[name="李四"]').val('时代')
+// 输出
+console.log($('input[name="李四"]').val()) // 时代
+```
+
+另外val()还有另外一个用处，就是它能使select(下拉列表)，checkbox(多选框)和radio(单选框)相应的选项被选中。
+
+## 遍历节点
