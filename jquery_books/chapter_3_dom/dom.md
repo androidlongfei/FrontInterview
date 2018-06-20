@@ -22,7 +22,9 @@ element.style.color = 'red';
 
 jQuery作为JavaScript库，继承并发扬了JavaScript对DOM对象的操作的特性。
 
-## 1.查找节点
+## 节点操作
+
+### 1.查找节点
 
 - 查找元素节点
 - 查找属性节点
@@ -54,7 +56,7 @@ var pTitle = p.attr('title') // 获取title属性
 console.log(pTitle) // 选择
 ```
 
-## 2.创建节点
+### 2.创建节点
 
 **2.1创建元素节点**
 
@@ -95,7 +97,7 @@ var li1 = $('<li title="测试">嘿嘿</li>') // title="测试"就是属性节�
 
 无论`$(html)`中的HTMl代码有多么复杂，都可以使用相同的方式来创建。
 
-## 3.插入节点
+### 3.插入节点
 
 动态创建HTMl元素并没有实际用处，还需要将新创建的元素插入到文档中。
 
@@ -218,7 +220,7 @@ $('<b>你好</b>').before('p')
 
 append和prepend是`父子之间`的DOM操作(追加节点),after和before是`兄弟之间`的DOM操作(移动节点).
 
-## 4.删除节点
+### 4.删除节点
 
 jQuery提供了三种删除节点的方法。
 
@@ -239,3 +241,116 @@ $('ul li').remove('li[title="测试"]') // 删除title="测试"的li节点
 ```
 
 注意:remove会将所有的后代节点也删除。
+
+**detach()**
+
+detach和remove一样，都是从DOM中删除所有匹配的元素。
+
+**empty()**
+
+empty()并不是删除节点，而是清空节点，`它能清空元素中的所有后代节点`。
+
+```javascript
+$('ul li:eq(1)') // 清空第二个li标签里的元素
+```
+
+### 5.复制节点
+
+clone()方法用来复制节点.
+
+```javascript
+$(this).clone() // 浅复制
+
+$(this).clone(true) // 深复制
+```
+
+### 6.替换节点
+
+replaceWith()方法是将所有匹配的元素替换成指定的HTML或者DOM元素。
+
+```javascript
+$('p').replaceWith('<div>123</div>')
+```
+
+注意:如果在替换之前，已经为元素绑定了事件，替换后该事件将消失
+
+### 7.包裹节点
+
+wrap()方法用来包裹节点.
+
+```javascript
+$('p').wrap('<div style="color:red;"></div>') // 用div标签包裹p标签
+```
+
+## 属性操作
+
+在jQuery中,用attr()方法来获取和设置元素属性,removeAttr()方法来删除元素属性。
+
+### 1.获取属性和设置属性
+
+```javascript
+// 复制节点
+var p1 = $('p:eq(0)')
+// 设置属性
+p1.attr('name', 'zhangsan')
+// 获取属性
+console.log(p1.attr('name')) // zhangsan
+
+// 设置多个属性
+var p2 = $('p:eq(1)')
+p2.attr({
+    name: 'nihao',
+    age: 123,
+    sex: '男'
+})
+```
+
+### 2.删除属性
+
+```javascript
+p1.removeAttr('name')
+```
+
+注意:jQuery1.6中新增加了prop()和removeProp(),分别用来获取在匹配的元素集中的`第一个元素`的属性值.
+
+## 样式操作
+
+### 1.获取样式和设置样式
+
+```javascript
+// 设置class
+$('p').attr('class','line')
+// 获取class
+$('p').attr('class')
+```
+
+### 2.追加样式和移除样式
+
+使用addClass()追加样式，removeClass()移除样式
+
+```javascript
+// 追加样式
+$('p').addClass('line')
+//移除样式
+$('p').removeClass('line')
+```
+
+### 3.切换样式
+
+使用toggle()切换样式
+
+```javascript
+$('p').toggle(function(){
+    // 显示元素
+},function(){
+    // 隐藏元素
+})
+```
+
+### 4.判断是否含有某个样式
+
+使用hasClass()判断是否有某个样式
+
+```javascript
+console.log($('p').hasClass('line'));
+```

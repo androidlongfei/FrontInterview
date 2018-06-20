@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>属性操作</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p>哈哈1</p>
+    <p>哈哈2</p>
+    <p>哈哈3</p>
+    <script charset="utf-8">
+        // 复制节点
+        var p1 = $('p:eq(0)')
+        // 设置属性
+        p1.attr('name', 'zhangsan')
+        // 获取属性
+        console.log(p1.attr('name')) // zhangsan
+
+        // 设置多个属性
+        var p2 = $('p:eq(1)')
+        p2.attr({
+            name: 'nihao',
+            age: 123,
+            sex: '男'
+        })
+        console.log(p2[0])
+
+    </script>
+</body>
+
+</html>
