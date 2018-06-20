@@ -225,3 +225,17 @@ jQuery提供了三种删除节点的方法。
 - remove()
 - detach()
 - empty()
+
+**remove**
+
+作用是从DOM中删除所有匹配的元素。
+
+```javascript
+$('ul li:eq(1)').remove() // 删除第二个li元素节点
+```
+
+```javascript
+$('ul li').remove('li[title="测试"]') // 删除title="测试"的li节点
+```
+
+注意:remove会将所有的后代节点也删除。

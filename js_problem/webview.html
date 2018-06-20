@@ -22,8 +22,12 @@
     }
 
     function jumpUrl(url) {
+        url = 'http://app-detail-h5-qa.cloud.enndata.cn/index.html#/serverDetail?serviceDetailId=13&userToken=BEC2D131192760C1CCA40FF894FCF86BEE8729C99B05F2814518397306E242D64D121935BF198EAAF0A3E58005A7A806FA11F3BFE89BCEB856C8A2A184408A4690EB6B2F1D7E9419AE462289BDB7443130ECC3EED820D9C5538747878BCE461E8F1B80CFAAB127D95FD0846B5AB7B5EB&deviceToken=laikang'
         var $a = window.document.getElementById('jumpUrl')
         $a.setAttribute('href', url)
+        $a.onclick = function (ev) {
+            console.log('$a...click', url)
+        }
         $a.click()
     }
 
