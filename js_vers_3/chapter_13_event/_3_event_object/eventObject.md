@@ -27,7 +27,7 @@ type            | String   | 只读 | 被触发的事件的类型。
 var link = document.getElementById('myLink')
 link.onclick = function (event) {
     // 只有 event.cancleable的值为true时，下面方法
-    event.preeventDefault();
+    event.preventDefault();
 }
 ```
 
@@ -63,14 +63,14 @@ myDiv.onclick = function (event) {
     // event.target 目标元素
     // this 是目标元素
     // bubbles 是否冒泡
-    // cancelable 是否
+    // cancelable 是否可以取消事件默认行为
     console.log('-------------div click event---------------')
     console.log('myDiv', event) // 事件对象
     console.log('事件是否冒泡event.bubbles', event.bubbles) // true 是冒泡
     console.log('是否可以取消事件的默认行为event.cancelable', event.cancelable) // true 可以取消事件的默认行为
     event.bubbles = false // 无用，因为该属性只读，无法修改
     event.cancelable = false // 无用，因为该属性只读，无法修改
-    console.log('是否是否调用了preventDefault()', event.defaultPrevented) // false 没有调用 (该属性也是只是可读的)
+    console.log('是否调用了preventDefault()', event.defaultPrevented) // false 没有调用 (该属性也是只是可读的)
     console.log('调用preventDefault()')
     event.preventDefault() // 取消事件的默认行为
     console.log('是否是否调用了event.preventDefault()', event.defaultPrevented) // true 已经调用

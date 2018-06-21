@@ -96,23 +96,23 @@
     var div4Item = document.getElementById("div4Item")
     // 鼠标移入元素时触发(冒泡)
     div4.addEventListener('mouseover', function (event) {
-        console.log('div4---mouseover:', event.bubbles, event.type) // bubbles true
-        event.target.style.color = 'red'
+        console.log('div4---mouseover:', event.bubbles, event.type, 'red') // bubbles true
+        div4.style.color = 'red'
     }, false)
     //  鼠标移出元素时触发(冒泡)
     div4.addEventListener('mouseout', function (event) {
-        console.log('div4---mouseout:', event.bubbles, event.type) // bubbles true
-        event.target.style.color = '#000'
+        console.log('div4---mouseout:', event.bubbles, event.type, '#000') // bubbles true
+        div4.style.color = '#000'
     }, false)
     //  鼠标移入元素时触发(冒泡)
     div4Item.addEventListener('mouseover', function (event) {
-        console.log('div4Item---mouseover:', event.bubbles, event.type) // bubbles true
-        event.target.style.color = 'blue'
+        console.log('div4Item---mouseover:', event.bubbles, event.type, 'blue') // bubbles true
+        div4Item.style.color = 'blue'
     }, false)
     // 鼠标移出元素时触发(冒泡)
     div4Item.addEventListener('mouseout', function (event) {
-        console.log('div4Item---mouseout:', event.bubbles, event.type) // bubbles true
-        event.target.style.color = '#000'
+        console.log('div4Item---mouseout:', event.bubbles, event.type, '#000') // bubbles true
+        div4Item.style.color = '#000'
     }, false)
     // 由此可见div4Item的mouseleave和mouseenter会冒泡，所以div4会受div4Item的影响
 
