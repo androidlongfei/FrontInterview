@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>属性操作</title>
+    <style media="screen">
+        div {
+            margin: 30px;
+        }
+
+    </style>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div>
+        <select name="" id="single">
+            <option value="1">选1</option>
+            <option value="2">选2</option>
+            <option value="3">选3</option>
+        </select>
+    </div>
+    <div>
+        <select name="" id="mul" multiple="multiple">
+            <option value="21">选21</option>
+            <option value="22">选22</option>
+            <option value="23">选23</option>
+            <option value="24">选24</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="checkbox" value="c1" name="love">cb1
+        <input type="checkbox" value="c2" name="love">cb2
+        <input type="checkbox" value="c3" name="love">cb3
+        <input type="checkbox" value="c4" name="love">cb4
+    </div>
+
+    <div>
+        <input type="radio" value="r1" name='sex'>男
+        <input type="radio" value="r2" name='sex'>女
+    </div>
+
+
+    <script charset="utf-8">
+        // 选中一项
+        // 设置选中'选1'
+        $('#single').val('选1') // 选1
+        // 获取选中的selected
+        var se = $('#single option:selected')
+        console.log(se.val()) // 1
+
+        // 选中多项
+        $('#mul').val(['选22', '选23']) // 貌似没效
+        $('#mul option:eq(1)').attr('selected', true)
+        $('#mul option:eq(2)').attr('selected', true)
+        // 获取选中的selected
+        var ses = $('#mul option:selected')
+        var seVals = []
+        for (var i = 0; i < ses.length; i++) {
+            var select = ses[i] // cb是dom对象
+            var $select = $(select) // 转化为jQuery对象
+            seVals.push($select.val())
+        }
+        console.log(seVals) // ["22", "23"]
+
+        // checkbox
+        $('div :checkbox').val(['c1', 'c3'])
+        // $('div :checkbox').attr('checked', true) // 这种方式也行
+        // 获取所有选中的checkbox
+        var cbs = $('div :checkbox:checked') // 或者 $('div input[type=checkbox]:checked')
+        var cbVals = []
+        for (var i = 0; i < cbs.length; i++) {
+            var cb = cbs[i] // cb是dom对象
+            var $cb = $(cb) // 转化为jQuery对象
+            cbVals.push($cb.val())
+        }
+        console.log(cbVals) // ["c1", "c3"]
+
+        $('div :radio').val(['r1'])
+        console.log($('div :radio').val()) // r1
+
+    </script>
+</body>
+
+</html>

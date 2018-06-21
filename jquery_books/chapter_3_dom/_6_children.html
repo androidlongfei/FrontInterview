@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>遍历</title>
+    <style media="screen">
+        div {
+            margin: 30px;
+        }
+
+    </style>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="parent" name="parent">
+        <div name="parentDiv">
+            <p name="parentP">
+                <a name="parentA">测试</a>
+            </p>
+            <p name="parentP1">
+                text
+            </p>
+        </div>
+    </div>
+
+    <script charset="utf-8">
+        // parent 返回一个
+        var parentNode = $('#parent a').parent()
+        console.log(parentNode.length) // 1 [p]
+        console.log(parentNode.attr('name')) // parentP
+
+        // parents 返回集合
+        var parentsNode = $('#parent a').parents('div')
+        console.log(parentsNode.length) // 2 [div,div#parent]
+
+        // closest 返回一个
+        var closestNode = $('#parent a').closest('div')
+        console.log(closestNode.length) // 1 [div]
+        console.log(closestNode.attr('name')) // parentDiv
+
+    </script>
+</body>
+
+</html>

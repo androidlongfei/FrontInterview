@@ -391,6 +391,36 @@ console.log($('p:eq(0)').text()) // 输出 水电费
 
 此方法类似于js中value属性，可以用来设置和获取元素的值。如果元素为多选，则返回所有选中值的数组。
 
+```html
+<div>
+    <select name="" id="single">
+        <option value="1">选1</option>
+        <option value="2">选2</option>
+        <option value="3">选3</option>
+    </select>
+</div>
+<div>
+    <select name="" id="mul" multiple="multiple">
+        <option value="21">选21</option>
+        <option value="22">选22</option>
+        <option value="23">选23</option>
+        <option value="24">选24</option>
+    </select>
+</div>
+
+<div>
+    <input type="checkbox" value="c1" name="love">cb1
+    <input type="checkbox" value="c2" name="love">cb2
+    <input type="checkbox" value="c3" name="love">cb3
+    <input type="checkbox" value="c4" name="love">cb4
+</div>
+
+<div>
+    <input type="radio" value="r1" name='sex'>男
+    <input type="radio" value="r2" name='sex'>女
+</div>
+```
+
 ```javascript
 // 设置
 $('input[name="李四"]').val('时代')
@@ -400,4 +430,158 @@ console.log($('input[name="李四"]').val()) // 时代
 
 另外val()还有另外一个用处，就是它能使select(下拉列表)，checkbox(多选框)和radio(单选框)相应的选项被选中。
 
+```javascript
+// 选中一项
+// 设置选中'选1'
+$('#single').val('选1') // 选1
+// 获取选中的selected
+var se = $('#single option:selected')
+console.log(se.val()) // 1
+
+// 选中多项
+$('#mul').val(['选22', '选23']) // 貌似没效
+$('#mul option:eq(1)').attr('selected', true)
+$('#mul option:eq(2)').attr('selected', true)
+// 获取选中的selected
+var ses = $('#mul option:selected')
+var seVals = []
+for (var i = 0; i < ses.length; i++) {
+    var select = ses[i] // cb是dom对象
+    var $select = $(select) // 转化为jQuery对象
+    seVals.push($select.val())
+}
+console.log(seVals) // ["22", "23"]
+
+// checkbox
+$('div :checkbox').val(['c1', 'c3'])
+// $('div :checkbox').attr('checked', true) // 这种方式也行
+// 获取所有选中的checkbox
+var cbs = $('div :checkbox:checked') // 或者 $('div input[type=checkbox]:checked')
+var cbVals = []
+for (var i = 0; i < cbs.length; i++) {
+    var cb = cbs[i] // cb是dom对象
+    var $cb = $(cb) // 转化为jQuery对象
+    cbVals.push($cb.val())
+}
+console.log(cbVals) // ["c1", "c3"]
+
+$('div :radio').val(['r1'])
+console.log($('div :radio').val()) // r1
+```
+
 ## 遍历节点
+
+- children()方法
+- next()方法
+- prev()方法
+- siblings()方法
+- closest()方法
+
+### children方法
+
+该方法用于取得匹配元素的`子元素`集合。
+
+```javascript
+console.log($('div').children()) // 获取div的所有子元素
+console.log($('div').children('a')) // 获取div的所有子元素中是a的元素
+```
+
+注意:children()只考虑子元素而不考虑其它后代元素
+
+### next方法
+
+该方法用于取得匹配元素`后面`紧邻的同辈元素
+
+```javascript
+$('p').next() // 取得紧邻<p>元素后的同辈元素
+```
+
+### prev方法
+
+该方法用于取得匹配元素`前面`紧邻的同辈元素
+
+### siblings方法
+
+该方法用于取得匹配元素前后所有的同辈元素
+
+### closest
+
+该方法用于取得最近的匹配元素.从当前元素一直向上找，先找自己，再找父亲，再找祖先...
+
+### parent(),parents()与closest()区别
+
+方法        | 描述                             | 示例
+--------- | :----------------------------- | :---------------------------------------
+parent()  | 获取集合中匹配元素的父元素                  | parent()从指定类型的直接父节点开始找，parent()返回一个元素节点。
+parents() | 获取集合中每个匹配元素的祖先元素               | 返回多个父节点
+closest   | 从元素本身开始，逐级向上级元素匹配,并返回最先匹配的祖先元素 | 它与parents()类似，不同点就在于它只返回匹配的第一个元素
+
+```html
+<div id="parent" name="parent">
+    <div name="parentDiv">
+        <p name="parentP">
+            <a name="parentA">测试</a>
+        </p>
+        <p name="parentP1">
+            text
+        </p>
+    </div>
+</div>
+```
+
+```javascript
+// parent 返回一个
+var parentNode = $('#parent a').parent()
+console.log(parentNode.length) // 1 [p]
+console.log(parentNode.attr('name')) // parentP
+
+// parents 返回集合
+var parentsNode = $('#parent a').parents('div')
+console.log(parentsNode.length) // 2 [div,div#parent]
+
+// closest 返回一个
+var closestNode = $('#parent a').closest('div')
+console.log(closestNode.length) // 1 [div]
+console.log(closestNode.attr('name')) // parentDiv
+```
+
+## CSS-DOM操作
+
+CSS-DOM技术简单来说就是读取和设置style对象的各种属性。
+
+```javascript
+var color = $('p').css('color') // 获取<p>元素的样式颜色
+$('p').css('color','red') // 设置<p>样式
+
+// 设置多个样式属性
+$('p').css({'color':'red','font-size':'20px'})
+```
+
+```javascript
+$('p').height() // 获取元素的高
+$('p').width() // 获取元素的宽
+```
+
+备注:`$('p').css('height')`这种通过css获取的高度值与样式有关，有可能获取到'auto'。`$('p').height()`获取到的是在页面中的实际高度,与样式无关，并且不带单位。
+
+**offset()**
+
+获取元素在当前窗口的相对便宜。其中返回的对象包括两个属性，top和left
+
+```javascript
+var off = $('p').offset()
+var let = off.left // 左偏移
+var top = off.top // 顶部偏移
+```
+
+**scrollTop()和scrollLeft()方法**
+
+这两个方法的作用是分别获取元素的`滚动条`距`顶端的距离`和距`左侧的距离`
+
+```javascript
+// 获取
+var top = $('p').scrollTop()
+var left = $('p').scrollLeft()
+// 设置
+$('p').scrollTop(300).scrollLeft(200)
+```
