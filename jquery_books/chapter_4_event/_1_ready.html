@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.ready</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p title="选择">选择你最喜欢的水果</p>
+    <ul>
+        <li title="苹果">苹果</li>
+        <li title="橘子">橘子</li>
+        <li title="菠萝">菠萝</li>
+    </ul>
+    <script charset="utf-8">
+        $(function () {
+            console.log('ready...1')
+        })
+
+        $(function () {
+            console.log('ready...2')
+        })
+
+        $(window).load(function () {
+            console.log('load...1')
+        })
+
+        $(window).load(function () {
+            console.log('load...2')
+        })
+
+        window.onload = function () {
+            console.log('onload...1')
+        }
+
+        window.onload = function () {
+            console.log('onload...2')
+        }
+
+        // 执行顺序如下： ready...1  -> ready...2  -> load...1 -> load...2 -> onload...2
+
+    </script>
+</body>
+
+</html>

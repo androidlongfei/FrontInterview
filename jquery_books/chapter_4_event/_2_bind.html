@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.ding</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <p title="选择">选择你最喜欢的水果</p>
+    <ul>
+        <li title="苹果">苹果</li>
+        <li title="橘子">橘子</li>
+        <li title="菠萝">菠萝</li>
+        <li title="香蕉">香蕉</li>
+        <li title="香瓜">香瓜<a style="display:none;">链接</a></li>
+    </ul>
+    <script charset="utf-8">
+        // 基本使用
+        $('li:eq(0)').bind('click', { name: 'haha' }, function (event) {
+            // this是当前元素的DOM对象，$(this)是将其转化为jQuery对象。
+            console.log($(this).html()) // 苹果
+            console.log(event.data) // {name: 'haha'}
+        })
+
+        // 链式调用
+        $('li:eq(1)').bind('mouseenter', function (event) {
+            $(this).css('color', 'red')
+        }).bind('mouseleave', function (event) {
+            $(this).css('color', '#000')
+        })
+
+        // 简写绑定事件
+        $('li:eq(2)').mouseover(function (event) {
+            $(this).css('color', 'blue')
+        }).mouseout(function (event) {
+            $(this).css('color', '#000')
+        })
+
+        // hover合成事件事件
+        $('li:eq(3)').hover(function (event) {
+            // 鼠标移入
+            $(this).css('color', 'green')
+        }, function (event) {
+            // 鼠标移除
+            $(this).css('color', '#000')
+        })
+
+        // toggle合成事件
+        $('li:eq(4)').toggle(function (event) {
+            $(this).children('a').show()
+        }, function (event) {
+            $(this).children('a').hide()
+        })
+
+    </script>
+</body>
+
+</html>
