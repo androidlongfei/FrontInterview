@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1.login</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 500px;
+            border: 1px solid #333;
+            margin: 150px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        #login .tr {
+            margin: 5px auto;
+            line-height: 40px;
+        }
+
+        #login .tr .prompt {
+            color: red;
+            font-size: 12px;
+        }
+
+        #login .tr .star {
+            position: relative;
+            top: 3px;
+            color: red;
+        }
+
+        #login .tr input {
+            height: 20px;
+            width: 200px;
+        }
+
+        #login label {
+            display: inline-block;
+            width: 80px;
+            text-align: left;
+            font-size: 16px;
+            position: relative;
+            top: 2px;
+        }
+
+        #login .op {
+            margin-bottom: 10px;
+        }
+
+        #login input[type="submit"] {
+            margin-left: 85px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="login">
+            <div class="tr">
+                <label for="">用户名:</label>
+                <input type="text" name="username">
+                <span class="star">*</span>
+                <!-- <span class="prompt">请输入长度大于六的用户名</span> -->
+            </div>
+            <div class="tr">
+                <label for="">邮箱:</label>
+                <input type="text" name="email">
+                <span class="star">*</span>
+                <!-- <span class="prompt">邮箱格式不正确</span> -->
+            </div>
+            <div class="tr">
+                <label for="">个人资料:</label>
+                <input type="text" name="info">
+            </div>
+            <div class="op">
+                <input type="submit" name="" value="提交">
+                <input type="reset" name="" value="重置">
+            </div>
+        </form>
+    </div>
+    <script charset="utf-8">
+        $(function () {
+            $('input[type="submit"]').click(function (event) {
+                var isPass = true;
+                $('#login :text').each(function (index, item) {
+                    // console.log(item, item.value);
+                    // 用户名
+                    if (item.name === 'username') {
+                        var prompt = $(item).next().next()
+                        if (prompt.length > 0) {
+                            // 删除警告
+                            prompt.remove();
+                        }
+                        if (!item.value || item.value.length < 6) {
+                            $(item).parent().append('<span class="prompt">请输入长度大于六的用户名</span>');
+                            isPass = false;
+                        }
+                    }
+                    // 邮箱
+                    if (isPass && item.name === 'email') {
+                        var prompt = $(item).next().next()
+                        if (prompt.length > 0) {
+                            // 删除警告
+                            prompt.remove();
+                        }
+                        if (!item.value) {
+                            $(item).parent().append('<span class="prompt">邮箱不能为空</span>');
+                            isPass = false;
+                        }
+                    }
+                })
+                if (!isPass) {
+                    return false
+                }
+                alert('注册成功')
+            })
+            $('input[type="reset"]').click(function (event) {
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>
