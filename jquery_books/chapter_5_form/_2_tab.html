@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2.tab</title>
+    <script src="../jquery.js" charset="utf-8"></script>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .container {
+            width: 500px;
+            margin: 150px auto;
+        }
+
+        .tab {
+            padding: 10px;
+        }
+
+        .tabMenu {
+            overflow: hidden;
+        }
+
+        .tabMenu li {
+            float: left;
+            width: 50px;
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid blue;
+            margin-right: 5px;
+            border-bottom: none;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tabMenu li.select,
+        .tabMenu li:hover {
+            background-color: blue;
+            color: white;
+        }
+
+        .tabBox {
+            height: 400px;
+            border: 1px solid blue;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="tab">
+            <div class="tabMenu">
+                <ul>
+                    <li class="select" tag="one">实事</li>
+                    <li tag="two">体育</li>
+                    <li tag="three">娱乐</li>
+                </ul>
+            </div>
+            <div class="tabBox">
+                <div tagContent="one" class="boxContent">
+                    实事
+                </div>
+                <div tagContent="two" class="boxContent">
+                    体育
+                </div>
+                <div tagContent="three" class="boxContent">
+                    娱乐
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script charset="utf-8">
+        $(function () {
+            $('.tabMenu li').each(function (index, item) {
+                // 注册click事件
+                $(item).click(function (event) {
+                    // 选项卡
+                    $(item).addClass('select').siblings().removeClass('select')
+                    // 选项卡内容
+                    var select = '[tagContent=' + $(this).attr('tag') + ']'
+                    $('.tabBox .boxContent')
+                        .filter(select).show()
+                        .siblings().hide();
+                })
+            })
+            $('li.select').click()
+        })
+
+    </script>
+</body>
+
+</html>
