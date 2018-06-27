@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XMLHttpRequest的get方法</title>
+</head>
+
+<body>
+    <script src="./request.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        var request = createRequest()
+        request.onreadystatechange = function () {
+            if (request.readyState == 4) {
+                // 服务器已经处理完请求，数据可以使用了
+                console.log('4', request)
+                if (request.status == 200) {
+                    doResText(request.responseText)
+                }
+            }
+        }
+
+        request.open('GET', 'http://127.0.0.1:9100/form/testGet?name=zhansan&age=100', true)
+        request.send(null)
+
+        function doResText(responseText) {
+            console.log('doResText', typeof responseText, responseText, JSON.parse(responseText))
+        }
+
+    </script>
+</body>
+
+</html>
