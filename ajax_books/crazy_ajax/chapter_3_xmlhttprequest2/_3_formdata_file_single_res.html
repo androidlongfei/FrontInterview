@@ -12,6 +12,7 @@
     <form action="">
         <input type="file" name="" value="" id="chooseFile">
     </form>
+    <div id="pre"></div>
     <button style="margin-top:10px;" id="uploadFile">上传单个文件</button>
     <script src="./request.js" charset="utf-8"></script>
     <script charset="utf-8">
@@ -57,6 +58,49 @@
                 console.log('onloadend...')
 
             }
+
+            // 上传阶段，回调函数 ---------------------------------------
+
+            // 上传开始
+            xhr.upload.onloadstart = function (ev) {
+                console.log('onloadstart', ev)
+
+            }
+
+            // 数据传输进行中(即xhr.send()之后，xhr.readystate=2之前)触发，每50ms触发一次；
+            xhr.upload.onprogress = function (ev) {
+                let pre = Math.floor((ev.loaded / ev.total) * 100)
+                let preDom = document.getElementById('pre')
+                preDom.innerHTML = pre
+                console.log('upload.onprogress', pre)
+            }
+
+            // 上传终止
+            xhr.upload.onabort = function () {
+
+            }
+
+            // 上传失败
+            xhr.upload.onerror = function () {
+
+            }
+
+            // 上传成功
+            xhr.upload.onload = function (ev) {
+                console.log('upload.onload...')
+                if (ev.loaded == ev.total) {
+                    let pre = Math.floor((ev.loaded / ev.total) * 100)
+                    let preDom = document.getElementById('pre')
+                    preDom.innerHTML = '上传完成'
+                }
+            }
+
+            xhr.upload.onloadend = function (ev) {
+                console.log('upload.onloadend...', ev)
+            }
+
+            // 上传结束 ---------------------------------------
+
 
             // 设置超时
             xhr.timeout = 6 * 1000
