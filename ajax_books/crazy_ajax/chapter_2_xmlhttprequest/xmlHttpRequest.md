@@ -174,3 +174,5 @@ function doResText(responseText) {
     console.log('doResText', typeof responseText, responseText, JSON.parse(responseText))
 }
 ```
+
+备注:一般把send()放在最后。
