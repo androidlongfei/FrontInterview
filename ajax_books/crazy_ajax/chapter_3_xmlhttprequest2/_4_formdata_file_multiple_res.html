@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xhr.formdata.multiple.file</title>
+</head>
+
+<body>
+    <form action="">
+        <input type="file" name="" value="" multiple id="chooseFile">
+    </form>
+    <button style="margin-top:10px;" id="uploadFile">上传多个文件</button>
+    <script src="./request.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        var uploadFile = document.getElementById('uploadFile')
+        uploadFile.onclick = function (event) {
+            var filesDom = document.getElementById('chooseFile')
+            console.log('files', filesDom.files)
+            startUpload(filesDom.files)
+        }
+
+        function startUpload(files) {
+            var xhr = createRequest()
+            console.log('init', xhr)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var responseText = xhr.responseText
+                        console.log('onreadystatechange doResText', JSON.parse(responseText))
+                    }
+                }
+            }
+
+            // xhr.send() 调用后触发此函数,同时开始计算超时
+            xhr.onloadstart = function () {
+                console.log('onloadstart已调用xhr.send()函数,开始计算超时......1', new Date().toLocaleTimeString())
+            }
+
+            // 超时回调函数
+            xhr.ontimeout = function () {
+                console.log('ontimeout超时咯......3', new Date().toLocaleTimeString())
+            }
+
+            // 当请求成功完成时触发，此时xhr.readystate=4
+            xhr.onload = function () {
+                if (this.status == 200) {
+                    var responseText = xhr.responseText
+                    console.log('onload doResText', JSON.parse(responseText))
+                }
+            }
+
+            // 当请求结束（包括请求成功和请求失败）时触发
+            xhr.onloadend = function () {
+                console.log('onloadend...')
+
+            }
+
+            // 上传阶段，回调函数 ---------------------------------------
+
+            // 上传开始
+            xhr.upload.onloadstart = function () {
+
+            }
+
+            // 数据传输进行中(即xhr.send()之后，xhr.readystate=2之前)触发，每50ms触发一次；
+            xhr.upload.onprogress = function () {
+
+            }
+
+            // 上传终止
+            xhr.upload.onabort = function () {
+
+            }
+
+            // 上传失败
+            xhr.upload.onerror = function () {
+
+            }
+
+            // 上传成功
+            xhr.upload.onload = function () {
+
+            }
+
+            xhr.upload.onloadend = function () {
+
+            }
+
+            // 上传结束 ---------------------------------------
+
+            // 设置超时
+            xhr.timeout = 6 * 1000
+
+            // 创建 formData
+            var formData = new FormData();
+            formData.append("username", "Groucho");
+            formData.append("accountnum", 123456);
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i]
+                // console.log('myfile', file.name)
+                formData.append('myfile', file, file.name)
+            }
+
+            // formData上传多个文件
+            xhr.open('POST', 'http://127.0.0.1:9100/form/formdataFile/multiple?id=100', true)
+
+            // 发送formData
+            xhr.send(formData)
+        }
+
+    </script>
+</body>
+
+</html>

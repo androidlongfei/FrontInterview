@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xhr.timeout</title>
+</head>
+
+<body>
+    <div>test</div>
+    <script src="./request.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        var xhr = createRequest()
+        console.log('init', xhr)
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                console.log('readyState==4......2', xhr)
+                if (xhr.status == 200) {
+                    console.log('4----', xhr.getAllResponseHeaders())
+                    var responseText = xhr.responseText
+                    console.log('doResText', typeof responseText, responseText, JSON.parse(responseText))
+                }
+            }
+        }
+
+        // xhr.send() 调用后触发此函数,同时开始计算超时
+        xhr.onloadstart = function () {
+            console.log('onloadstart已调用xhr.send()函数,开始计算超时......1', new Date().toLocaleTimeString())
+        }
+
+        // 超时回调函数
+        xhr.ontimeout = function () {
+            console.log('ontimeout超时咯......3', new Date().toLocaleTimeString())
+        }
+
+        // 设置超时
+        xhr.timeout = 2 * 1000
+
+        // 请求对象知道如何连接，知道连接到哪里
+        xhr.open('GET', 'http://127.0.0.1:9100/form/timeout?id=100', true)
+
+        xhr.send(null)
+
+    </script>
+</body>
+
+</html>

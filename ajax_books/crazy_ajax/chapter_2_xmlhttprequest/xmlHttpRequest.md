@@ -34,7 +34,7 @@ if (request.status == 200) {
 }
 ```
 
-```
+```text
 getAllResponseHeaders方法返回值
 content-type: application/json; charset=utf-8
 
@@ -84,7 +84,7 @@ readyState状态为2时服务器可以获取到XMLHttpRequest对象发送的请�
 - 414 请求的URl太长
 - 500 服务器内部错误
 
-### 2.4 发送请求
+### 2.3 发送请求
 
 创建兼容的XMLHttpRequest对象:
 

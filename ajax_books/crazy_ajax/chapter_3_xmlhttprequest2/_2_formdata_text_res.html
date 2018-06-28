@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xhr.formdata.text</title>
+</head>
+
+<body>
+    <div>test</div>
+    <script src="./request.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        var xhr = createRequest()
+        console.log('init', xhr)
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    var responseText = xhr.responseText
+                    console.log('onreadystatechange doResText', JSON.parse(responseText))
+                }
+            }
+        }
+
+        // xhr.send() 调用后触发此函数,同时开始计算超时
+        xhr.onloadstart = function () {
+            console.log('onloadstart已调用xhr.send()函数,开始计算超时......1', new Date().toLocaleTimeString())
+        }
+
+        // 超时回调函数
+        xhr.ontimeout = function () {
+            console.log('ontimeout超时咯......3', new Date().toLocaleTimeString())
+        }
+
+        // 当请求成功完成时触发，此时xhr.readystate=4
+        xhr.onload = function () {
+            if (this.status == 200) {
+                var responseText = xhr.responseText
+                console.log('onload doResText', JSON.parse(responseText))
+            }
+        }
+
+        // 当请求结束（包括请求成功和请求失败）时触发
+        xhr.onloadend = function () {
+            console.log('onloadend...')
+
+        }
+
+        // 设置超时
+        xhr.timeout = 6 * 1000
+
+        // 创建 formData
+        var formData = new FormData();
+        formData.append("username", "Groucho");
+        formData.append("love", JSON.stringify({ sport: 'swimming', book: 'yuwen' }));
+        formData.append("accountnum", 123456); //数字123456会被立即转换成字符串 "123456"
+
+        // 请求对象知道如何连接，知道连接到哪里
+        xhr.open('POST', 'http://127.0.0.1:9100/form/formdataText?id=100', true)
+
+        // 发送formData
+        xhr.send(formData)
+
+    </script>
+</body>
+
+</html>
