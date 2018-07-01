@@ -93,16 +93,15 @@ app.use(express.static(path.join(__dirname, 'download')))
 // }
 
 // 跨域带cookie
-const corsOptions = {
-    origin: 'http://127.0.0.1:8080',
-    // origin: '*',
-    credentials: true, // 客户端带cookie必须设置为true
-    allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test'
-}
+// const corsOptions = {
+//     origin: 'http://127.0.0.1:8080',
+//     credentials: true, // 客户端带cookie必须设置为true
+//     allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test'
+// }
 
 // middle
-app.use(cors(corsOptions))
-// app.use(cors())
+// app.use(cors(corsOptions))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true

@@ -216,6 +216,10 @@ module.exports = function (app) {
     app.post('/form/withCredentials', function (req, res) {
         console.log('post参数', req.body);
         console.log('get参数', req.query)
+        res.json({
+            message: 'formdata text ok',
+            data: req.headers
+        })
         // console.log('headers', req.headers)
         // console.log(res.respon)
         res.header('token', '123124')
@@ -234,6 +238,16 @@ module.exports = function (app) {
                 message: 'formdata text ok',
                 data: req.headers
             })
+        })
+    });
+
+    // xhr.send(json)
+    app.post('/form/sendJson', function (req, res) {
+        console.log('post参数', req.body);
+        console.log('get参数', req.query)
+        res.json({
+            message: 'send json ok',
+            data: req.body
         })
     });
 }
