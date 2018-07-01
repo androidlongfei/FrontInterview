@@ -20,6 +20,7 @@ import doSocket from './socket/webSocket.js'
 import WebSocket from 'ws'
 import promiseRouter from './router/promise'
 import formRouter from './router/form'
+import cookieParser from 'cookie-parser'
 
 /**
  * WebSocket
@@ -63,6 +64,8 @@ doSocket(wss)
 
 const app = express()
 
+app.use(cookieParser())
+
 // config
 app.set('uploadDir', path.join(__dirname, 'download'))
 app.set('downloadDir', path.join(__dirname, 'download'))
@@ -89,14 +92,17 @@ app.use(express.static(path.join(__dirname, 'download')))
 //   allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken'
 // }
 
-// const corsOptions = {
-//   origin: 'http://10.4.52.152:8080',
-//   credentials: true // 客户端带cookie必须设置为true
-// }
+// 跨域带cookie
+const corsOptions = {
+    origin: 'http://127.0.0.1:8080',
+    // origin: '*',
+    credentials: true, // 客户端带cookie必须设置为true
+    allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test'
+}
 
 // middle
-// app.use(cors(corsOptions))
-app.use(cors())
+app.use(cors(corsOptions))
+// app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
     extended: true

@@ -191,4 +191,49 @@ module.exports = function (app) {
             })
         })
     });
+
+    // xhr.response.json
+    app.post('/form/responseJson', function (req, res) {
+        console.log('post参数', req.body);
+        console.log('get参数', req.query)
+        // console.log('headers', req.headers)
+        // console.log(res.respon)
+        res.header('token', '123124')
+        var form = new formidable.IncomingForm();
+        form.parse(req, function (err, fields, files) {
+            if (err) {
+                console.log(err)
+            }
+            console.log('formdata参数', fields)
+            res.json({
+                message: 'formdata text ok',
+                data: req.headers
+            })
+        })
+    });
+
+    // xhr.withCredentials
+    app.post('/form/withCredentials', function (req, res) {
+        console.log('post参数', req.body);
+        console.log('get参数', req.query)
+        // console.log('headers', req.headers)
+        // console.log(res.respon)
+        res.header('token', '123124')
+        console.log('Cookies: ', req.cookies)
+        // Cookies that have been signed
+        console.log('Signed Cookies: ', req.signedCookies)
+        var form = new formidable.IncomingForm();
+        form.parse(req, function (err, fields, files) {
+            if (err) {
+                console.log(err)
+            }
+            console.log('formdata参数', fields)
+            // 设置cookie，maxAge为过期时长，毫秒为单位，此处设置一分钟
+            res.cookie('islogin', 'sucess', { maxAge: 60000 });
+            res.json({
+                message: 'formdata text ok',
+                data: req.headers
+            })
+        })
+    });
 }

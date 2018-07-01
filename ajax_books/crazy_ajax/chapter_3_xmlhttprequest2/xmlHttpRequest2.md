@@ -247,12 +247,13 @@ xhr.send(formData)
 - [创建文件并下载](https://www.zhangxinxu.com/wordpress/2017/07/js-text-string-download-as-html-json-file/)
 - [Blob Demo](https://www.zhangxinxu.com/wordpress/2013/10/understand-domstring-document-formdata-blob-file-arraybuffer/)
 
-## 5 xhr相关属性
+## 5 xhr相关属性和方法
 
 - 设置`request header`和获取`response header`
 - 设置responseType数据类型和获取对应response数据
-- 可发送类型的数据
-- 跨域
+- xhr.readyState和xhr.onreadystatechange
+- xhr.send()
+- 跨域xhr.withCredentials
 - 事件触发条件和事件触发顺序
 
 ### 5.1 request header 和 response header
@@ -319,7 +320,7 @@ DOMString getResponseHeader(DOMString header);
 2. W3C的cors标准对于跨域请求也做了限制，规定对于跨域请求，客户端允许获取的response header字段只限于`simple response header`和`Access-Control-Expose-Headers`
 
 ```text
-"simple response header"包括的 header 字段有：Cache-Control ,Content-Language,Content-Type,Expires,Last-Modified,Pragma;
+"simple response header"包括的 header 字段有：Cache-Control, ,Content-Language,Content-Type,Expires,Last-Modified,Pragma;
 
 "Access-Control-Expose-Headers"：首先得注意是"Access-Control-Expose-Headers"进行跨域请求时响应头部中的一个字段，对于同域请求，响应头部是没有这个字段的。这个字段中列举的 header 字段就是服务器允许暴露给客户端访问的字段。
 ```
@@ -343,4 +344,226 @@ xhr.onload = function () {
         console.log('onload doResText', JSON.parse(responseText))
     }
 }
+```
+
+### 5.2 xhr.responseType 和 xhr.response
+
+#### 5.2.1 xhr.responseType
+
+responseType是xhr level 2新增的属性，用来指定xhr.response的数据类型.
+
+值               | xhr.response 数据类型
+--------------- | :-----------------
+`""`            | String字符串(默认值)
+`"text"`        | String字符串
+`"document"`    | Document对象(返回 XML)
+`"json"`        | javascript 对象
+`"blob"`        | Blob对象(二进制)
+`"arrayBuffer"` | ArrayBuffer对象
+
+```javascript
+var xhr = createRequest()
+// 当请求成功完成时触发，此时xhr.readystate=4
+xhr.onload = function () {
+    if (this.status == 200) {
+        if (xhr.response) {
+            console.log('onload json', typeof xhr.response, xhr.response) // object
+        }
+    }
+}
+xhr.responseType = "json"
+// 创建 formData
+var formData = new FormData();
+formData.append("username", "Groucho");
+xhr.open('POST', 'http://127.0.0.1:9100/form/responseJson?id=100', true)
+xhr.setRequestHeader('X-Test', 'One')
+xhr.setRequestHeader('X-Test', 'Two')
+xhr.send(formData)
+```
+
+> xhr.responseType为`json`时,xhr.responseText属性不存在
+
+#### 5.2.2 xhr.response
+
+xhr提供了3个属性来获取请求返回的数据，分别是：xhr.response、xhr.responseText、xhr.responseXML.
+
+**xhr.response**
+
+```text
+默认值：空字符串""
+
+当请求完成时，此属性才有正确的值
+
+请求未完成时，此属性的值可能是""或者 null，具体与 xhr.responseType有关：当responseType为""或"text"时，值为""；responseType为其他值时，值为 null
+```
+
+**xhr.responseText**
+
+```text
+默认值为空字符串""
+
+只有当 responseType 为"text"、""时，xhr对象上才有此属性，此时才能调用xhr.responseText，否则抛错
+
+只有当请求成功时，才能拿到正确值。以下2种情况下值都为空字符串""：请求未完成、请求失败
+```
+
+**xhr.responseXML**
+
+```text
+默认值为 null
+
+只有当 responseType 为"text"、""、"document"时，xhr对象上才有此属性，此时才能调用xhr.responseXML，否则抛错
+
+只有当请求成功且返回数据被正确解析时，才能拿到正确值。以下3种情况下值都为null：请求未完成、请求失败、请求成功但返回数据无法被正确解析时
+```
+
+### 5.3 xhr.readyState和xhr.onreadystatechange
+
+xhr.readyState这个属性是只读属性，总共有5种可能值，分别对应xhr不同的不同阶段。每次xhr.readyState的值发生变化时，都会触发xhr.onreadystatechange事件。
+
+值 | 状态                        | ss
+- | :------------------------ | :------------------------------------------------------------------------------------------
+0 | UNSENT (初始状态，未打开          | 此时xhr对象被成功构造，open()方法还未被调用
+1 | OPENED (已打开，未发送)          | open()方法已被成功调用，send()方法还未被调用。注意：只有xhr处于OPENED状态，才能调用xhr.setRequestHeader()和xhr.send(),否则会报错
+2 | HEADERS_RECEIVED (已获取响应头) | send()方法已经被调用, 响应头和响应状态已经返回
+3 | LOADING (正在下载响应体)         | 响应体(response entity body)正在下载中，此状态下通过xhr.response可能已经有了响应数据
+4 | DONE (整个数据传输过程结束)         | 整个数据传输过程结束，不管本次请求是成功还是失败
+
+```javascript
+xhr.onreadystatechange = function () {
+    switch(xhr.readyState){
+      case 1://OPENED
+        //do something
+            break;
+      case 2://HEADERS_RECEIVED
+        //do something
+        break;
+      case 3://LOADING
+        //do something
+        break;
+      case 4://DONE
+        //do something
+        break;
+    }
+}
+```
+
+### 5.4 xhr.send()
+
+```javascript
+void send(data)
+```
+
+xhr.send(data)的参数data可以是以下几种类型：
+
+- ArrayBuffer
+- Blob
+- Document
+- DOMString
+- FormData
+- null
+
+如果是 GET/HEAD请求，send()方法一般不传参或传 null。不过即使你真传入了参数，参数也最终被忽略，xhr.send(data)中的data会被置为 null.
+
+xhr.send(data)中data参数的数据类型会影响请求头部content-type的默认值：
+
+```text
+如果data是 Document 类型，同时也是HTML Document类型，则content-type默认值为text/html;charset=UTF-8;否则为application/xml;charset=UTF-8；
+
+如果data是 DOMString 类型，content-type默认值为text/plain;charset=UTF-8；
+
+如果data是 FormData 类型，content-type默认值为multipart/form-data; boundary=[xxx]
+
+如果data是其他类型，则不会设置content-type的默认值
+```
+
+当然这些只是content-type的默认值，但如果用xhr.setRequestHeader()手动设置了中content-type的值，以上默认值就会被覆盖。
+
+另外需要注意的是，若在断网状态下调用xhr.send(data)方法，则会抛错：Uncaught NetworkError: Failed to execute 'send' on 'XMLHttpRequest'。一旦程序抛出错误，如果不 catch 就无法继续执行后面的代码，所以调用 xhr.send(data)方法时，应该用 try-catch捕捉错误。
+
+```javascript
+try{
+    xhr.send(data)
+  }catch(e) {
+    //doSomething...
+  };
+```
+
+### 5.5 xhr.withCredentials
+
+```text
+我们都知道，在发同域请求时，浏览器会将cookie自动加在request header中。但大家是否遇到过这样的场景：在发送跨域请求时，cookie并没有自动加在request header中。
+```
+
+造成这个问题的原因是：在CORS标准中做了规定，默认情况下，浏览器在发送跨域请求时，不能发送任何认证信息（credentials）如"cookies"和"HTTP authentication schemes"。除非xhr.withCredentials为true（xhr对象有一个属性叫withCredentials，默认值为false）。
+
+所以根本原因是cookies也是一种认证信息，在跨域请求中，client端必须手动设置xhr.withCredentials=true，且server端也必须允许request能携带认证信息（即response header中包含Access-Control-Allow-Credentials:true），这样浏览器才会自动将cookie加在request header中。
+
+另外，要特别注意一点，一旦跨域request能够携带认证信息，server端一定不能将Access-Control-Allow-Origin设置为*，而必须设置为请求页面的域名.
+
+客户端:
+
+```javascript
+xhr.responseType = "json"
+xhr.withCredentials = true
+```
+
+服务端:
+
+```javascript
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+const app = express()
+app.use(cookieParser())
+// 跨域带cookie
+const corsOptions = {
+    origin: 'http://127.0.0.1:8080',
+    credentials: true, // 客户端带cookie必须设置为true
+    allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test'
+}
+// middle
+app.use(cors(corsOptions))
+```
+
+### 5.6 xhr事件触发条件和顺序
+
+#### 5.6.1 xhr事件触发条件
+
+事件                 | 触发条件
+------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+onreadystatechange | 每当xhr.readyState改变时触发；但xhr.readyState由非0值变为0时不触发。
+onloadstart        | 调用xhr.send()方法后立即触发，若xhr.send()未被调用则不会触发此事件。
+onprogress         | xhr.upload.onprogress在上传阶段(即xhr.send()之后，xhr.readystate=2之前)触发，每50ms触发一次；xhr.onprogress在下载阶段（即xhr.readystate=3时）触发，每50ms触发一次。
+onload             | 当请求成功完成时触发，此时xhr.readystate=4
+onloadend          | 当请求结束（包括请求成功和请求失败）时触发
+onabort            | 当调用xhr.abort()后触发
+ontimeout          | xhr.timeout不等于0，由请求开始即onloadstart开始算起，当到达xhr.timeout所设置时间请求还未结束即onloadend，则触发此事件。
+onerror            | 在请求过程中，若发生Network error则会触发此事件（若发生Network error时，上传还没有结束，则会先触发xhr.upload.onerror，再触发xhr.onerror；若发生Network error时，上传已经结束，则只会触发xhr.onerror）。注意，只有发生了网络层级别的异常才会触发此事件，对于应用层级别的异常，如响应返回的xhr.statusCode是4xx时，并不属于Network error，所以不会触发onerror事件，而是会触发onload事件。
+
+#### 5.6.2 xhr事件触发顺序
+
+当请求一切正常时，相关的事件触发顺序如下：
+
+```text
+1.触发xhr.onreadystatechange(之后每次readyState变化时，都会触发一次)
+
+2.触发xhr.onloadstart
+
+//上传阶段开始：
+
+3.触发xhr.upload.onloadstart
+
+4.触发xhr.upload.onprogress
+
+5.触发xhr.upload.onload
+
+6.触发xhr.upload.onloadend
+
+// 上传结束，下载阶段开始：
+
+7.触发xhr.onprogress
+
+8.触发xhr.onload
+
+9.触发xhr.onloadend
 ```
