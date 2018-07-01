@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        /*
+            style 1000
+            id 100
+            class 10
+            label 1
+         */
+
+        /* 同级别 */
+
+        #pid {
+            color: blue !important;
+        }
+
+        .pclass {
+            color: yellow;
+        }
+
+        p {
+            color: green;
+        }
+
+        /* 不同级别 */
+
+        /* 权重 200 */
+
+        #box23 #pid {
+            /* 无法覆盖行内样式 */
+            color: #ddd;
+        }
+
+        #box23 {
+            /* 无法覆盖行内样式,因为没有直接选中元素 */
+            color: #fff !important;
+        }
+
+        .pclass2 {
+            /* 可以覆盖行内样式 */
+            color: #888 !important;
+        }
+
+        /* 行内样式的权重是 1000,所以呢,还是red */
+
+        /* 得出结论:行内样式只能通过!important覆盖，并且!important必须选中直接选中元素否则无效 */
+
+    </style>
+</head>
+
+<body>
+
+    <!-- 同级别 style> id > class > label -->
+    <!-- 可以通过!important 更改权重 -->
+    <div class="box1" id="box1">
+        <div class="box2" id="box2">
+            <div class="box3" id="box3">
+                <p class="pclass" id="pid" style="color:red">hello</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box21" id="box21">
+        <div class="box22" id="box22">
+            <div class="box23" id="box23">
+                <p class="pclass2" id="pid2" style="color:red">hello</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -246,3 +246,101 @@ xhr.send(formData)
 - [mozilla-blob](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)
 - [创建文件并下载](https://www.zhangxinxu.com/wordpress/2017/07/js-text-string-download-as-html-json-file/)
 - [Blob Demo](https://www.zhangxinxu.com/wordpress/2013/10/understand-domstring-document-formdata-blob-file-arraybuffer/)
+
+## 5 xhr相关属性
+
+- 设置`request header`和获取`response header`
+- 设置responseType数据类型和获取对应response数据
+- 可发送类型的数据
+- 跨域
+- 事件触发条件和事件触发顺序
+
+### 5.1 request header 和 response header
+
+#### 5.1.2 设置request header
+
+在发送Ajax请求（实质是一个HTTP请求）时，我们可能需要设置一些请求头部信息，比如content-type、connection、cookie、accept-xxx等。
+
+xhr提供了setRequestHeader来允许我们修改请求 header。
+
+```javascript
+void setRequestHeader(DOMString header, DOMString value);
+```
+
+> 方法的第一个参数 header 大小写不敏感，即可以写成content-type，也可以写成Content-Type，甚至写成content-Type;
+
+> Content-Type的默认值与具体发送的数据类型有关
+
+> setRequestHeader必须在open()方法之后，send()方法之前调用，否则会抛错；
+
+> setRequestHeader可以调用多次，最终的值不会采用覆盖override的方式，而是采用追加append的方式.
+
+示例代码:
+
+```javascript
+var xhr = createRequest()
+// 当请求成功完成时触发，此时xhr.readystate=4
+xhr.onload = function () {
+    if (this.status == 200) {
+        var responseText = xhr.responseText
+        console.log('onload doResText', JSON.parse(responseText))
+    }
+}
+// 创建 formData
+var formData = new FormData();
+formData.append("username", "Groucho");
+xhr.open('POST', 'http://127.0.0.1:9100/form/setRequestHeader?id=100', true)
+xhr.setRequestHeader('X-Test', 'One')
+xhr.setRequestHeader('X-Test', 'Two') // x-test:"One, Two"
+xhr.send(formData)
+```
+
+#### 5.1.3 获取response header
+
+- [Access-Control-Expose-Headers](https://cloud.tencent.com/developer/section/1189898)
+
+xhr提供了2个用来获取响应头部的方法：getAllResponseHeaders和getResponseHeader。前者是获取 response 中的所有header 字段，后者只是获取某个指定 header 字段的值。
+
+另外，getResponseHeader(header)的header参数不区分大小写。
+
+```javascript
+DOMString getAllResponseHeaders();
+DOMString getResponseHeader(DOMString header);
+```
+
+使用以上两个方法遇到如下问题:
+
+1. 使用getAllResponseHeaders()看到的所有response header与实际在控制台 Network 中看到的 response header不一样，比如network中又token这个响应头，但是但是此方法的返回值中却没有。
+2. 使用getResponseHeader()获取某个自定义header的值时(如token)，浏览器抛错`Refused to get unsafe header "XXX"`.
+
+原因如下:
+
+1. W3C的 xhr 标准中做了限制，规定客户端无法获取response中的 Set-Cookie、Set-Cookie2这2个字段，无论是同域还是跨域请求
+2. W3C的cors标准对于跨域请求也做了限制，规定对于跨域请求，客户端允许获取的response header字段只限于`simple response header`和`Access-Control-Expose-Headers`
+
+```text
+"simple response header"包括的 header 字段有：Cache-Control ,Content-Language,Content-Type,Expires,Last-Modified,Pragma;
+
+"Access-Control-Expose-Headers"：首先得注意是"Access-Control-Expose-Headers"进行跨域请求时响应头部中的一个字段，对于同域请求，响应头部是没有这个字段的。这个字段中列举的 header 字段就是服务器允许暴露给客户端访问的字段。
+```
+
+所以getAllResponseHeaders()只能拿到限制以外（即被视为safe）的header字段，而不是全部字段；而调用getResponseHeader(header)方法时，header参数必须是限制以外的header字段，否则调用就会报Refused to get unsafe header的错误.
+
+解决方式是：服务器端对`自定义响应头`加以配置，使其暴露出来，这样浏览器就能获取到了。
+
+示例代码:
+
+```javascript
+var xhr = createRequest()
+// 当请求成功完成时触发，此时xhr.readystate=4
+xhr.onload = function () {
+    if (this.status == 200) {
+        var responseText = xhr.responseText
+        console.log('getResponseHeader', xhr.getAllResponseHeaders())
+        // content-type: application/json; charset=utf-8
+        console.log('token', xhr.getResponseHeader('token'))
+        // 报错 efused to get unsafe header "token"
+        console.log('onload doResText', JSON.parse(responseText))
+    }
+}
+```
