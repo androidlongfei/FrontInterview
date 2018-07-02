@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>xhr.send.json</title>
+</head>
+
+<body>
+    <div>test</div>
+    <script src="./request.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        var xhr = createRequest()
+        // 当请求成功完成时触发，此时xhr.readystate=4
+        xhr.onload = function () {
+            if (this.status == 200) {
+                if (xhr.response) {
+                    console.log('onload json', typeof xhr.response, xhr.response)
+                    // console.log('token', xhr.getResponseHeader('token'))
+                    // console.log('X-Test', xhr.getResponseHeader('X-Test'))
+                    // console.log('Authorization', xhr.getResponseHeader('Authorization'))
+                }
+            }
+        }
+        xhr.responseType = "json"
+        xhr.open('POST', 'http://127.0.0.1:9100/form/bloodressure', true)
+        xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8')
+        var data = {
+            name: 'zhansan',
+            age: 34,
+            love: {
+                sport: 'football',
+                food: 'meal'
+            }
+        }
+        xhr.send(JSON.stringify(data))
+
+    </script>
+</body>
+
+</html>

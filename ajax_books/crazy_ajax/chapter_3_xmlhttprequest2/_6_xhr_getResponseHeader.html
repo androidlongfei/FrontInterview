@@ -20,7 +20,7 @@
                 console.log('getResponseHeader', xhr.getAllResponseHeaders())
                 // content-type: application/json; charset=utf-8
                 console.log('token', xhr.getResponseHeader('token'))
-                // 报错 efused to get unsafe header "token"
+                // 若是服务端配置自定义响应头token，则显示123124 ，否则 报错 efused to get unsafe header "token"
                 console.log('onload doResText', JSON.parse(responseText))
             }
         }

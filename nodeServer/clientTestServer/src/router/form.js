@@ -1,7 +1,9 @@
-var formidable = require('formidable');
+const formidable = require('formidable');
 import _ from 'lodash';
-var fs = require('fs');
+import fs from 'fs'
 import config from '../config/global.js'
+var path = require('path');
+import testJson from '../testData/test.js'
 module.exports = function (app) {
     app.post('/form/submitPersonInfo', function (req, res) {
         console.log('post参数', req.body);
@@ -248,6 +250,34 @@ module.exports = function (app) {
         res.json({
             message: 'send json ok',
             data: req.body
+        })
+    });
+
+    // xhr.send(json)
+    app.post('/form/requestInitInfoData', function (req, res) {
+        // console.log('post参数', req.body);
+        // console.log('data', req.body.data)
+        fs.writeFile('./test.txt', req.body.data, function (err) {
+            if (err) {
+                throw err;
+            }
+            console.log('Saved.');
+        });
+        res.json({
+            message: 'send json ok'
+        })
+    });
+
+    // xhr.send(json)
+    app.post('/form/bloodressure', function (req, res) {
+        console.log('post参数', req.body);
+        let data = fs.readFileSync('./src/testData/testData.json')
+        let dataJson = JSON.parse(data);
+        console.log('data', dataJson)
+        console.log('data', testJson)
+        res.json({
+            message: 'send json ok',
+            data: testJson
         })
     });
 }

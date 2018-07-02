@@ -299,6 +299,7 @@ xhr.send(formData)
 #### 5.1.3 获取response header
 
 - [Access-Control-Expose-Headers](https://cloud.tencent.com/developer/section/1189898)
+- [express-cors](https://github.com/expressjs/cors)
 
 xhr提供了2个用来获取响应头部的方法：getAllResponseHeaders和getResponseHeader。前者是获取 response 中的所有header 字段，后者只是获取某个指定 header 字段的值。
 
@@ -329,7 +330,7 @@ DOMString getResponseHeader(DOMString header);
 
 解决方式是：服务器端对`自定义响应头`加以配置，使其暴露出来，这样浏览器就能获取到了。
 
-示例代码:
+客户端配置代码如下:
 
 ```javascript
 var xhr = createRequest()
@@ -338,13 +339,32 @@ xhr.onload = function () {
     if (this.status == 200) {
         var responseText = xhr.responseText
         console.log('getResponseHeader', xhr.getAllResponseHeaders())
-        // content-type: application/json; charset=utf-8
+        // content-type: application/json; charset=utf-8 token: 123124
         console.log('token', xhr.getResponseHeader('token'))
-        // 报错 efused to get unsafe header "token"
+        // 若是服务端配置自定义响应头token，则显示123124 ，否则 报错 efused to get unsafe header "token"
         console.log('onload doResText', JSON.parse(responseText))
     }
 }
 ```
+
+服务端配置如下:
+
+```javascript
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+const app = express()
+app.use(cookieParser())
+// 跨域带cookie
+const corsOptions = {
+    origin: ['http://127.0.0.1:8080','http://local.cloud.enndata.cn:8080'],
+    credentials: true, // 客户端带cookie必须设置为true
+    allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test',
+    exposedHeaders: 'token,X-Test'
+}
+app.use(cors(corsOptions))
+```
+
+> 主要是配置allowedHeaders和exposedHeaders，将自定义响应头加进去，这样`xhr.getResponseHeader('token')`就可以获取到了
 
 ### 5.2 xhr.responseType 和 xhr.response
 

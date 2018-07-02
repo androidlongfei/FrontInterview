@@ -94,9 +94,10 @@ app.use(express.static(path.join(__dirname, 'download')))
 
 // 跨域带cookie
 // const corsOptions = {
-//     origin: 'http://127.0.0.1:8080',
+//     origin: ['http://127.0.0.1:8080', 'http://local.cloud.enndata.cn:8080', 'http://10.4.52.29:9100'],
 //     credentials: true, // 客户端带cookie必须设置为true
-//     allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test'
+//     allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie,X-Test',
+//     exposedHeaders: 'token,X-Test'
 // }
 
 // middle
