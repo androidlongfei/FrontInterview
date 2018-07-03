@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios get请求</title>
+</head>
+
+<body>
+    <div>test</div>
+    <script src="./lib/qs.min.js" charset="utf-8"></script>
+    <script src="./lib/axios.min.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        // GET 参数可以放到params里（推荐）
+        axios.get('http://127.0.0.1:9100/axios/getOne', {
+                params: {
+                    id: 12345,
+                    name: '张三',
+                    love: {
+                        sport: ['football'],
+                        food: 'meal'
+                    }
+                }
+            })
+            .then(function (res) {
+                console.log('one get res', res);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        // 默认为 Content-Type: application/json; charset=utf-8
+
+        // 2.自定义
+        axios({
+            url: 'http://127.0.0.1:9100/axios/getTwo',
+            method: 'get',
+            params: {
+                id: 12345,
+                name: '张三',
+                love: {
+                    sport: ['football'],
+                    food: 'meal'
+                }
+            },
+            data: {},
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                return data;
+            }]
+        }).then(function (res) {
+            console.log('two get res', res);
+        }).catch(function (error) {
+            console.log('two error', error)
+        })
+        // Content-Type: application/x-www-form-urlencoded
+
+        // restfull
+        axios.get('http://127.0.0.1:9100/axios/getThree/102', {
+                params: {
+                    id: 12345,
+                    name: '张三',
+                    love: {
+                        sport: ['football'],
+                        food: 'meal'
+                    }
+                }
+            })
+            .then(function (res) {
+                console.log('one get res', res);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    </script>
+</body>
+
+</html>

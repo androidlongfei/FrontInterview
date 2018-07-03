@@ -21,6 +21,7 @@ import WebSocket from 'ws'
 import promiseRouter from './router/promise'
 import formRouter from './router/form'
 import cookieParser from 'cookie-parser'
+import axiosRouter from './router/axios'
 
 /**
  * WebSocket
@@ -113,7 +114,7 @@ const authlist = ['/user']
 
 const requireAuth = (req, res, next) => {
     const path = req.path
-    console.log('req.path', req.path)
+    console.log('-------------------------------req.path', req.path)
     let isNeedAuth = false
     _.find(authlist, authItem => {
         if (_.startsWith(path, authItem)) {
@@ -154,6 +155,7 @@ sysMessageRouter(app)
 indicatorRouter(app)
 promiseRouter(app)
 formRouter(app)
+axiosRouter(app)
 
 app.listen(config.port);
 console.log(`server start in ${config.port} port`)
