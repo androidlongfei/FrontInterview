@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios post form请求</title>
+</head>
+
+<body>
+    <div>test</div>
+    <script src="./lib/qs.min.js" charset="utf-8"></script>
+    <script src="./lib/axios.min.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        // 1.自定义 POST 用URLSearchParams传递参数
+        var params = new URLSearchParams();
+        var love = {
+            sport: ['football'],
+            food: 'meal'
+        }
+        params.append('id', '2345');
+        params.append('name', '李四');
+        params.append('love', JSON.stringify(love));
+        console.log('params', params.toString())
+        axios({
+            url: 'http://127.0.0.1:9100/axios/postOne',
+            method: 'post',
+            params: {
+                id: 56789,
+                name: '李四',
+                test: {
+                    sport: ['swimming'],
+                    food: 'meal'
+                }
+            },
+            data: params,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                return data;
+            }]
+        }).then(function (res) {
+            console.log('one post res', res);
+        }).catch(function (error) {
+            console.log('one error', error)
+        })
+        // Content-Type: application/x-www-form-urlencoded
+
+        // 2.restfull
+        axios({
+            url: 'http://127.0.0.1:9100/axios/postTwo/103',
+            method: 'post',
+            params: {
+                id: 56789,
+                name: '李四',
+                test: {
+                    sport: ['swimming'],
+                    food: 'meal'
+                }
+            },
+            data: params,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                return data;
+            }]
+        }).then(function (res) {
+            console.log('two post res', res);
+        }).catch(function (error) {
+            console.log('two error', error)
+        })
+
+        // 3.qs POST 用qs传递参数
+        var paramData = {
+            id: 6757,
+            name: '王五',
+            test: {
+                sport: ['swimming', 'football'],
+                food: 'meal'
+            },
+            haha: '',
+            haha1: undefined,
+            haha2: null
+        }
+        axios({
+            url: 'http://127.0.0.1:9100/axios/postThree',
+            method: 'post',
+            params: {
+                id: 56789,
+                name: '李四',
+                test: {
+                    sport: ['swimming'],
+                    food: 'meal'
+                }
+            },
+            data: paramData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            transformRequest: [function (data) {
+                // transformRequest 允许在向服务器发送前，修改请求数据
+                // 只能用在 'PUT', 'POST' 和 'PATCH' 这几个请求方法
+
+                // 使用qs库,序列化json对象
+                // var dataStr = qs.stringify(data)
+                // 自定义qs,序列化json对象
+                var dataStr = stringify(data)
+                console.log('dataStr', dataStr)
+                return dataStr
+            }]
+        }).then(function (res) {
+            console.log('three post res', res);
+        }).catch(function (error) {
+            console.log('three error', error)
+        })
+
+        // 序列化json对象
+        function stringify(data) {
+            if (typeof data !== 'object') {
+                return data
+            }
+            var strList = []
+            var str = ''
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    var val = data[key]
+                    if (!val) {
+                        val = ''
+                    }
+                    if (val && typeof val !== 'string') {
+                        val = JSON.stringify(val)
+                    }
+                    var item = key + '=' + window.encodeURIComponent(val)
+                    strList.push(item)
+                }
+            }
+            console.log('strList =>', strList)
+            for (var i = 0; i < strList.length; i++) {
+                str += strList[i]
+                if (i != (strList.length - 1)) {
+                    str += '&'
+                }
+            }
+            console.log('str =>', str)
+            return str
+        }
+
+    </script>
+</body>
+
+</html>

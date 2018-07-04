@@ -28,90 +28,57 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/axios/testGet', function (req, res) {
+    app.post('/axios/postOne', function (req, res) {
         console.log('post参数', req.body);
         console.log('get参数', req.query)
-        console.log('headers参数', req.headers);
+        console.log('params参数', req.params);
         res.json({
-            message: '提交成功GET'
+            message: 'postOne请求成功'
         });
     });
 
-    app.post('/axios/testPOST', function (req, res) {
+    app.post('/axios/postTwo/:id', function (req, res) {
         console.log('post参数', req.body);
-        console.log('get参数', req.query)
-        console.log('headers参数', req.headers);
+        console.log('get参数', req.query);
+        console.log('params参数', req.params);
         res.json({
-            message: '提交成功POST'
+            message: 'postTwo请求成功'
         });
     });
 
-    // xhr.timeout
-    app.get('/axios/timeout', function (req, res) {
+    app.post('/axios/postThree', function (req, res) {
         console.log('post参数', req.body);
-        console.log('get参数', req.query)
-        setTimeout(() => {
-            res.json({
-                message: '超时回调'
-            })
-        }, 3000)
-    });
-
-    // xhr.formData text
-    app.post('/axios/formdataText', function (req, res) {
-        console.log('post参数', req.body);
-        console.log('get参数', req.query)
-        var form = new formidable.IncomingForm();
-        var resObj = {}
-        form.parse(req, function (err, fields, files) {
-            if (err) {
-                console.log(err)
-            }
-            console.log('formdata参数', fields)
-            resObj = fields
-            res.json({
-                message: 'formdata text ok',
-                data: resObj
-            })
-        })
-    });
-
-    // xhr.withCredentials
-    app.post('/axios/withCredentials', function (req, res) {
-        console.log('post参数', req.body);
-        console.log('get参数', req.query)
+        console.log('get参数', req.query);
+        console.log('params参数', req.params);
         res.json({
-            message: 'formdata text ok',
-            data: req.headers
-        })
-        // console.log('headers', req.headers)
-        // console.log(res.respon)
-        res.header('token', '123124')
-        console.log('Cookies: ', req.cookies)
-        // Cookies that have been signed
-        console.log('Signed Cookies: ', req.signedCookies)
-        var form = new formidable.IncomingForm();
-        form.parse(req, function (err, fields, files) {
-            if (err) {
-                console.log(err)
-            }
-            console.log('formdata参数', fields)
-            // 设置cookie，maxAge为过期时长，毫秒为单位，此处设置一分钟
-            res.cookie('islogin', 'sucess', { maxAge: 60000 });
-            res.json({
-                message: 'formdata text ok',
-                data: req.headers
-            })
-        })
+            message: 'postThree请求成功'
+        });
     });
 
-    // xhr.send(json)
-    app.post('/axios/sendJson', function (req, res) {
+    app.post('/axios/json/postOne', function (req, res) {
         console.log('post参数', req.body);
         console.log('get参数', req.query)
+        console.log('params参数', req.params);
         res.json({
-            message: 'send json ok',
-            data: req.body
-        })
+            message: 'postOne请求成功'
+        });
+    });
+
+    app.post('/axios/json/postTwo/:id', function (req, res) {
+        console.log('post参数', req.body);
+        console.log('get参数', req.query)
+        console.log('params参数', req.params);
+        res.json({
+            message: 'postTwo请求成功'
+        });
+    });
+
+    app.post('/axios/json/postThree', function (req, res) {
+        console.log('post参数', req.body);
+        console.log('get参数', req.query)
+        console.log('params参数', req.params);
+        res.json({
+            message: 'postThree请求成功'
+        });
     });
 }

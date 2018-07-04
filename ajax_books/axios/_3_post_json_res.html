@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>axios post json请求</title>
+</head>
+
+<body>
+    <div>test</div>
+    <script src="./lib/axios.min.js" charset="utf-8"></script>
+    <script charset="utf-8">
+        // 1.自定义POST
+        var paramData = {
+            id: 6757,
+            name: '王五',
+            test: {
+                sport: ['swimming', 'football'],
+                food: 'meal'
+            }
+        }
+        axios({
+            url: 'http://127.0.0.1:9100/axios/json/postOne',
+            method: 'post',
+            params: {
+                id: 56789,
+                name: '李四',
+                test: {
+                    sport: ['swimming'],
+                    food: 'meal'
+                }
+            },
+            data: JSON.stringify(paramData),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        }).then(function (res) {
+            console.log('one post res', res);
+        }).catch(function (error) {
+            console.log('one error', error)
+        })
+        // Content-Type: application/json;charset=utf-8
+
+        // 2.restfull
+        axios({
+            url: 'http://127.0.0.1:9100/axios/json/postTwo/103',
+            method: 'post',
+            params: {
+                id: 56789,
+                name: '李四',
+                test: {
+                    sport: ['swimming'],
+                    food: 'meal'
+                }
+            },
+            data: paramData,
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+        }).then(function (res) {
+            console.log('two post res', res);
+        }).catch(function (error) {
+            console.log('two error', error)
+        })
+        // Content-Type: application/json;charset=utf-8
+
+        // 3. 自定义transformRequest，覆盖默认值，所以需要手动序列化参数
+        axios({
+            url: 'http://127.0.0.1:9100/axios/json/postThree',
+            method: 'post',
+            params: {
+                id: 56789,
+                name: '李四',
+                test: {
+                    sport: ['swimming'],
+                    food: 'meal'
+                }
+            },
+            data: JSON.stringify(paramData),
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            transformRequest: [function (data) {
+                if (typeof data == 'object') {
+                    return JSON.stringify(data)
+                }
+                return data
+            }]
+        }).then(function (res) {
+            console.log('three post res', res);
+        }).catch(function (error) {
+            console.log('three error', error)
+        })
+        // Content-Type: application/json;charset=utf-8
+
+    </script>
+</body>
+
+</html>
