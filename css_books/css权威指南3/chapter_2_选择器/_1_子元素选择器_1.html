@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子元素过滤选择器</title>
+    <style media="screen">
+        /* 获取每个ul下的第一个li元素 */
+
+        li:first-child {
+            color: red;
+            border: 1px solid blue;
+        }
+
+        /* 获取每个ul下的第2个li元素 */
+
+        li:nth-child(2) {
+            /* index从1开始 */
+            color: blue;
+        }
+
+        /* 获取每个ul下的最后一个li元素 */
+
+        li:last-child {
+            color: red;
+            border: 1px solid blue;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <ul id="one">基本过滤选择器(对元素本身进行过滤,index从1开始)
+        <li>
+            <h4>11</h4><span>关于11的描述</span></li>
+        <li>22</li>
+        <li>33</li>
+        <li>44</li>
+    </ul>
+
+    <ul id="two">基本过滤选择器(对元素本身进行过滤,index从1开始)
+        <li>
+            <h4>11</h4><span>关于11的描述</span></li>
+        <li>22</li>
+        <li>33</li>
+        <li>44</li>
+    </ul>
+
+</body>
+
+</html>
