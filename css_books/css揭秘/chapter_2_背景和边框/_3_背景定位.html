@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>背景定位</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {}
+
+        div:nth-child(1) {
+            /* 兼容写法 */
+            background: url(http://csssecrets.io/images/code-pirate.svg) no-repeat #58a;
+            background-position: right 20px bottom 10px;
+
+            /* Styling */
+            width: 10em;
+            min-height: 5em;
+            padding: 10px;
+            color: white;
+            font: 100%/1 sans-serif;
+            /* border: 10px solid red; */
+        }
+
+        div:nth-child(2) {
+            background: url(http://csssecrets.io/images/code-pirate.svg) no-repeat bottom right #58a;
+            background-origin: content-box;
+
+            /* Styling */
+            max-width: 10em;
+            min-height: 5em;
+            margin-top: 20px;
+            padding-right: 20px;
+            padding-bottom: 10px;
+            color: white;
+            font: 100%/1 sans-serif;
+        }
+
+        div:nth-child(3) {
+            background: url(http://csssecrets.io/images/code-pirate.svg) no-repeat bottom right #58a;
+            background-position: calc(100% - 20px) calc(100% - 10px);
+
+            /* Styling */
+            max-width: 10em;
+            min-height: 5em;
+            padding: 10px;
+            margin-top: 20px;
+            color: white;
+            font: 100%/1 sans-serif;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+
+</html>

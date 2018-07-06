@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多重边框</title>
+    <style media="screen">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /* background: url('../images/stone-art.jpg'); */
+        }
+
+        .test {
+            width: 600px;
+            height: 600px;
+            border: 1px solid red;
+            margin: 20px auto;
+        }
+
+        #container {
+            width: 400px;
+            /* height: 400px; */
+        }
+
+        div {
+            width: 200px;
+            height: 100px;
+        }
+
+        .mul {
+            float: left;
+            background: yellowgreen;
+            box-shadow: 0 0 0 10px #655;
+        }
+
+        div.clear {
+            height: 0;
+            clear: both;
+        }
+
+        .sin {
+            background: yellowgreen;
+            margin-top: 50px;
+            width: 400px;
+            border: 10px solid #655;
+            outline: 5px solid deeppink;
+
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="test">
+        <div id="container">
+            <div class="mul">1</div>
+            <div class="mul">2</div>
+        </div>
+        <div class="clear"></div>
+        <div class="sin"></div>
+        <div style="height:50px;background:red;">s</div>
+    </div>
+</body>
+
+</html>

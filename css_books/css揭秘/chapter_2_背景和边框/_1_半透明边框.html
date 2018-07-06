@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>半透明边框</title>
+    <style media="screen">
+        body {
+            /* background: url('http://csssecrets.io/images/stone-art.jpg'); */
+            background: url('../images/stone-art.jpg');
+        }
+
+        div:nth-child(1) {
+            /* 边框半透明 */
+            /* border: 10px solid hsla(0, 0%, 100%, .5); */
+            border: 10px solid rgba(255, 255, 255, .5);
+            background: white;
+            /* background-clip规定背景的绘制区域,padding-box表示背景只绘制到padding */
+            background-clip: padding-box;
+            max-width: 20em;
+            padding: 2em;
+            margin: 2em auto 0;
+            font: 100%/1.5 sans-serif;
+        }
+
+        div:nth-child(2) {
+            /* border: 10px solid hsla(0, 0%, 100%, .5); */
+            border: 10px solid rgba(255, 255, 255, .5);
+            background: white;
+            background-clip: content-box;
+            max-width: 20em;
+            padding: 2em;
+            margin: 2em auto 0;
+            font: 100%/1.5 sans-serif;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div>
+        Can I haz semi-transparent borders? Pretty please?
+    </div>
+    <div>
+        Can I haz semi-transparent borders? Pretty please?
+    </div>
+</body>
+
+</html>
