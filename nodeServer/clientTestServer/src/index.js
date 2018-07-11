@@ -22,6 +22,7 @@ import promiseRouter from './router/promise'
 import formRouter from './router/form'
 import cookieParser from 'cookie-parser'
 import axiosRouter from './router/axios'
+import cookbookRouter from './router/cookbook'
 
 /**
  * WebSocket
@@ -156,6 +157,7 @@ indicatorRouter(app)
 promiseRouter(app)
 formRouter(app)
 axiosRouter(app)
+cookbookRouter(app)
 
 app.listen(config.port);
 console.log(`server start in ${config.port} port`)

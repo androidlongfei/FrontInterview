@@ -1,0 +1,70 @@
+{
+    "code": "100",
+    "data": [{
+        "id": 1387,
+        "name": "香辣干锅菜",
+        "cookImg": "http://fs-prod.ipaas.enncloud.cn/http://s1.ttmeishi.com/caipu/201402/21/bd41ca9d1b35010c3be163ae98f3c4c8.jpg",
+        "foodList": [{
+                "id": null,
+                "name": null,
+                "isClick": null
+            },
+            {
+                "id": null,
+                "name": "藕",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "花菜",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "芹菜",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "猪肉",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "葱姜末",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "盐",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "郫县豆瓣酱",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "干红辣椒",
+                "isClick": 0
+            },
+            {
+                "id": null,
+                "name": "花椒",
+                "isClick": 0
+            }
+        ],
+        "suitmeal": null,
+        "appetite": null,
+        "classify": "家常菜谱",
+        "suitableCrowd": null,
+        "tabooCrowd": null,
+        "nutrition": null,
+        "hot": null,
+        "step": "香辣干锅菜的做法详细步骤 1、 将藕去皮儿洗净切片，藕最好用淡盐水浸泡着，以免变颜色，芹菜洗净切段儿 2、 花菜掰小朵儿，加盐水稍稍浸泡洗净 3、 将藕片，花菜，芹菜一一焯水，并控干水分 4、 将五花肉切片，葱姜切末，郫县豆瓣酱剁碎，准备好花椒，干红辣椒段。我这里的五花肉是我做回锅肉用剩的哈 5、 锅里加入适量食用油，加入花椒，干红辣椒段儿炒出香味，再加入郫县豆瓣酱翻炒出红油后加入葱姜末，加入肉片翻炒至变色 6、 将所有的材料加入锅里翻炒煸至没有水分即好 7、 盛出装盘即可，别看红红的，可是真的不辣，但是很香。",
+        "doohickey": null
+    }],
+    "message": "success",
+    "status": "1"
+}
