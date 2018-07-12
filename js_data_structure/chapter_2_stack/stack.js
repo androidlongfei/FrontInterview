@@ -1,0 +1,5 @@
+let items = []
+
+function Stack() {
+
+}
