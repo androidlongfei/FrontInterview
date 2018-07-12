@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      /*height: 200px;*/
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      flex-direction: row;
+    }
+
+    .box-2 {
+      flex-direction: row;
+    }
+
+    .box-item {
+      /*width: 100px;
+      height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      /*line-height: 100px;*/
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+
+    .basis_1 {
+      flex-basis: auto;
+    }
+
+    .basis_2 {
+      flex-basis: 100px;
+      /* default 1 */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）。</p>
+      <p>计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小</p>
+      <p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空间</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .item {
+        flex-basis: <length> | auto; /* default auto */
+      }
+    </code>
+    <p>例子</p>
+    <div class="content">
+      <p>flex-shrink: 全部为1,如果空间不足，该项目将缩小</p>
+      <div class="box box-1">
+        <div class="box-item basis_1">1</div>
+        <div class="box-item basis_1">2</div>
+        <div class="box-item basis_1">3</div>
+        <div class="box-item basis_1">4</div>
+      </div>
+      <p>flex-basis: 固定宽和高</p>
+      <div class="box box-2">
+        <div class="box-item basis_1">1</div>
+        <div class="box-item basis_2">2</div>
+        <div class="box-item basis_2">3</div>
+        <div class="box-item basis_1">4</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

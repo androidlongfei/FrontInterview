@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      height: 200px;
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      flex-direction: row;
+    }
+
+    .box-2 {
+      flex-direction: row;
+    }
+
+    .box-item {
+      /*width: 100px;
+      height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      /*line-height: 100px;*/
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+
+    .start {
+      align-self: flex-start;
+    }
+
+    .end {
+      align-self: flex-end;
+    }
+
+    .center {
+      align-self: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性</p>
+      <p>默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .item {
+        align-self: auto | flex-start | flex-end | center | baseline | stretch;
+      }
+    </code>
+    <p>例子</p>
+    <div class="content">
+      <p>align-self: start and end</p>
+      <div class="box box-1">
+        <div class="box-item start">1</div>
+        <div class="box-item end">2</div>
+        <div class="box-item start">3</div>
+        <div class="box-item end">4</div>
+      </div>
+      <p>align-self: center</p>
+      <div class="box box-2">
+        <div class="box-item center">1</div>
+        <div class="box-item center">2</div>
+        <div class="box-item center">3</div>
+        <div class="box-item center">4</div>
+      </div>
+      <p>align-self:auto</p>
+      <div class="box box-2">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

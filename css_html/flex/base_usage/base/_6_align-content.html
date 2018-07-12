@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      height: 400px;
+      border: 2px solid #234;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .box-1 {
+      align-content: flex-start;
+    }
+
+    .box-2 {
+      align-content: flex-end;
+    }
+
+    .box-3 {
+      align-content: center;
+    }
+
+    .box-4 {
+      align-content: space-between;
+    }
+
+    .box-5 {
+      align-content: space-around;
+    }
+
+    .box-6 {
+      align-content: stretch;
+    }
+
+    .box-item {
+      /*width: 200px;*/
+      /*height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      /*line-height: 100px;*/
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+
+    .tail {
+      font-size: 55px;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>align-content属性定义了多根轴线(就是有多行)的对齐方式。如果项目只有一根轴线(一行)，该属性不起作用</p>
+      <p>注意:box必须固定高度，否则此属性没效果</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .box {
+        align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+      }
+    </code>
+    <p>取值解释</p>
+    <ul>
+      <li>flex-start：垂直轴的起点对齐，就是顶端</li>
+      <li>flex-end：垂直轴的终点对齐，就是底端</li>
+      <li>center： 中点对齐,垂直居中</li>
+      <li>space-between：与垂直抽两端对齐，轴线之间的间隔平均分布</li>
+      <li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+      <li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度</li>
+    </ul>
+    <p>例子</p>
+    <div class="content">
+      <p>align-content: flex-start</p>
+      <div class="box box-1">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+        <div class="box-item">5</div>
+        <div class="box-item">6</div>
+        <div class="box-item">7</div>
+        <div class="box-item">8</div>
+        <div class="box-item">9</div>
+        <div class="box-item">10</div>
+      </div>
+      <p>align-content: flex-end</p>
+      <div class="box box-2">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+        <div class="box-item">5</div>
+        <div class="box-item">6</div>
+        <div class="box-item">7</div>
+        <div class="box-item">8</div>
+        <div class="box-item">9</div>
+        <div class="box-item">10</div>
+      </div>
+      <p>align-content: center</p>
+      <div class="box box-3">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+        <div class="box-item">5</div>
+        <div class="box-item">6</div>
+        <div class="box-item">7</div>
+        <div class="box-item">8</div>
+        <div class="box-item">9</div>
+        <div class="box-item">10</div>
+      </div>
+      <p>align-content: space-between</p>
+      <div class="box box-4">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+        <div class="box-item">5</div>
+        <div class="box-item">6</div>
+        <div class="box-item">7</div>
+        <div class="box-item">8</div>
+        <div class="box-item">9</div>
+        <div class="box-item">10</div>
+      </div>
+      <p>align-content: space-around</p>
+      <div class="box box-5">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+        <div class="box-item">5</div>
+        <div class="box-item">6</div>
+        <div class="box-item">7</div>
+        <div class="box-item">8</div>
+        <div class="box-item">9</div>
+        <div class="box-item">10</div>
+      </div>
+      <p>align-items: stretch</p>
+      <div class="box box-6">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+        <div class="box-item">5</div>
+        <div class="box-item">6</div>
+        <div class="box-item">7</div>
+        <div class="box-item">8</div>
+        <div class="box-item">9</div>
+        <div class="box-item">10</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

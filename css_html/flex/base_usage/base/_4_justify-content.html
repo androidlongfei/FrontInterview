@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      justify-content: flex-start;
+    }
+
+    .box-2 {
+      justify-content: flex-end;
+    }
+
+    .box-3 {
+      justify-content: center;
+    }
+
+    .box-4 {
+      justify-content: space-between;
+    }
+
+    .box-5 {
+      justify-content: space-around;
+    }
+
+    .box-item {
+      /*width: 100px;
+      height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      line-height: 100px;
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>justify-content属性定义了项目在主轴上的对齐方式。</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .box {
+        justify-content: flex-start | flex-end | center | space-between | space-around;
+      }
+    </code>
+    <p>取值解释</p>
+    <ul>
+      <li>flex-start（默认值）：左对齐</li>
+      <li>flex-end：右对齐</li>
+      <li>center： 居中</li>
+      <li>space-between：两端对齐，项目之间的间隔都相等。</li>
+      <li>space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍</li>
+    </ul>
+    <p>例子</p>
+    <div class="content">
+      <p>justify-content: flex-start</p>
+      <div class="box box-1">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>justify-content: flex-end</p>
+      <div class="box box-2">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>justify-content: center</p>
+      <div class="box box-3">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>justify-content: space-between</p>
+      <div class="box box-4">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>justify-content: space-around</p>
+      <div class="box box-5">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

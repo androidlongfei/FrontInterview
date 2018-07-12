@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <style media="screen">
+    .Grid {
+      display: flex;
+    }
+
+    .Grid-cell {
+      /* 所有item等分父元素宽度*/
+      flex: 1 1 auto;
+    }
+
+    .u-full {
+      /* 即不放大也不缩小,占用父元素全部宽度*/
+      flex: 0 0 100%;
+    }
+
+    .u-1of2 {
+      /*即不放大也不缩小，始终占用父元素一半的宽度*/
+      flex: 0 0 50%;
+    }
+
+    .u-1of3 {
+      flex: 0 0 33.3333%;
+    }
+
+    .u-1of4 {
+      flex: 0 0 25%;
+    }
+
+
+    .item {
+      background-color: #E6E6E6;
+      margin: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="Grid">
+    <div class="Grid-cell u-1of4 item">1/4</div>
+    <div class="Grid-cell item">auto</div>
+    <div class="Grid-cell item">auto</div>
+  </div>
+
+  <div class="Grid">
+    <div class="Grid-cell u-1of4 item">1/4</div>
+    <div class="Grid-cell item">auto</div>
+    <div class="Grid-cell u-1of3 item">1/3</div>
+    <div class="Grid-cell item">auto</div>
+  </div>
+
+  <div class="Grid">
+    <div class="Grid-cell u-full item">1/4</div>
+    <div class="Grid-cell item">auto</div>
+    <div class="Grid-cell item">auto</div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      height: 200px;
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      align-items: flex-start;
+    }
+
+    .box-2 {
+      align-items: flex-end;
+    }
+
+    .box-3 {
+      align-items: center;
+    }
+
+    .box-4 {
+      align-items: baseline;
+    }
+
+    .box-5 {
+      align-items: stretch;
+    }
+
+    .box-item {
+      /*width: 100px;
+      height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      /*line-height: 100px;*/
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+
+    .tail {
+      font-size: 55px;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>align-items属性定义项目在垂直上如何对齐。</p>
+      <p>注意:box必须固定高度，否则此属性没效果</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .box {
+        align-items: flex-start | flex-end | center | baseline | stretch;
+      }
+    </code>
+    <p>取值解释</p>
+    <ul>
+      <li>flex-start：垂直轴的起点对齐，就是顶端</li>
+      <li>flex-end：垂直轴的终点对齐，就是底端</li>
+      <li>center： 中点对齐,垂直居中</li>
+      <li>baseline：项目的第一行文字的基线对齐。</li>
+      <li>stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度</li>
+    </ul>
+    <p>例子</p>
+    <div class="content">
+      <p>align-items: flex-start</p>
+      <div class="box box-1">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>align-items: flex-end</p>
+      <div class="box box-2">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>align-items: center</p>
+      <div class="box box-3">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+      <p>align-items: baseline</p>
+      <div class="box box-4">
+        <div class="box-item">1</div>
+        <div class="box-item tail">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item tail">4</div>
+      </div>
+      <p>align-items: stretch</p>
+      <div class="box box-5">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item">4</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

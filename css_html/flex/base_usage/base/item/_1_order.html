@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      height: 200px;
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      flex-direction: row;
+    }
+
+    .box-2 {
+      flex-direction: column;
+    }
+
+    .box-item {
+      /*width: 100px;
+      height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      /*line-height: 100px;*/
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+
+    .order {
+      order: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .item {
+        order: <integer>;
+      }
+    </code>
+    <p>取值解释</p>
+    <p>例子</p>
+    <div class="content">
+      <p>align-items: flex-start</p>
+      <div class="box box-1">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item order">4</div>
+      </div>
+      <p>align-items: flex-end</p>
+      <div class="box box-2">
+        <div class="box-item">1</div>
+        <div class="box-item">2</div>
+        <div class="box-item">3</div>
+        <div class="box-item order">4</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

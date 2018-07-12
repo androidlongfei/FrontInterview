@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      /*height: 200px;*/
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      flex-direction: row;
+    }
+
+    .box-2 {
+      flex-direction: row;
+    }
+
+    .box-item {
+      /*width: 100px;
+      height: 100px;*/
+      background-color: #ffd200;
+      vertical-align: middle;
+      /*line-height: 100px;*/
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+
+    .flex_none {
+      flex: none;
+    }
+
+    .flex_auto {
+      flex: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="">
+    <p>属性定义:</p>
+    <div class="">
+      <p>flex属性是flex-grow, flex-shrink 和 flex-basis的简写</p>
+      <p>默认值为{flex:0 1 auto}后两个属性可选,解释为当容器扩大时，item不会变大；当容变小时，item会等比例缩小；item默认就是自己本身的大小</p>
+      <p>建议优先使用flex属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。</p>
+      <p>flex:1 等价于{flex: 1 1 0%}</p>
+      <p>flex:auto 等价于 {flex: 1 1 auto}</p>
+      <p>flex:none 等价于{flex 0 0 auto}</p>
+    </div>
+    <p>取值如下:</p>
+    <code>
+      .item {
+        flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+      }
+    </code>
+    <p>例子</p>
+    <div class="content">
+      <p>flex: 0 0 auto</p>
+      <div class="box box-1">
+        <div class="box-item flex_none">1</div>
+        <div class="box-item flex_none">2</div>
+        <div class="box-item flex_none">3</div>
+        <div class="box-item flex_none">4</div>
+      </div>
+      <p>flex:1 1 auto</p>
+      <div class="box box-2">
+        <div class="box-item flex_auto">1</div>
+        <div class="box-item flex_auto">2</div>
+        <div class="box-item flex_auto">3</div>
+        <div class="box-item flex_auto">4</div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

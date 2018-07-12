@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<!--
+word-wrap:
+
+css的 word-wrap 属性用来标明是否允许浏览器在单词内进行断句，这是为了防止当一个字符串太长而找不到它的自然断句点时产生溢出现象。
+
+word-break:
+
+css的 word-break 属性用来标明怎么样进行单词内的断句。
+
+word-wrap:break-word与word-break:break-all共同点是都能把长单词强行断句，
+不同点是word-wrap:break-word会首先起一个新行来放置长单词，
+新的行还是放不下这个长单词则会对长单词进行强制断句；
+而word-break:break-all则不会把长单词放在一个新行里，
+当这一行放不下的时候就直接强制断句了
+-->
+
+<style>
+    .test1 {
+        background: #345;
+        width: 200px;
+        height: 200px;
+        color: red;
+        margin-bottom: 10px;
+    }
+
+    .wrap {
+        /*
+         word-wrap：强制单词断句，只针对英文
+        */
+        word-wrap: break-word;
+    }
+
+    .break {
+        word-break: break-all;
+    }
+
+</style>
+
+<body>
+
+    <div class="test1">
+        dddssllllllllllllllllddddddddddddsssssdddddd
+        <p>dsdfsddsddddddddksfpdnfoeiheovenvevneoweivfeowfjewofijoeijfewo</p>
+    </div>
+
+    <div class="test1 wrap">
+        dddssllllllllllllllllddddddddddddsssssdddddd
+        <p>dsdfsddsddddddddksfpdnfoeiheovenvevneoweivfeowfjewofijoeijfewo</p>
+    </div>
+
+    <div class="test1">
+        是否会送到发货速度丰厚的身份似懂非懂的身份的奋斗斯蒂夫的
+        <p>是否会送到发货速度丰厚的身份似懂非懂的身份的奋斗斯蒂夫的</p>
+    </div>
+
+    <div class="test1 wrap">
+        是否会送到sdfdsfdsfdsfasdsdsd
+        <p>是否会送到sdfdsfdsfdsfasdsdsd</p>
+    </div>
+
+    <div class="test1 break">
+        是否会送到sdfdsfdsfdsfasdsdsd
+        <p>是否会送到sdfdsfdsfdsfasdsdsd</p>
+    </div>
+
+</body>
+
+</html>

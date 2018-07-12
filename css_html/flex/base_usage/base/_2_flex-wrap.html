@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-wrap属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      flex-wrap: nowrap;
+    }
+
+    .box-2 {
+      flex-wrap: wrap;
+    }
+
+    .box-3 {
+      flex-wrap: wrap-reverse;
+    }
+
+    .box-item {
+      width: 100px;
+      height: 100px;
+      background-color: #ffd200;
+      vertical-align: middle;
+      line-height: 100px;
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="">
+    <p>flex-wrap：默认情况下，项目都排在一条线（又称"轴线"）上。flex-wrap属性定义，如果一条轴线排不下，如何换行。</p>
+  </div>
+
+  <div class="content">
+    <p>flex-wrap: nowrap</p>
+    <p>nowrap（默认值）：不换行</p>
+    <div class="box box-1">
+      <div class="box-item">1</div>
+      <div class="box-item">2</div>
+      <div class="box-item">3</div>
+      <div class="box-item">4</div>
+    </div>
+    <p>flex-wrap:wrap </p>
+    <p>wrap：换行，第一行在上方。</p>
+    <div class="box box-2">
+      <div class="box-item">1</div>
+      <div class="box-item">2</div>
+      <div class="box-item">3</div>
+      <div class="box-item">4</div>
+    </div>
+    <p>flex-direction:wrap-reverse</p>
+    <p>wrap-reverse：换行，第一行在下方</p>
+    <div class="box box-3">
+      <div class="box-item">1</div>
+      <div class="box-item">2</div>
+      <div class="box-item">3</div>
+      <div class="box-item">4</div>
+    </div>
+  </div>
+
+</body>
+
+</html>

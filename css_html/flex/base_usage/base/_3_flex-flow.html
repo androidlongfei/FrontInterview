@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-flow属性值用法</title>
+  <style media="screen">
+    .content p {
+      text-align: center;
+    }
+
+    .box {
+      background-color: white;
+      display: flex;
+      border: 2px solid #234;
+      padding: 0;
+    }
+
+    .box-1 {
+      flex-flow: row nowrap;
+    }
+
+    .box-2 {
+      flex-flow: row wrap;
+    }
+
+    .box-3 {
+      flex-flow: row-reverse wrap;
+    }
+
+    .box-item {
+      width: 100px;
+      height: 100px;
+      background-color: #ffd200;
+      vertical-align: middle;
+      line-height: 100px;
+      text-align: center;
+      margin: 5px;
+      font-size: 100px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="">
+    <p>flex-flow属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。</p>
+  </div>
+
+  <div class="content">
+    <p>flex-flow: row nowrap</p>
+    <p>不换行</p>
+    <div class="box box-1">
+      <div class="box-item">1</div>
+      <div class="box-item">2</div>
+      <div class="box-item">3</div>
+      <div class="box-item">4</div>
+    </div>
+    <p> flex-flow: row wrap </p>
+    <p>换行</p>
+    <div class="box box-2">
+      <div class="box-item">1</div>
+      <div class="box-item">2</div>
+      <div class="box-item">3</div>
+      <div class="box-item">4</div>
+    </div>
+    <p>flex-wrap: row-reverse wrap</p>
+    <div class="box box-3">
+      <div class="box-item">1</div>
+      <div class="box-item">2</div>
+      <div class="box-item">3</div>
+      <div class="box-item">4</div>
+    </div>
+  </div>
+
+</body>
+
+</html>

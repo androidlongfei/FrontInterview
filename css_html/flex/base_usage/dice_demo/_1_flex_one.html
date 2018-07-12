@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>flex-direction属性值用法</title>
+  <style media="screen">
+    .content {
+      background: black;
+      width: 400px;
+      height: 400px;
+      display: flex;
+    }
+
+    .box {
+      background-color: white;
+      border: 2px solid white;
+      border-radius: 0.8em;
+      width: 200px;
+      height: 200px;
+    }
+
+    .box_flex {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .item {
+      width: 30px;
+      height: 30px;
+      background-color: black;
+      border-radius: 50%;
+      margin: 5px;
+    }
+
+    .item_flex {}
+  </style>
+</head>
+
+<body>
+
+  <div class="content box_flex">
+    <div class="box ">
+      <div class="item item_flex"></div>
+      <div class="item item_flex"></div>
+      <div class="item item_flex"></div>
+    </div>
+  </div>
+
+</body>
+
+</html>

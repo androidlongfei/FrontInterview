@@ -38,3 +38,22 @@ inherit  | 规定应该从父元素继承 white-space 属性的值。
 > 其中data是包含换行符的字符串
 
 推荐使用第二种.
+
+## 强制换行
+
+- word-wrap
+- word-break
+
+**word-wrap属性**
+
+用来标明是否允许浏览器在单词内进行断句，这是为了防止当一个字符串太长而找不到它的自然断句点时产生溢出现象。
+
+**word-break属性**
+
+用来标明怎么样进行单词内的断句.
+
+`word-wrap:break-word`与`word-break:break-all`共同点是都能把长单词强行断句;
+
+不同点是`word-wrap:break-word`会首先起一个新行来放置长单词，新的行还是放不下这个长单词则会对长单词进行强制断句；
+
+而`word-break:break-all`则不会把长单词放在一个新行里，当这一行放不下的时候就直接强制断句了
