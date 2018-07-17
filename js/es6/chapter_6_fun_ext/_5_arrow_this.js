@@ -24,8 +24,10 @@ function example1() {
 
 let example2 = () => {
     // 箭头函数无this,所以this就指向外层代码块的this，而外层代码块指向的this就是全局的this{}
-    console.log('example2', this.param);
+    console.log('example2', this, this.param);
 }
+
+// this.param = '333'
 
 example1() // example1 100
 example2() // example2 undefined
@@ -54,3 +56,53 @@ foo.call({
     id: 42
 });
 // foo this.id 42
+
+// 设置全局变量
+
+this.mm = '哈哈'
+
+let example3 = {
+    age: 100,
+    name: '李四',
+    getAge: () => {
+        // this 指向全局作用域
+        return this.age
+    },
+    setAge: (mAge) => {
+        // this 指向全局作用域
+        console.log('setAge this =>', this); // { mm: '哈哈' }
+        this.age = mAge
+        console.log('setAge this =>', this); // { mm: '哈哈', age: 200 }
+    },
+    setName: function (mName) {
+        // this指向example3
+        console.log('setName this =>', this); // { age: 100, name: '李四',... }
+        this.name = mName
+    },
+    getName: function () {
+        // this指向example3
+        return this.name
+    }
+}
+
+console.log('example3 age=>', example3.age, example3.getAge()); // 100 undefined
+example3.setAge(200)
+console.log('example3 age=>', example3.age, example3.getAge()); // 100 200
+
+console.log('example3 name=>', example3.name, example3.getName()); // 李四 李四
+example3.setName('王五')
+console.log('example3 name=>', example3.name, example3.getName()); // 王五 王五
+
+
+const testCall = () => {
+    console.log('testCall', this, this.kkl)
+}
+
+const testCall1 = function () {
+    console.log('testCall', this.kkl)
+}
+
+testCall.call({ kkl: 1001 }) // undefined
+testCall1.call({ kkl: 1001 }) // 1001
+
+// 箭头函数无法通过call()改变函数内this的指向

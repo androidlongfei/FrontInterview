@@ -56,3 +56,16 @@ const obj = {
 var obj1 = {
     'class': function () {}
 };
+
+
+const obj2 = {
+    age: 200,
+    setAge(mAge) {
+        console.log('obj2 this =>', this);
+    },
+    getAge() {
+        console.log('this age', this, this.age);
+        return this.age
+    }
+}
+console.log('obj2.age =>', obj2.age, obj2.getAge());

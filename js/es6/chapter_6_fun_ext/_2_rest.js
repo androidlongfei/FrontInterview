@@ -12,6 +12,8 @@
 function add(...values) {
     let sum = 0;
 
+    console.log('values:', typeof values, values);
+
     for (let val of values) {
         sum += val;
     }
