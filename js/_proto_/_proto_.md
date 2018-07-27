@@ -3,17 +3,16 @@
 - [原型链1](http://blog.csdn.net/guiqiss/article/details/53782008)
 - [原型链2](http://blog.csdn.net/guiqiss/article/details/53782008)
 - [原型链3](http://www.cnblogs.com/wangfupeng1988/p/3989357.html)
+- [原型对象](http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html)
+- [内存图像](https://segmentfault.com/a/1190000005363885)
 
 原型链主要是用来继承的
 
 ## 普通对象继承Object
 
-```
-var a = {};
-```
-
 ```javascript
-toString()
+var a = {};
+a.toString()
 ```
 
 访问一个对象的属性时，先在基本属性中查找，如果没有，再沿着**proto**这条链向上找，这就是原型链
@@ -30,7 +29,7 @@ arguments()
 
 函数也是继承Object
 
-# #
+## prototype
 
 在JavaScript 中，每当定义一个对象（函数）时候，对象中都会包含一些预定义的属性。其中函数对象的一个属性就是原型对象 prototype。
 
@@ -49,5 +48,3 @@ a = new Object();
 a.__proto__ = Object.prototype
 Object.prototype.__proto__ = null
 ```
-
-函数对象

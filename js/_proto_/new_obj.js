@@ -1,9 +1,8 @@
-
 // js通过new关键字创建对象主要分三部
 
 
-function Person (age){
-  this.age = age;
+function Person(age) {
+    this.age = age;
 }
 
 let p = new Person(11)
@@ -19,7 +18,7 @@ let p = new Person(11)
  *
  */
 
-console.log(p.__proto__ == Person.prototype);//输出 true ， 间接验证了第二步
+console.log(p.__proto__ == Person.prototype); //输出 true ， 间接验证了第二步
 console.log(p.age) //间接验证了第三步
 
 /**
@@ -33,12 +32,12 @@ console.log(p.age) //间接验证了第三步
  *
  */
 
- //例子
-function Animal(){
+//例子
+function Animal() {
 
 }
-Animal.prototype.say = function(){
-  console.log('hello');
+Animal.prototype.say = function () {
+    console.log('hello');
 }
 let a = new Animal();
 console.log(a.__proto__ == Animal.prototype)
