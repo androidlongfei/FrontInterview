@@ -1,8 +1,8 @@
 # 原型链原理
 
-- [http://rockyuse.iteye.com/blog/1426510](http://blog.csdn.net/guiqiss/article/details/53782008)
-- <http://blog.csdn.net/guiqiss/article/details/53782008>
-- <http://www.cnblogs.com/wangfupeng1988/p/3989357.html>
+- [原型链1](http://blog.csdn.net/guiqiss/article/details/53782008)
+- [原型链2](http://blog.csdn.net/guiqiss/article/details/53782008)
+- [原型链3](http://www.cnblogs.com/wangfupeng1988/p/3989357.html)
 
 原型链主要是用来继承的
 
