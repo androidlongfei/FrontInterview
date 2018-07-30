@@ -213,3 +213,62 @@ var b = new Object()   // 1.创建空对象
 b.__proto__ = B.prototype   // 2.赋直 __proto__
 B.call(b) // 3.初始化属性和方法
 ```
+
+## ajax相关
+
+### 1.介绍下Get请求和Post请求的区别 （初级）
+
+GET请求将所有请求参数转化为一个查询字符串，并将该字符串添加到请求的URL之后。GET请求传送的数据量较小，一般不能大于2KB。
+
+Post请求是将参数序列化成一个字符串，通过send()发送服务器，对参数的大小没有限制。
+
+### 2.XMLHttpRequest有哪几种状态，分别对应哪几个阶段 (中级)
+
+XMLHttpRequest对象的readyState属性记录了它的状态，总共有5种可能值，分别对应xhr不同的阶段。
+
+值 | 状态                        | 描述
+- | :------------------------ | :-------------------
+0 | UNSENT (初始状态，未打开)         | 成功创建XMLHttpRequest对象
+1 | OPENED (已打开，未发送)          | open()方法已被成功调用，打开连接
+2 | HEADERS_RECEIVED (已获取响应头) | 向服务端发送数据
+3 | LOADING (正在下载响应体)         | 接受服务器返回的数据
+4 | DONE (整个数据传输过程结束)         | 整个数据传输过程结束
+
+> readyState的状态没变一次都会回调onreadystatechange(),可以在里面做不同的处理
+
+### 3.描述下使用XMLHttpRequest对象发送form表单,FormData,Json数据的过程(中高级)
+
+**发送json数据**
+
+1. 打开连接，设置请求方式为post
+2. 设置请求头,`Content-Type = application/json`
+3. 将参数序列化为json字符串
+4. 调用send()发送数据
+
+**发送Form表单数据**
+
+1. 打开连接，设置请求方式为post
+2. 设置请求头,`Content-Type = application/application/x-www-form-urlencoded`
+3. 将参数序列化为`键值对`形式用`&`拼接
+4. 调用send()发送数据
+
+**发送FormData**
+
+它主要是用来发送二级制数据，比如文件等。
+
+1. 打开连接，设置请求方式为post
+2. 无需设置请求头`Content-Type`，浏览器会自动识别FormData自动添加。
+3. 创建FormData对象,append参数
+4. 调用send()发送FormData对象
+
+### 4.使用axios库来发送form表单数据需要注意什么(中高级)
+
+axios默认是使用URLSearchParams对象序列化参数来发送form表单数据。
+
+但是URLSearchParams有两点不好：
+
+1.URLSearchParams序列化参数必须是键值对形式，没有json方便.
+
+2.URLSearchParams不是所有的浏览器均支持(兼容性不好)
+
+解决方法是：定义一个请求拦截器，将需要发送的参数使用qs库编码一下即可
