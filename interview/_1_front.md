@@ -1,6 +1,6 @@
 # 个人整理前端面试题
 
-## 原型链相关问题
+## 一、原型链相关问题
 
 ### 1.原型链干嘛用的（初级）
 
@@ -214,7 +214,7 @@ b.__proto__ = B.prototype   // 2.赋直 __proto__
 B.call(b) // 3.初始化属性和方法
 ```
 
-## ajax相关
+## 二、ajax相关
 
 ### 1.介绍下Get请求和Post请求的区别 （初级）
 
@@ -272,3 +272,129 @@ axios默认是使用URLSearchParams对象序列化参数来发送form表单数�
 2.URLSearchParams不是所有的浏览器均支持(兼容性不好)
 
 解决方法是：定义一个请求拦截器，将需要发送的参数使用qs库编码一下即可
+
+## 三、作用域,作用域链,上下文(初中级)
+
+**1.作用域**
+
+`作用域`是你的代码在运行时，各个变量、函数和对象的可访问性，换句话说，作用域决定了你的代码里的变量和其他资源在各个区域中的可见性。
+
+在 JavaScript 中有两种作用域:
+
+- 全局作用域
+- 局部作用域
+
+一个应用中全局作用域的生存周期与该应用相同。局部作用域只在该函数调用执行期间存在。
+
+**2.作用域链**
+
+`作用域链`的作用是保证了作用域中所有变量和函数的有序访问。当解析一个变量时，JavaScript开始从最内层沿着父级寻找所需的变量或其他资源。
+
+**3.上下文**
+
+作用域指的是变量的`可见性`，而上下文指的是`在相同的作用域中的this的值`。我们当然也可以使用函数方法改变上下文。
+
+## 四、跨域产生的原因，以及解决方法(中级)
+
+跨域主要是浏览器的同源策略产生的，比如两个不同的`源`互相通信，就会导致跨域。
+
+同源:如果两个页面的协议,端口,域名都相同，则两个页面具有相同的源。
+
+解决跨域常用的方法有三种:
+
+- JSONP
+- CORS
+- 代理
+
+**JSONP**
+
+在HTML标签里，一些标签比如script、img这样的获取资源的标签是没有跨域限制的,JSONP就是利用script标签来决跨域的。
+
+其原理就是给script标签的src属性赋上url请求地址，并将回调函数名以参数的形式拼接在url后，后端收到请求后，直接将结果以参数的形式拼接在回调函数中返回给前端。由于前端是用script标签发起的请求，所以收到后端返回的回调函数名后会立刻执行。
+
+前端代码:
+
+```html
+<body>
+    jsonp
+    <script type='text/javascript'>
+        // 后端返回直接执行的方法，相当于执行这个方法，由于后端把返回的数据放在方法的参数里，所以这里能拿到res。
+        window.jsonpCb = function (res) {
+            console.log('res', res) // 输出 {message: "成功"}
+        }
+    </script>
+    <script src='http://localhost:9100/form/jsonp?msg=helloJsonp&cb=jsonpCb' type='text/javascript'></script>
+</body>
+```
+
+后端代码(nodejs):
+
+```javascript
+// 测试jsonp
+app.get('/form/jsonp', function (req, res) {
+    console.log('get参数', req.query)
+    if (req.query.cb) {
+        let resData = {
+            message: '成功'
+        }
+        // query.cb是前后端约定的方法名字，其实就是后端返回一个直接执行的方法给前端，由于前端是用script标签发起的请求，
+        // 所以返回了这个方法后相当于立马执行，并且把要返回的数据放在方法的参数里
+        res.send(`${req.query.cb}(${JSON.stringify(resData)})`)
+    }
+});
+```
+
+**CORS**
+
+CORS是一个W3C标准，全称是"跨域资源共享"（Cross-origin resource sharing）. 专门用来解决跨域的。
+
+前端什么也不用干，就是正常发请求就可以，如果需要带cookie的话，前后端都要设置一下.
+
+客户端:
+
+```javascript
+xhr.responseType = "json"
+xhr.withCredentials = true
+```
+
+服务端(nodejs):
+
+```javascript
+import cors from 'cors'
+import cookieParser from 'cookie-parser'
+const app = express()
+app.use(cookieParser())
+// 跨域带cookie
+const corsOptions = {
+    origin: ['http://127.0.0.1:8080', 'http://local.cloud.enndata.cn:8080', 'http://10.4.52.29:9100'],
+    credentials: true, // 客户端带cookie必须设置为true
+    allowedHeaders: 'Content-Type,Content-Length,Authorization,Accept,X-Requested-With,token,lktoken,cookie',
+    exposedHeaders: 'token'
+}
+app.use(cors(corsOptions))
+```
+
+> origin设置了允许跨域的源
+
+> 配置allowedHeaders和exposedHeaders，将自定义响应头加进去，这样xhr.getResponseHeader('token')就可以获取到了
+
+**代理**
+
+将前端请求地址代理为后端的地址，使其统一，就可以避免跨域了.
+
+Nginx配置
+
+```text
+server{
+    # 监听9099端口
+    listen 9099;
+    # 域名是localhost
+    server_name localhost;
+    #凡是localhost:9099/api这个样子的，都转发到真正的服务端地址http://localhost:9100
+    location ^~ /api {
+        proxy_pass http://localhost:9100;
+    }    
+}
+```
+
+> Nginx转发的方式似乎很方便！但这种使用也是看场景的，如果后端接口是一个公共的API，比如一些公共服务获取天气什么的，前端调用的时候总不能让运维去配置一下Nginx，如果兼容性没问题（IE 10或者以上），CROS才是更通用的做法。

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsonp解决跨域</title>
+</head>
+
+<body>
+    jsonp
+    <script type='text/javascript'>
+        // 后端返回直接执行的方法，相当于执行这个方法，由于后端把返回的数据放在方法的参数里，所以这里能拿到res。
+        window.jsonpCb = function (res) {
+            console.log('res', res) // 输出 {message: "成功"}
+        }
+
+    </script>
+    <script src='http://localhost:9100/form/jsonp?msg=helloJsonp&cb=jsonpCb' type='text/javascript'></script>
+
+</body>
+
+</html>

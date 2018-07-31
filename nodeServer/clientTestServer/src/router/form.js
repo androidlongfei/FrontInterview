@@ -280,4 +280,17 @@ module.exports = function (app) {
             data: testJson
         })
     });
+
+    // 测试jsonp
+    app.get('/form/jsonp', function (req, res) {
+        console.log('get参数', req.query)
+        if (req.query.cb) {
+            let resData = {
+                message: '成功'
+            }
+            // query.cb是前后端约定的方法名字，其实就是后端返回一个直接执行的方法给前端，由于前端是用script标签发起的请求，
+            // 所以返回了这个方法后相当于立马执行，并且把要返回的数据放在方法的参数里
+            res.send(`${req.query.cb}(${JSON.stringify(resData)})`)
+        }
+    });
 }
