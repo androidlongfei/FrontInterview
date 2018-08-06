@@ -13,8 +13,8 @@ xhr.onreadystatechange = function () {
 xhr.timeout = 2 * 1000
 
 // 请求对象知道如何连接，知道连接到哪里
-xhr.open('GET', 'http://127.0.0.1:9200/api/test?id=100&name=zhangsan', true)
+// xhr.open('GET', 'http://127.0.0.1:9200/api/test?id=100&name=zhangsan', true)
 
-// xhr.setRequestHeader('Cache-Control', 'no-cache'); // 设置不缓存
+xhr.setRequestHeader('Cache-Control', 'no-cache'); // 设置不缓存
 
 xhr.send(null)

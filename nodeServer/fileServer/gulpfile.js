@@ -1,7 +1,7 @@
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon')
 const babel = require('gulp-babel')
-const env = require('gulp-env')
+// const env = require('gulp-env')
 const clean = require('gulp-clean')
 const watch = require('gulp-watch')
 const eslint = require('gulp-eslint')
@@ -67,7 +67,7 @@ if (isTest) {
     })
 
     // 将es6转化为es5, 只重新编译更改过的文件
-    gulp.src('src/**/*.js')
+    gulp.src(['src/**/*.js', '!src/public'])
         // 监控es6文件
         .pipe(watch('src/**/*.js'))
         // 编译
