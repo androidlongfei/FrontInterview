@@ -75,11 +75,10 @@ if (isTest) {
         // 转换成 ES5 存放的路径
         .pipe(gulp.dest('dist'));
 
-    // copy public
-    gulp.src('src/public/*')
+    // 监控静态资源变化
+    gulp.src('src/public/**/*')
         // 监控es6文件
-        .pipe(watch('src/public/**'))
-        // 编译
+        .pipe(watch('src/public/**/*'))
         .pipe(gulp.dest('dist/public'));
 } else {
     gulp.task('default', ['babel'], function () {
@@ -94,3 +93,5 @@ if (isTest) {
         }
     })
 }
+
+// src/**/* 监控src目录下的所有文件
