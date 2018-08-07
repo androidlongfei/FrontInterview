@@ -1,7 +1,7 @@
 <template>
 <div class="complex">
     <h3>复杂组件</h3>
-    <lifecycle-single compName="cihld"></lifecycle-single>
+    <lifecycle-single compName="child"></lifecycle-single>
     <el-button @click="dataVar += 1">complex更新 {{dataVar}}</el-button>
     <el-button @click="handleDestroy">complex销毁</el-button>
 </div>

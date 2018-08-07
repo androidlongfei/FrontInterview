@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Index from '@/views/Index'
 import Lifecycle from '@/views/Lifecycle/Lifecycle'
+import LifecyclePropsParent from '@/views/Lifecycle/LifecyclePropsParent'
 import LifecycleSingle from '@/views/Lifecycle/LifecycleSingle'
 import LifecycleNest from '@/views/Lifecycle/LifecycleNest'
 import LifecycleSibling from '@/views/Lifecycle/LifecycleSibling'
@@ -39,6 +40,11 @@ export const constantRouterMap = [{
         name: 'nest lifecycle',
         descr: '父子组件生命周期（nest lifecycle）',
         component: LifecycleNest
+    }, {
+        path: '/lifecycle/props',
+        name: 'props lifecycle',
+        descr: '父子组件生命周期（props lifecycle）',
+        component: LifecyclePropsParent
     }, {
         path: '/lifecycle/sibling',
         name: 'sibling lifecycle',
