@@ -1,0 +1,14 @@
+
+## https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories
+
+
+## 忽略配置文件
+build/*.js
+config/*.js
+
+## 忽略安装包
+/node_modules/*
+/bower_components/*
+
+## 忽略plugins下的所有js文件
+src/plugins/**/*.js
