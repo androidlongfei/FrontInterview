@@ -106,3 +106,22 @@ testCall.call({ kkl: 1001 }) // undefined
 testCall1.call({ kkl: 1001 }) // 1001
 
 // 箭头函数无法通过call()改变函数内this的指向
+
+
+var obj = {
+    id: 1,
+    show: function () {
+        return () => {
+            console.log(this, this.id) // 1
+        }
+    }
+}
+obj.show()() // { id: 1, show: [Function: show] } 1
+
+// 此例中，箭头函数为一匿名函数，其父级作用域为show函数，因此箭头函数绑定show函数的作用域，show函数中this指向调用show函数的对象，即obj，obj中有id属性，且值为1，所以输出1
+
+obj.show.call({ id: 500 })() // { id: 500 } 500
+
+// 以上改变了箭头函数父级作用域内的this，那箭头函数的this也跟着改变了
+
+// 箭头函数的上下文对象指向它父级作用域的上下文对象
