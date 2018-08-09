@@ -184,3 +184,16 @@ parent.beforeUpdate() => child.beforeUpdate() => child.updated() => parent.updat
 ```
 
 > child改变obj的值，也是一样的
+
+## 兄弟组件的生命周期
+
+1. 组件的初始化（mounted之前）分开进行，挂载是从上到下依次进行
+2. 当没有数据关联时，兄弟组件之间的更新和销毁是互不关联的
+
+例如,父组件p，子组件c1、c2，c1与c2是兄弟组件
+
+**初始化**
+
+```text
+p.beforeCreate() => p.created() => p.beforeMount() => c1.beforeCreate() => c1.created() => c1.beforeMount() => c1.beforeCreate() => c1.created() => c1.beforeMount() => c1.mounted() => c2.mounted() => p.mounted()
+```

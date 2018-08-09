@@ -398,3 +398,76 @@ server{
 ```
 
 > Nginx转发的方式似乎很方便！但这种使用也是看场景的，如果后端接口是一个公共的API，比如一些公共服务获取天气什么的，前端调用的时候总不能让运维去配置一下Nginx，如果兼容性没问题（IE 10或者以上），CROS才是更通用的做法。
+
+## Vue相关
+
+### 1.Vue组件的生命周期，以及生周期钩子函数内可以做什么 (初中级)
+
+生命周期钩子        | 组件状态                                                                              | 最佳实践
+------------- | :-------------------------------------------------------------------------------- | :---------------------------------------
+beforeCreate  | 已经创建了Vue组件的实例且this已经指向该实例，组件实例的属性还没有初始化，所以无法访问到data、computed、watch、methods上的方法和数据 | 常用于初始化非响应式变量
+created       | 组件的属性初始化完成,可访问data、computed、watch、methods上的方法和数据，未挂载到DOM，不能访问到$el属性               | 常用于页面的初始化，比如初始化data中的属性，注册组件的监听器等
+beforeMount   | 在挂载开始之前被调用，beforeMount之前，会找到对应的template，并编译成render函数                              | -----
+mounted       | 实例挂载到DOM上，此时可以通过DOM API获取到DOM节点，this.$el属性可以获取到dom节点                              | 常用于获取VNode信息和操作，ajax请求
+beforeUpdate  | 响应式数据更新时调用,此时响应式数据对应的Dom还没有更新                                                     | 常用于在更新之前访问现有的DOM，比如手动移除已添加的事件监听器
+updated       | 组件DOM已经更新，可执行依赖于DOM的操作                                                            | 避免在这个钩子函数中操作数据，可能陷入死循环。当然canvas的更新可以在里面做
+beforeDestroy | 实例销毁之前调用。这一步，实例仍然完全可用，this仍能获取到实例                                                 | 常用于销毁定时器、解绑全局事件等操作
+destroyed     | 实例销毁后调用，调用后，Vue 实例指示的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁                           | ---
+
+### 2.父子组件的渲染过程 （中级）
+
+#### 父子组件不通过props传递数据或者传递静态数据
+
+1. 组价初始化时，仅当子组件完成挂载后，父组件才会挂载
+2. 数据更新时，两者相互不影响
+3. 销毁父组件时，先将子组件销毁后才会销毁父组件
+
+例如 parent是父组件，child是子组件，生命周期如下:
+
+**组件初始化**
+
+```text
+parent.beforeCreate() => parent.created() => parent.beforeMount() => child.beforeCreate() => child.created() => child.beforeMount() => child.mounted()
+```
+
+**数据改变**
+
+parent 执行如下:
+
+```text
+parent.beforeUpdate() => parent.updated()
+```
+
+child 执行如下:
+
+```text
+child.beforeUpdate() => child.updated()
+```
+
+> 两者相互之间没有交集
+
+**父组件销毁时**
+
+```text
+parent.beforeDestroy() => child.beforeDestroy() => child.destroyed() => parent.destroyed()
+```
+
+> 子组件销毁不影响父组件
+
+#### 父子组件通过props传递动态数据
+
+父子组件的初始化与销毁和传递静态数据一样，只不过数据改变时相互之间有交集。
+
+例如 parent是父组件，child是子组件，parent通过props给child传递一个对象(obj)。
+
+parent改变obj的值，回调函数如下:
+
+```text
+parent.beforeUpdate() => child.beforeUpdate() => child.updated() => parent.updated()
+```
+
+> child改变obj的值，也是一样的
+
+### 3.Vue原理 （中高级）
+
+通过Object.defineProperty劫持对象的属性，当属性变化时，再通过观察者模式更新属性对应的DOM.
