@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        html {
+            font-size: 20px;
+        }
+
+        @media only screen and (min-width: 401px) {
+            html {
+                font-size: 25px !important;
+            }
+        }
+
+        @media only screen and (min-width: 428px) {
+            html {
+                font-size: 26.75px !important;
+            }
+        }
+
+        @media only screen and (min-width: 481px) {
+            html {
+                font-size: 30px !important;
+            }
+        }
+
+        @media only screen and (min-width: 569px) {
+            html {
+                font-size: 35px !important;
+            }
+        }
+
+        @media only screen and (min-width: 641px) {
+            html {
+                font-size: 40px !important;
+            }
+        }
+
+    </style>
+    <style>
+        .btn {
+            width: 6rem;
+            height: 3rem;
+            line-height: 3rem;
+            font-size: 1.2rem;
+            display: inline-block;
+            background: #06c;
+            color: #fff;
+            border-radius: .5rem;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <button type="button" name="button" class="btn"></button>
+
+    <button type="button" name="button" class="btn" style="width:240px;">240</button>
+
+    <button type="button" name="button" class="btn" style="width:120px;">120</button>
+
+    <script charset="utf-8">
+        console.log('window.innerWidth', window.innerWidth, window.screen.width)
+        console.log('window.devicePixelRatio', window.devicePixelRatio, window.screen.height)
+        // alert(window.innerWidth)
+        // alert(window.devicePixelRatio)
+
+    </script>
+
+</body>
+
+</html>
