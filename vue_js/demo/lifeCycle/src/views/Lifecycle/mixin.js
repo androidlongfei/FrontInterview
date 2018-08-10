@@ -22,6 +22,11 @@ export default {
     beforeDestroy() {
         console.log(`--${COMPONENT_NAME}--beforeDestroy`)
     },
+    methods: {
+        test() {
+            console.log('test...mixin');
+        }
+    },
     destroyed() {
         console.log(`--${COMPONENT_NAME}--destroyed`)
     }

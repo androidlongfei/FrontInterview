@@ -197,3 +197,27 @@ parent.beforeUpdate() => child.beforeUpdate() => child.updated() => parent.updat
 ```text
 p.beforeCreate() => p.created() => p.beforeMount() => c1.beforeCreate() => c1.created() => c1.beforeMount() => c1.beforeCreate() => c1.created() => c1.beforeMount() => c1.mounted() => c2.mounted() => p.mounted()
 ```
+
+## 宏mixin的生命周期
+
+例如，组件p,mixin
+
+**初始化**
+
+```text
+mixin.beforeCreate() => p.beforeCreate => mixin.created => p.created => mixin.beforeMount => p.beforeMount => mixin.mounted => p.mounted
+```
+
+**更新**
+
+```text
+mixin.beforeUpdate() => p.beforeUpdate => mixin.updated => p.updated
+```
+
+**销毁**
+
+```text
+mixin.beforeDestroy() => p.beforeDestroy() => mixin.destroyed() => p.destroyed()
+```
+
+> 若mixin和p的methods中都有方法A,this.A()调用的是p中的。

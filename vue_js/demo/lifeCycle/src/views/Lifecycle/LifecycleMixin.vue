@@ -1,8 +1,8 @@
 <template>
 <div class="complex">
     <h3>复杂组件</h3>
-    <lifecycle-single compName="cihld1"></lifecycle-single>
-    <lifecycle-single compName="cihld2"></lifecycle-single>
+    <!-- <lifecycle-single compName="cihld1"></lifecycle-single> -->
+    <!-- <lifecycle-single compName="cihld2"></lifecycle-single> -->
     <el-button @click="dataVar += 1">complex更新 {{dataVar}}</el-button>
     <el-button @click="handleDestroy">complex销毁</el-button>
 </div>
@@ -24,6 +24,7 @@ export default {
         console.log(`--${COMPONENT_NAME}--beforeCreate`)
     },
     created() {
+        this.test()
         console.log(`--${COMPONENT_NAME}--created`)
     },
     beforeMount() {
@@ -47,6 +48,9 @@ export default {
     methods: {
         handleDestroy() {
             this.$destroy()
+        },
+        test() {
+            console.log('test...complex');
         }
     },
     components: {
