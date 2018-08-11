@@ -22,10 +22,12 @@ export default {
         }
     },
     methods: {
-        handleAdd() {
+        handleAdd(data) {
+            console.log('comp---on...add', data);
             this.num += 1
         },
         handleChange(val) {
+            console.log('comp---on...change', val);
             this.num = val
         },
         handleReset() {

@@ -6,6 +6,7 @@ export default {
     getAllProducts({ commit }) {
         shop.getProducts((res) => {
             const newRes = res.map(p => Object.assign({}, p, { quantity: 0 }))
+            console.log('getProducts', res, newRes);
             commit(types.SET_PRODUCTS, newRes)
         })
     },

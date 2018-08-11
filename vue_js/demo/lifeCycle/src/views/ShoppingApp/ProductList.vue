@@ -30,14 +30,29 @@ export default {
     },
     // 为了避免表单直接修改store中的数据，需要使用watch模拟双向绑定
     watch: {
+        // allProducts: function (val, oldVal) {
+        //     console.log('watch---allProducts', val, oldVal);
+        //     this.currentProducts = JSON.parse(JSON.stringify(val))
+        // }
         allProducts: {
-            handler(val) {
-                this.currentProducts = JSON.parse(JSON.stringify(this.allProducts))
+            handler: function (newVal, oldVal) {
+                console.log('allProducts', newVal, oldVal);
+                // this.currentProducts = val
+                this.currentProducts = JSON.parse(JSON.stringify(newVal))
             },
-            deep: true
+            deep: true // 为了发现对象内部值的变化，可以在选项参数中指定 deep: true
         }
     },
     created() {
+        console.log('created...');
+        // let i = 0;
+        // while (i < 1000) {
+        //     console.log(i);
+        //     i++
+        // }
+    },
+    mounted() {
+        console.log('mounted...');
         this.getAllProducts()
     },
     methods: {

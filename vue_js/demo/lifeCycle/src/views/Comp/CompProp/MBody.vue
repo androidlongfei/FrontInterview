@@ -20,15 +20,21 @@ export default {
     },
     // 外层数据改变时，currentVal值需要同步修改
     watch: {
-        num: {
-            handler(val) {
-                this.currentVal = val
-            },
-            immediate: true
+        // num: {
+        //     handler(val) {
+        //         console.log('num', val);
+        //         this.currentVal = val
+        //     },
+        //     immediate: true
+        // },
+        num: function (newVal, oldVal) {
+            console.log(`num,oldVal:${oldVal}, newVal:${newVal}`)
+            this.currentVal = newVal
         }
     },
     methods: {
         handleChange(val) {
+            console.log('mbody---emit....change', val);
             this.$emit('change', val)
         }
     }

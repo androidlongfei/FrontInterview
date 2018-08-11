@@ -10,9 +10,11 @@
 export default {
     methods: {
         add() {
-            this.$emit('add')
+            console.log('mside--emit ... add');
+            this.$emit('add', { test: 1 })
         },
         reset() {
+            console.log('mside--emit ... reset');
             this.$emit('reset')
         }
     }
