@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击穿透</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: #ddd;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="div1">div1</div>
+    <div id="div2">div2</div>
+    <script type="application/javascript" src="lib/myfastclick.js"></script>
+    <script charset="utf-8">
+        var div1 = document.getElementById('div1')
+        var div2 = document.getElementById('div2')
+        // FastClick.attach(div2); //可以解决点击穿透问题
+
+        div1.addEventListener("touchstart", function (event) {
+            console.log('div1 => touchstart')
+        }, false);
+        div1.addEventListener("touchmove", function (event) {
+            console.log('div1 => touchmove')
+        }, false);
+        div1.addEventListener("touchend", function (event) {
+            console.log('div1  => touchend')
+        }, false);
+        div1.addEventListener("click", function (event) {
+            console.log('div1  => click')
+            div1.style.backgroundColor = 'green'
+        }, false);
+
+        div2.addEventListener("touchstart", function (event) {
+            console.log('div2 => touchstart')
+            div2.style.backgroundColor = 'red'
+            div2.style.display = "none"
+        }, false);
+        div2.addEventListener("touchmove", function (event) {
+            console.log('div2 => touchmove')
+        }, false);
+        div2.addEventListener("touchend", function (event) {
+            console.log('div2  => touchend')
+        }, false);
+        div2.addEventListener("click", function (event) {
+            console.log('div2  => click')
+        }, false);
+
+        // 点击div2与div1重叠的部分,触发事件如下:
+        // div2.touchstart => div2.touchend => div1.click
+
+    </script>
+</body>
+
+</html>
