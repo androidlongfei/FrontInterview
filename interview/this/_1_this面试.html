@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>this面试</title>
+</head>
+
+<body>
+    <script charset="utf-8">
+        const person = {
+            namea: 'menglinghua',
+            say: function () {
+                console.log('say', this) // this指向person
+                return function () {
+                    console.log('say1', this) // this指向window
+                    console.log(this.namea);
+                };
+            }
+        };
+        var p1 = person.say()
+        p1() // 指向window  undefined
+
+        window.namea = '哈哈'
+        p1() // 指向windows  哈哈
+
+        const person1 = {
+            namea: 'menglinghua',
+            say: function () {
+                return () => {
+                    console.log(this.namea);
+                };
+            }
+        };
+        person1.say()(); // menglinghua
+
+    </script>
+</body>
+
+</html>
