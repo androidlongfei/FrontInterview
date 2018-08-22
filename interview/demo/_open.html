@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>打开网页</title>
+
+    <!--
+    写代码的时候想在异步请求请求的成功后打开一个新页面，这时往往会被浏览器拦截
+    以前在使用jquery的$.ajax可以通过设置async:false来使用同步请求防止被拦截，但是在使用axios的时候没有这种属性，解决方法如下：
+     -->
+
+    <!--
+    解决方法： 在axios发送之前就打开一个空白的新窗口
+    var newPage = window.open() 如果这样写，打开的空白页上有标题，显示的是“无标题”
+    window.open('about:blank')
+    这样的话，标题上显示的是'about:blank'
+    然后在axios的then回调里写入打开的url的地址 newPage.location.href = 'url'
+    这样就解决了浏览器自动拦截的问题了
+ -->
+</head>
+
+<body>
+
+    <p onclick="openUrl()">打开新页面</p>
+
+    <script charset="utf-8">
+        function openUrl() {
+            var newwindow = window.open('about:blank')
+            setTimeout(function () {
+                newwindow.location.href = "http://www.baidu.com";
+                newwindow.focus();
+            }, 2000)
+
+        }
+
+    </script>
+
+</body>
+
+</html>
